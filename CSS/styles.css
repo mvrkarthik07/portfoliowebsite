@@ -1,0 +1,3125 @@
+/* Futuristic Streetwear Design System */
+:root {
+    --primary-black: #000000;
+    --secondary-black: #0a0a0a;
+    --tertiary-black: #141414;
+    --primary-white: #ffffff;
+    --secondary-white: #f5f5f5;
+    --accent-gray: #1a1a1a;
+    --highlight-gray: #2a2a2a;
+    --glow-white: rgba(255, 255, 255, 0.1);
+    --glow-accent: rgba(255, 255, 255, 0.05);
+}
+
+/* Index page background */
+body:not(.homepage):not(.showcase):not(.loading):not(.studyhavn) {
+    background: var(--primary-black);
+    background-image: 
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 70%),
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(255, 255, 255, 0.02) 2px,
+            rgba(255, 255, 255, 0.02) 4px
+        );
+    background-size: 100% 100%, 100% 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.NameTag {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    margin: 0;
+    line-height: 1.2;
+    font-family: "Special Gothic Expanded One", sans-serif;
+    text-align: center; 
+    background-size: 99% 100%;
+    animation: fadeInUp 1s ease-out;
+    h1{
+        font-size: clamp(2rem,8vw,4rem);
+        margin:0.2em 0;
+        color: var(--primary-white);
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.3),
+                     0 0 40px rgba(255, 255, 255, 0.1);
+        letter-spacing: 0.15em;
+        position: relative;
+        animation: pulseGlow 3s ease-in-out infinite;
+    }
+    h2 {
+        color: var(--secondary-white);
+        opacity: 0.8;
+        letter-spacing: 0.2em;
+        font-size: clamp(1rem, 3vw, 1.5rem);
+        text-transform: uppercase;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -40%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@keyframes pulseGlow {
+    0%, 100% {
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.3),
+                     0 0 40px rgba(255, 255, 255, 0.1);
+    }
+    50% {
+        text-shadow: 0 0 30px rgba(255, 255, 255, 0.5),
+                     0 0 60px rgba(255, 255, 255, 0.2);
+    }
+}
+
+.NameTag .btn{
+    margin-top: 5%;
+    padding: 1.2rem 3rem;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    background: transparent;
+    border: 2px solid var(--primary-white);
+    border-radius: 0;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    font-family: "Special Gothic Expanded One", sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-align: center;
+    text-decoration: none;
+    color: var(--primary-white);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
+    will-change: transform, box-shadow;
+    transform: translateZ(0);
+}
+
+.NameTag .btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--primary-white);
+    transition: left 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: -1;
+}
+
+.NameTag .btn:hover {
+    color: var(--primary-black);
+    box-shadow: 0 8px 40px rgba(255, 255, 255, 0.4),
+                inset 0 0 30px rgba(255, 255, 255, 0.1);
+    transform: translateY(-4px) scale(1.02);
+}
+
+.NameTag .btn:hover::before {
+    left: 0;
+}
+
+.homepage {
+    
+    color:#f5f5f5;
+    font-weight: 600;
+    margin: 0;
+    padding:0;
+    
+    
+    
+}
+.homepage .logo, .showcase .logo, .studyhavn .logo{
+    font-size: 2.25rem;
+    font-weight: 600;
+    color:#f5f5f5;
+    font-family:"Special Gothic Expanded One",sans-serif;
+    letter-spacing: 0.5px;
+
+}
+
+.homepage a, .showcase a {
+    text-decoration: none;
+    margin-left: 5%;
+    color: var(--primary-white);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 0.8rem 1.5rem;
+    margin-top: 0.75%;
+    border-radius: 0;
+    background: rgba(255, 255, 255, 0.02);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    font-family: "Special Gothic Expanded One", sans-serif;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    position: relative;
+    overflow: hidden;
+    will-change: transform, box-shadow, border-color;
+    transform: translateZ(0);
+}
+
+.homepage a::before, .showcase a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--primary-white);
+    transition: left 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: -1;
+}
+
+.homepage a:hover, .showcase a:hover {
+    color: var(--primary-black);
+    border-color: var(--primary-white);
+    box-shadow: 0 8px 35px rgba(255, 255, 255, 0.35),
+                0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+    transform: translateY(-3px) scale(1.02);
+}
+
+.homepage a:hover::before, .showcase a:hover::before {
+    left: 0;
+}
+.homepage nav, .showcase nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 0.1rem;
+    gap: 1rem;
+    padding-top: 4rem;
+    margin-bottom: 2rem;
+    position: static;
+}
+
+.homepage .nav-menu, .showcase .nav-menu {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 0.1rem;
+    gap: 1rem;
+    padding-top: 4rem;
+    margin-bottom: 2rem;
+    position: static;
+}
+.homepage .type-writer {
+    padding: 2rem 1rem;
+    margin: 2rem 0;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.homepage #typed-text {
+    display: inline-block;
+    min-height: 3.25em;
+    font-size: clamp(2rem, 6vw, 4rem);
+    color: var(--primary-white);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    font-family: 'Panchang', sans-serif;
+    hyphens: auto;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    letter-spacing: 0.05em;
+    position: relative;
+}
+.homepage .aboutme-text{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    word-spacing: 0.5px;
+    gap: 2rem;
+    flex: 1;
+    min-width: 300px;
+    margin-right: auto;
+    width: 33%;
+    
+
+    
+
+    
+    
+        
+        font-family: 'Clash Display',sans-serif;
+        max-width: 100%;
+        font-size: 1.25rem;
+}
+.homepage .About-me img {
+        display: flex;
+    max-width: 100%;
+        width: 39.41%;
+    border-radius: 0;
+        margin-left: auto;
+    max-width: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: hidden;
+    will-change: transform;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+}
+
+.homepage .About-me img::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.homepage .About-me img:hover {
+    box-shadow: 0 15px 50px rgba(255, 255, 255, 0.2),
+                0 0 30px rgba(255, 255, 255, 0.1);
+    transform: scale(1.02) translateZ(0);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.homepage .About-me img:hover::before {
+    opacity: 1;
+}
+
+.homepage .About-me{
+    display: flex;
+    align-items: flex-start;
+    gap:2rem;
+    overflow: hidden;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+
+}
+    
+    
+
+.homepage .aboutmeheader {
+    font-family: "Special Gothic Expanded One", sans-serif;
+    position: relative;
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+/* ========================================
+   ULTRA-SMOOTH SCROLL SECTIONS - Butter Smooth Experience
+   ======================================== */
+.scroll-section {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 8rem 2rem 6rem;
+    position: relative;
+    opacity: 0;
+    transform: translateY(50px) translateZ(0);
+    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+    scroll-snap-align: start;
+    scroll-margin-top: 80px;
+}
+
+.scroll-section.section-active {
+    opacity: 1;
+    transform: translateY(0) translateZ(0);
+}
+
+.scroll-section.section-prev {
+    opacity: 0.25;
+    transform: translateY(-30px) translateZ(0);
+}
+
+.scroll-section.section-next {
+    opacity: 0.25;
+    transform: translateY(30px) translateZ(0);
+}
+
+.hero-section {
+    min-height: 100vh;
+    padding-top: 120px;
+}
+
+.scroll-section h2 {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto 4rem;
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    position: relative;
+    padding-bottom: 1.5rem;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInHeading 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+}
+
+@keyframes fadeInHeading {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.scroll-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary-white), transparent);
+    animation: expandLine 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+}
+
+@keyframes expandLine {
+    to {
+        transform: translateX(-50%) scaleX(1);
+    }
+}
+
+.scroll-section h3 {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto 2.5rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    font-family: "Clash Display", sans-serif;
+    color: var(--primary-white);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInSubheading 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+}
+
+@keyframes fadeInSubheading {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.scroll-section #skills-section h3 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.scroll-section > *:not(h2):not(h3) {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Ensure sections flow naturally */
+.scroll-section .skills-grid,
+.scroll-section .Certifications,
+.scroll-section .Education,
+.scroll-section .About-me,
+.scroll-section .Contact-Me {
+    width: 100%;
+    max-width: 1400px;
+}
+
+/* Remove card-based styling, make content flow */
+.scroll-section .About-me {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5rem;
+    width: 100%;
+    max-width: 1200px;
+    padding: 3rem 0;
+    margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .scroll-section .About-me {
+        flex-direction: column;
+        gap: 3rem;
+        text-align: center;
+    }
+}
+
+.scroll-section .Certifications {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+    width: 100%;
+    max-width: 1400px;
+    padding: 2rem 0;
+}
+
+.scroll-section .Education {
+    width: 100%;
+    max-width: 1000px;
+    padding: 3rem 0;
+    position: relative;
+}
+
+.scroll-section .Education::before {
+    content: '';
+    position: absolute;
+    left: 12px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.25) 5%, 
+        rgba(255, 255, 255, 0.25) 95%, 
+        transparent 100%);
+    transform: translateZ(0);
+}
+
+.scroll-section .Education h3 {
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+    padding-left: 3rem;
+    position: relative;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+.scroll-section .Education h3::before {
+    content: '';
+    position: absolute;
+    left: -1.5rem;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 16px;
+    height: 16px;
+    background: var(--primary-white);
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px var(--primary-black),
+                0 0 0 6px rgba(255, 255, 255, 0.2),
+                0 0 30px rgba(255, 255, 255, 0.6);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scroll-section .Education h3:hover::before {
+    width: 20px;
+    height: 20px;
+    box-shadow: 0 0 0 4px var(--primary-black),
+                0 0 0 6px rgba(255, 255, 255, 0.3),
+                0 0 40px rgba(255, 255, 255, 0.8);
+}
+
+.scroll-section .Education h3:first-of-type {
+    margin-top: 0;
+}
+
+.scroll-section .Education .content {
+    padding-left: 3rem;
+    margin-bottom: 2rem;
+    opacity: 0;
+    transform: translateX(-20px);
+    animation: slideInContent 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.scroll-section .Education h3:first-of-type + .content {
+    animation-delay: 0.1s;
+}
+
+.scroll-section .Education h3 + .content {
+    animation-delay: 0.2s;
+}
+
+@keyframes slideInContent {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.scroll-section .Education .content p {
+    margin-bottom: 0.75rem;
+    line-height: 1.7;
+    color: var(--secondary-white);
+    font-size: clamp(0.95rem, 2vw, 1.1rem);
+}
+
+.scroll-section .Education .content ul {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 1rem;
+}
+
+.scroll-section .Education .content ul li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.7;
+    color: var(--secondary-white);
+    font-size: clamp(0.95rem, 2vw, 1.1rem);
+}
+
+.scroll-section .Education .content ul li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--primary-white);
+    font-weight: bold;
+}
+
+/* Smooth scroll snap for better UX */
+@media (prefers-reduced-motion: no-preference) {
+    .homepage main {
+        scroll-snap-type: y proximity;
+    }
+    
+    .scroll-section {
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+    }
+}
+
+/* Hero section special styling */
+.hero-section {
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.hero-section .type-writer {
+    width: 100%;
+    max-width: 1200px;
+}
+
+/* Content spacing in scroll sections */
+.scroll-section .aboutme-text {
+    flex: 1;
+    min-width: 300px;
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+    line-height: 1.8;
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    color: var(--secondary-white);
+}
+
+.scroll-section .About-me img {
+    flex: 0 0 auto;
+    width: min(45%, 400px);
+    max-width: 400px;
+    border-radius: 0;
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 0;
+    transform: scale(0.9) translateZ(0);
+    animation: popInImage 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+}
+
+@keyframes popInImage {
+    to {
+        opacity: 1;
+        transform: scale(1) translateZ(0);
+    }
+}
+
+.scroll-section .About-me img:hover {
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: scale(1.05) translateZ(0);
+    box-shadow: 0 20px 60px rgba(255, 255, 255, 0.2),
+                0 0 0 2px rgba(255, 255, 255, 0.1);
+}
+
+/* Remove duplicate h2/h3 rules that conflict */
+.homepage .scroll-section h2:not(.aboutmeheader) {
+    font-family: "Special Gothic Expanded One", sans-serif;
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.homepage .scroll-section h3 {
+    font-family: "Clash Display", sans-serif;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    margin-bottom: 2rem;
+}
+
+/* Override any conflicting styles */
+.scroll-section .edutitle {
+    font-family: "Special Gothic Expanded One", sans-serif;
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+
+.homepage body {
+    transition: background 1s ease;
+}
+
+.homepage main {
+    position: relative;
+    overflow-x: hidden;
+}
+
+.homepage .section-one-active {
+    background: transparent;
+}
+.homepage .logo a,.showcase .logo a, .studyhavn .logo a{
+    all:unset;
+    cursor: pointer;
+    pointer-events: auto;
+    
+    
+
+}
+.homepage .logo a:hover,.showcase .logo a:hover,.studyhavn .logo a:hover {
+     text-shadow:0 0 20px rgba(255, 255, 255, 0.4);
+     transition: text-shadow 0.3s ease;
+     color: var(--primary-white);
+}
+
+.homepage .skill-box, .text-skill-box {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 0;
+    padding: 2.5rem 1.75rem;
+    text-align: center;
+    outline: none;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    color: var(--primary-white);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    font-family: "Clash Display", sans-serif;
+    font-weight: 500;
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
+    letter-spacing: 0.05em;
+    word-wrap: break-word;
+    overflow: hidden;
+    white-space: normal;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    will-change: transform, box-shadow, border-color;
+    backface-visibility: hidden;
+    transform: translateZ(0) scale(1);
+    contain: layout style paint;
+}
+
+.homepage .skill-box::before, .text-skill-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 50%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+}
+
+.homepage .skill-box::after, .text-skill-box::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                height 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+}
+
+
+.homepage .skill-box img {
+        object-fit: contain;
+    width: 64px;
+    height: 64px;
+    margin-bottom: 1.25rem;
+        filter: brightness(0) invert(1);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+    backface-visibility: hidden;
+    transform: translateZ(0) scale(1);
+    opacity: 0.95;
+}
+
+.homepage .skill-box:hover, .text-skill-box:hover {
+    transform: translateY(-12px) scale(1.02) translateZ(0);
+    border-color: rgba(255, 255, 255, 0.35);
+    box-shadow: 0 20px 60px rgba(255, 255, 255, 0.25),
+                0 0 0 1px rgba(255, 255, 255, 0.15) inset,
+                0 8px 32px rgba(0, 0, 0, 0.5);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.homepage .skill-box:hover::before, .text-skill-box:hover::before {
+    opacity: 1;
+}
+
+.homepage .skill-box:hover::after, .text-skill-box:hover::after {
+    width: 200px;
+    height: 200px;
+}
+
+.homepage .skill-box:hover img {
+    transform: scale(1.2) translateZ(0) rotate(5deg);
+    opacity: 1;
+    filter: brightness(0) invert(1) drop-shadow(0 0 15px rgba(255, 255, 255, 0.6));
+}
+
+.homepage .skill-box figcaption {
+    margin-top: 0.5rem;
+    font-family: "Clash Display", sans-serif;
+    font-weight: 500;
+    font-size: clamp(0.85rem, 1.5vw, 0.95rem);
+    letter-spacing: 0.05em;
+    color: var(--primary-white);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateZ(0);
+}
+
+.homepage .skill-box:hover figcaption {
+    transform: translateY(-3px) translateZ(0);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.homepage .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1.75rem;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+    padding: 0;
+    justify-content: center;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.scroll-section #soft-skills {
+    margin-top: 0;
+}
+
+.scroll-section .skill-fade-wrapper {
+    width: 100%;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.scroll-section .skill-fade {
+    font-family: "Clash Display", sans-serif;
+    font-size: clamp(0.95rem, 2vw, 1.1rem);
+    color: var(--secondary-white);
+    opacity: 0.7;
+    letter-spacing: 0.05em;
+    font-style: italic;
+}
+
+/* Posters Gallery Section - Futuristic Dynamic Grid */
+.posters-section {
+    margin: 4rem 0;
+    padding: 2rem 0;
+}
+
+.posters-intro {
+    font-family: 'Clash Display', sans-serif;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    color: var(--secondary-white);
+    opacity: 0.9;
+    max-width: 800px;
+    line-height: 1.6;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 1rem;
+}
+
+.posters-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+    padding: 1rem;
+}
+
+.poster-card {
+    position: relative;
+    background: var(--accent-gray);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                border-color 0.3s ease,
+                box-shadow 0.3s ease;
+    aspect-ratio: 3/4;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5),
+                inset 0 0 20px rgba(255, 255, 255, 0.02);
+}
+
+.poster-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+    pointer-events: none;
+    will-change: opacity;
+}
+
+.poster-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+}
+
+.poster-card {
+    will-change: transform;
+    transform: translateZ(0);
+    contain: layout style paint;
+}
+
+.poster-card:hover {
+    transform: translateY(-8px) scale(1.02) translateZ(0);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.poster-card:hover::before {
+    opacity: 1;
+}
+
+.poster-card:hover img {
+    transform: scale(1.05) translateZ(0);
+}
+
+.poster-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+    padding: 1.5rem;
+    transform: translateY(100%) translateZ(0);
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    z-index: 2;
+    will-change: transform;
+    backface-visibility: hidden;
+}
+
+.poster-card:hover .poster-overlay {
+    transform: translateY(0) translateZ(0);
+}
+
+.poster-title {
+    font-family: "Special Gothic Expanded One", sans-serif;
+    font-size: 1.2rem;
+    color: var(--primary-white);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.poster-description {
+    font-family: "Clash Display", sans-serif;
+    font-size: 0.9rem;
+    color: var(--secondary-white);
+    opacity: 0.9;
+    line-height: 1.4;
+}
+
+/* Empty state for dynamic adding */
+.poster-placeholder {
+    aspect-ratio: 3/4;
+    background: var(--accent-gray);
+    border: 2px dashed rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--secondary-white);
+    font-family: "Clash Display", sans-serif;
+    font-size: 1rem;
+    opacity: 0.5;
+    transition: all 0.3s ease;
+}
+
+.poster-placeholder:hover {
+    border-color: rgba(255, 255, 255, 0.4);
+    opacity: 0.8;
+}
+
+.posters-cta {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 3rem;
+    padding: 2rem 1rem;
+}
+
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 2rem;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: var(--primary-white);
+    text-decoration: none;
+    font-family: "Special Gothic Expanded One", sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    min-height: 44px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
+}
+
+.social-link svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.social-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--primary-white);
+    transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: -1;
+}
+
+.social-link:hover {
+    color: var(--primary-black);
+    border-color: var(--primary-white);
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.social-link:hover::before {
+    left: 0;
+}
+
+.poster-instagram-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    margin-top: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: var(--primary-white);
+    text-decoration: none;
+    font-family: "Clash Display", sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    transition: all 0.3s ease;
+    min-height: 44px;
+    border-radius: 0;
+}
+
+.poster-instagram-btn svg {
+    width: 16px;
+    height: 16px;
+}
+
+.poster-instagram-btn:hover {
+    background: var(--primary-white);
+    color: var(--primary-black);
+    border-color: var(--primary-white);
+    transform: translateY(-2px);
+}
+
+.homepage h2 {
+    font-family: "Special Gothic Expanded One", sans-serif;
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    text-align: center;
+    margin-bottom: 3rem;
+    width: 100%;
+}
+.homepage h3 {
+    font-family: "Clash Display", sans-serif;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    margin-bottom: 2rem;
+    width: 100%;
+}  
+
+.homepage .skill-fade, .showcase .skill-fade{
+    font-style: italic;
+    text-align: center;
+    color:#f5f5f5;
+    font-family:"Clash Display",sans-serif;
+    opacity:0;
+    margin-top: 1.5rem;
+    transform:translateY(10px) ;
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    
+}
+.homepage .skill-fade.show, .showcase .skill-fade.show{
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.4s;
+}
+
+.hidden{
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.homepage  .Education h3{
+    font-family:"Clash Display",sans-serif; 
+    margin-bottom: 0.25rem;
+   
+    
+    
+    
+}
+.homepage .edutitle{
+    margin-bottom: 0.15rem;
+}
+.homepage .Education{
+    font-family:"Clash Display",sans-serif; 
+    margin-top: -1.25rem;
+}
+.homepage  .content p:first-of-type{
+    margin-top: 0;
+
+}
+.homepage .Certifications{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.homepage .Certifications .edu-content {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    font-family: "Clash Display", sans-serif;
+    justify-content: space-between;
+    align-items: flex-start;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    margin: 0;
+    border-radius: 0;
+    padding: 3rem;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+    animation: popInCard 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.homepage .Certifications .edu-content:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.homepage .Certifications .edu-content:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.homepage .Certifications .edu-content:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.homepage .Certifications .edu-content:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+@keyframes popInCard {
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.homepage .Certifications .edu-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+    transition: left 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.homepage .Certifications .edu-content:hover::before {
+    left: 100%;
+}
+
+.homepage .Certifications .edu-content::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+}
+
+.homepage .Certifications .edu-content:hover {
+    border-color: rgba(255, 255, 255, 0.35);
+    box-shadow: 0 24px 60px rgba(255, 255, 255, 0.2),
+                0 0 0 1px rgba(255, 255, 255, 0.15) inset,
+                0 12px 40px rgba(0, 0, 0, 0.5);
+    transform: translateY(-10px) scale(1.02);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.homepage .Certifications .edu-content:hover::after {
+    opacity: 1;
+}
+
+.homepage .Certifications .edu-content h3 {
+    color: var(--primary-white);
+    font-size: clamp(1.4rem, 3vw, 1.9rem);
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    line-height: 1.3;
+    font-family: "Clash Display", sans-serif;
+}
+
+.homepage .Certifications .edu-content .skills-obtained {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 0.65rem 1.3rem;
+    border-radius: 0;
+    display: inline-block;
+    margin: 0.4rem 0.4rem 0.4rem 0;
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--primary-white);
+    font-size: clamp(0.8rem, 1.5vw, 0.9rem);
+    letter-spacing: 0.05em;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    font-weight: 400;
+    position: relative;
+    overflow: hidden;
+}
+
+.homepage .Certifications .edu-content .skills-obtained::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 0;
+}
+
+.homepage .Certifications .edu-content .skills-obtained span {
+    position: relative;
+    z-index: 1;
+}
+
+.homepage .Certifications .edu-content .skills-obtained:hover {
+    background: var(--primary-white);
+    color: var(--primary-black);
+    border-color: var(--primary-white);
+    transform: translateY(-4px) scale(1.08);
+    box-shadow: 0 12px 30px rgba(255, 255, 255, 0.35),
+                0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+.homepage .Certifications .edu-content .skills-obtained:hover::before {
+    width: 200%;
+    height: 200%;
+}
+
+.homepage .Certifications .edu-content .show-credential {
+        justify-content: flex-end;
+    display: inline-flex;
+    margin-top: 2rem;
+        white-space: wrap;
+    align-self: flex-start;
+}
+
+.homepage .Certifications .edu-content p {
+    margin-top: 0.5rem;
+    margin-bottom: 0.75rem;
+    color: var(--secondary-white);
+    line-height: 1.7;
+    font-size: clamp(0.95rem, 1.8vw, 1.05rem);
+}
+
+.homepage .Certifications .edu-content p:first-of-type {
+    margin-top: 0;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.homepage .Certifications .edu-content a {
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 1rem 1.75rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    background-color: rgba(255, 255, 255, 0.03);
+    color: var(--primary-white);
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-family: "Clash Display", sans-serif;
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+}
+
+.homepage .Certifications .edu-content a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--primary-white);
+    transition: left 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: -1;
+}
+
+.homepage .Certifications .edu-content a:hover {
+    color: var(--primary-black);
+    border-color: var(--primary-white);
+    box-shadow: 0 16px 50px rgba(255, 255, 255, 0.4),
+                0 0 0 1px rgba(255, 255, 255, 0.15) inset,
+                0 8px 30px rgba(0, 0, 0, 0.5);
+    transform: translateY(-4px) scale(1.02);
+}
+
+.homepage .Certifications .edu-content a:hover::before {
+    left: 0;
+}
+
+.homepage .Certifications .show-credential-wrapper {
+        display: flex;
+        justify-content: flex-end  ;
+        margin-top: auto;
+    }
+.homepage .Certifications .skill-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    gap:10px;
+}
+
+.homepage .hobbies .hobbies-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit,minmax(12rem,1fr));
+
+    
+    
+    font-family:"Special Gothic Expanded One",sans-serif;
+    gap:1.5rem;
+    margin-top: 2rem;
+    max-width: 100%;
+    
+    justify-content: space-evenly;
+    img{
+        object-fit: contain;
+        border-radius: 12px;
+        width:100%;
+        
+        margin-bottom: 0.75rem;
+    }
+    
+
+    
+ 
+
+
+
+}
+.homepage .hobbies .hobby-card {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5),
+                inset 0 0 20px rgba(255, 255, 255, 0.02);
+    text-align: center;
+    outline: none;
+    padding: 1.25rem;
+    color: var(--primary-white);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    font-family: "Special Gothic Expanded One", sans-serif;
+    flex-wrap: wrap;
+    width: 75%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    flex-direction: column;
+    overflow: hidden;
+    box-sizing: border-box;
+    background: var(--accent-gray);
+    position: relative;
+}
+
+.homepage .hobbies .hobby-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.homepage .hobbies .hobby-card p {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        margin: 0;
+    }
+
+.hobby-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 20px 60px rgba(255, 255, 255, 0.15),
+                inset 0 0 40px rgba(255, 255, 255, 0.05);
+}
+
+.hobby-card:hover::after {
+    opacity: 1;
+}
+
+
+.homepage .Contact-Me, .showcase .Contact-Me {
+    font-family: "Clash Display", sans-serif;
+    justify-content: center;
+    text-align: center;
+    padding: 3rem 0;
+}
+
+.scroll-section .Contact-Me {
+    max-width: 800px;
+}
+   
+.homepage .Contact-Me p, .showcase .Contact-Me p {
+    margin-bottom: 3rem;
+    color: var(--secondary-white);
+    opacity: 0.95;
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    line-height: 1.8;
+    letter-spacing: 0.02em;
+}
+
+.homepage .Contact-Me .contact-btn, .showcase .Contact-Me .contact-btn {
+    padding: 1.35rem 2.75rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0.75rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: var(--primary-white);
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-family: "Clash Display", sans-serif;
+    font-weight: 500;
+    font-size: clamp(0.9rem, 1.8vw, 1rem);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    min-width: 200px;
+    min-height: 56px;
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+    animation: popInButton 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.homepage .Contact-Me .contact-btn:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.homepage .Contact-Me .contact-btn:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+@keyframes popInButton {
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.homepage .Contact-Me .contact-btn::before, .showcase .Contact-Me .contact-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--primary-white);
+    transition: left 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: -1;
+}
+
+.homepage .Contact-Me .contact-btn:hover, .showcase .Contact-Me .contact-btn:hover {
+    color: var(--primary-black);
+    border-color: var(--primary-white);
+    box-shadow: 0 24px 70px rgba(255, 255, 255, 0.4),
+                0 0 0 1px rgba(255, 255, 255, 0.15) inset,
+                0 12px 40px rgba(0, 0, 0, 0.5);
+    transform: translateY(-8px) scale(1.05);
+    background: var(--primary-white);
+}
+
+.homepage .Contact-Me .contact-btn:hover::before, .showcase .Contact-Me .contact-btn:hover::before {
+    left: 0;
+}
+
+.homepage .site-footer, .showcase .site-footer {
+    font-family: "Special Gothic Expanded One", sans-serif;
+    background-color: var(--primary-black);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--primary-white);
+    padding: 2rem 0.5rem;
+    text-align: center;
+    font-size: 0.95rem;
+    margin-left: -0.5rem;
+        margin-right: -0.5rem;
+    opacity: 0.8;
+    position: relative;
+}
+
+.homepage .site-footer::before, .showcase .site-footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.3) 50%, 
+        transparent
+    );
+}
+
+.homepage .site-footer p, .showcase .site-footer p {
+        margin-bottom: 1rem;
+        margin: 0.5rem 0;
+}
+
+.homepage .site-footer .footer-links, .showcase .site-footer .footer-links{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+ 
+
+ 
+.homepage body {
+    background: var(--primary-black);
+    background-image: 
+        radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.02) 0%, transparent 50%),
+        linear-gradient(180deg, var(--primary-black) 0%, var(--secondary-black) 100%);
+    background-size: 100% 100%, 100% 100%, 100% 200%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0 0.5rem;
+    overflow-x: hidden;
+    position: relative;
+}
+
+.homepage body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(255, 255, 255, 0.01) 2px,
+            rgba(255, 255, 255, 0.01) 4px
+        );
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.5;
+}
+html{
+    scroll-behavior: smooth;
+    padding:0;
+    margin: 0;
+    overflow-x: hidden;
+    overflow-y: visible;
+    width:100%;
+    word-spacing:0.05em ;
+    }
+
+*{
+    box-sizing: border-box;
+}
+
+.showcase body {
+    background: var(--primary-black);
+    background-image: 
+        radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.02) 0%, transparent 50%),
+        linear-gradient(180deg, var(--primary-black) 0%, var(--secondary-black) 100%);
+    background-size: 100% 100%, 100% 100%, 100% 200%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    padding: 0 0.5rem;
+    color: var(--primary-white);
+    font-weight: 600;
+    margin: 0;
+}
+
+.showcase .site-footer{
+     font-family:"Special Gothic Expanded One",sans-serif;
+    background-color: #000000;
+    color:#f5f5f5;
+    padding: 0.5rem;
+    text-align: center;
+    font-size: 0.95rem;
+    margin-left:-0.5rem;
+        
+        margin-right: -0.5rem;
+    
+    
+
+    p{
+        margin-bottom: 1rem;
+        margin: 0.5rem 0;
+    }
+}
+
+.showcase h2{
+    font-family:"Special Gothic Expanded One",sans-serif;
+    font-size: 250%;
+}
+.showcase .sdescription{
+     font-family:  "Clash Display",sans-serif; 
+     font-size: 150%;
+     margin-top: -1.5rem;
+     text-align:justify;
+
+}
+.showcase .MyShowcase{
+    margin-top: -3rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap:1.5rem;
+    justify-content: center;
+    padding:2rem;
+
+
+}
+
+.showcase .project-card {
+    position: relative;
+    width: 80%;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    overflow: hidden;
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    background-color: rgba(255, 255, 255, 0.02);
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    will-change: transform, box-shadow;
+    transform: translateZ(0);
+}
+
+.showcase .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.showcase .project-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+}
+
+.showcase .project-card {
+    will-change: transform;
+    transform: translateZ(0);
+    contain: layout style paint;
+}
+
+.showcase .project-card:hover {
+    transform: translateY(-10px) scale(1.03) translateZ(0);
+    border-color: rgba(255, 255, 255, 0.35);
+    box-shadow: 0 24px 60px rgba(255, 255, 255, 0.2),
+                0 0 0 1px rgba(255, 255, 255, 0.1) inset,
+                0 12px 40px rgba(0, 0, 0, 0.6);
+}
+
+.showcase .project-card:hover::before {
+    opacity: 1;
+}
+
+.showcase .project-card:hover img {
+    transform: scale(1.08) translateZ(0);
+}
+.showcase .project-label {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.85);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--primary-white);
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-align: center;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    z-index: 2;
+}
+
+.showcase .project-type{
+    display:block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    padding:0.25rem;
+    border-radius: 6px;
+    margin-bottom: 0.25rem;
+    
+}
+
+.homepage .top-btn, .showcase .top-btn {
+    margin-top: 2rem;
+    display: inline-block;
+    align-items: baseline;
+    margin-bottom: 1rem;
+    padding: 0.8rem 2rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: var(--primary-white);
+    text-decoration: none;
+    font-family: "Special Gothic Expanded One", sans-serif;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    will-change: transform, box-shadow;
+    transform: translateZ(0);
+}
+
+.homepage .top-btn::before, .showcase .top-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--primary-white);
+    transition: left 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: -1;
+}
+
+.homepage .top-btn:hover, .showcase .top-btn:hover {
+    color: var(--primary-black);
+    border-color: var(--primary-white);
+    box-shadow: 0 8px 35px rgba(255, 255, 255, 0.35),
+                0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+    transform: translateY(-4px) scale(1.02);
+}
+
+.homepage .top-btn:hover::before, .showcase .top-btn:hover::before {
+    left: 0;
+}
+
+.loading {
+    color: var(--primary-white);
+    font-family: "Special Gothic Expanded One", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background: var(--primary-black);
+    background-image: 
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 70%),
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(255, 255, 255, 0.02) 2px,
+            rgba(255, 255, 255, 0.02) 4px
+        );
+    position: relative;
+    overflow: hidden;
+}
+
+.loading::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.1) 30%, 
+        rgba(255, 255, 255, 0.1) 70%, 
+        transparent
+    );
+    animation: loadingg 3s ease-in-out forwards;
+}
+
+@keyframes loadingg {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+.loading .counter {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: bold;
+    margin-top: 12.5%;
+    transition: all 0.3s ease;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5),
+                 0 0 40px rgba(255, 255, 255, 0.3);
+    letter-spacing: 0.2em;
+    position: relative;
+    z-index: 10;
+    animation: pulseCounter 2s ease-in-out infinite;
+}
+
+@keyframes pulseCounter {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.05);
+    }
+}
+
+.homepage .logo, .showcase .logo {
+    position: fixed;
+    height: auto;
+    z-index: 1100;
+    padding: 0.4rem 0.8rem;
+    background: var(--primary-black);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    width: 100%;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Modern Hamburger Menu */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 44px;
+    height: 44px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 1200;
+    position: fixed;
+    top: 0.4rem;
+    right: 0.8rem;
+    transition: all 0.3s ease;
+}
+
+.menu-toggle span {
+    width: 100%;
+    height: 2px;
+    background: var(--primary-white);
+    transition: all 0.3s ease;
+    transform-origin: center;
+}
+
+.menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 8px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
+.menu-toggle:hover {
+    border-color: var(--primary-white);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+.showcase .logo {
+    position: fixed;
+    height: auto;
+    z-index: 1100;
+    padding: 0.4rem 0.8rem;
+    background: var(--primary-black);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    width: 100%;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+}
+.showcase{
+    margin:0;
+    padding:0;
+    font-weight: 600;
+}
+ 
+
+.homepage .no-padding, .showcase .no-padding {
+    margin: 0 -0.5rem;
+}
+
+/* ========================================
+   COMPREHENSIVE RESPONSIVE DESIGN
+   ======================================== */
+
+/* Mobile First Approach - Base styles for mobile */
+
+/* Small devices (phones, 320px and up) */
+@media screen and (max-width: 480px) {
+    :root {
+        font-size: 14px;
+    }
+    
+    .NameTag h1 {
+        font-size: clamp(1.5rem, 10vw, 2.5rem);
+        padding: 0 1rem;
+    }
+    
+    .NameTag h2 {
+        font-size: clamp(0.8rem, 4vw, 1rem);
+        padding: 0 1rem;
+    }
+    
+    .NameTag .btn {
+        padding: 1rem 2rem;
+        font-size: 0.9rem;
+        min-height: 44px;
+    }
+    
+    /* Navbar Mobile */
+    .menu-toggle {
+        display: flex;
+    }
+    
+    .homepage .nav-menu, .showcase .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 300px;
+        height: 100vh;
+        background: var(--primary-black);
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding: 5rem 2rem 2rem;
+        gap: 0;
+        margin: 0;
+        border-left: 1px solid rgba(255, 255, 255, 0.1);
+        transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1150;
+        overflow-y: auto;
+        box-shadow: -5px 0 30px rgba(0, 0, 0, 0.8);
+    }
+    
+    .homepage .nav-menu.active, .showcase .nav-menu.active {
+        right: 0;
+    }
+    
+    .homepage .nav-menu a, .showcase .nav-menu a {
+        width: 100%;
+        margin: 0.5rem 0;
+        padding: 1rem;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        border-left: 2px solid transparent;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .homepage .nav-menu a:hover, .showcase .nav-menu a:hover {
+        border-left: 2px solid var(--primary-white);
+        background: rgba(255, 255, 255, 0.05);
+    }
+    
+    body.nav-open {
+        overflow: hidden;
+    }
+    
+    body.nav-open::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.85);
+        z-index: 1140;
+    }
+    
+    .homepage .logo, .showcase .logo {
+        font-size: 1.5rem;
+        padding: 0.5rem 0.8rem;
+    }
+    
+    .homepage #typed-text {
+        font-size: clamp(1.5rem, 8vw, 2.5rem);
+        padding: 0 1rem;
+    }
+    
+    .homepage .aboutme-text {
+        width: 100%;
+        font-size: 1rem;
+        padding: 0 1rem;
+    }
+    
+    .homepage .About-me {
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 0 1rem;
+    }
+    
+    .homepage .About-me img {
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+    
+    .homepage h2, .showcase h2 {
+        font-size: clamp(1.5rem, 6vw, 2rem);
+        padding: 0 1rem;
+    }
+    
+    .homepage h3 {
+        font-size: clamp(1.2rem, 5vw, 1.5rem);
+        padding: 0 1rem;
+    }
+    
+    .homepage .skills-grid, .showcase .skills-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 1rem;
+        padding: 0.5rem;
+    }
+    
+    .homepage .skill-box, .homepage .text-skill-box {
+        padding: 1.5rem 1rem;
+        font-size: 0.85rem;
+    }
+
+    .homepage .skill-box img {
+        width: 48px;
+        height: 48px;
+    }
+
+    .homepage .skill-box figcaption {
+        font-size: 0.8rem;
+    }
+
+    .homepage .skills-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 1.25rem;
+    }
+
+    .scroll-section .Education::before {
+        left: 10px;
+    }
+
+    .scroll-section .Education h3 {
+        padding-left: 2.5rem;
+    }
+
+    .scroll-section .Education h3::before {
+        left: -1.25rem;
+        width: 14px;
+        height: 14px;
+    }
+
+    .scroll-section .Education .content {
+        padding-left: 2.5rem;
+    }
+
+    .homepage .Certifications .edu-content {
+        padding: 2rem 1.5rem;
+    }
+
+    .scroll-section .Certifications {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .posters-gallery {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 0.5rem;
+    }
+    
+    .poster-card {
+        min-height: 300px;
+    }
+    
+    .posters-cta {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1.5rem 1rem;
+    }
+    
+    .social-link {
+        width: 100%;
+        justify-content: center;
+        padding: 1.2rem 2rem;
+    }
+    
+    .homepage .Certifications .edu-content {
+        width: 95%;
+        padding: 2rem 1.5rem;
+        margin: 1.5rem auto;
+    }
+
+    .scroll-section {
+        padding: 6rem 1.5rem 4rem;
+    }
+
+    .scroll-section h2 {
+        margin-bottom: 2.5rem;
+        font-size: clamp(1.75rem, 7vw, 2.5rem);
+    }
+
+    .scroll-section h2::after {
+        width: 60px;
+    }
+
+    .scroll-section .About-me {
+        gap: 2.5rem;
+    }
+
+    .scroll-section .About-me img {
+        width: min(90%, 300px);
+    }
+
+    .homepage .Contact-Me .contact-btn {
+        min-width: 100%;
+        margin: 0.5rem 0;
+    }
+    
+    .homepage .hobbies .hobby-card {
+        width: 100%;
+    }
+    
+    .homepage .Contact-Me .contact-btn, .showcase .Contact-Me .contact-btn {
+        width: 100%;
+        margin: 0.5rem 0;
+        padding: 1.2rem;
+        text-align: center;
+    }
+    
+    .homepage .top-btn, .showcase .top-btn {
+        width: calc(100% - 2rem);
+        margin: 1rem;
+        text-align: center;
+        padding: 1rem;
+    }
+    
+    .showcase .project-card {
+        width: 100%;
+    }
+    
+    .homepage .type-writer {
+        padding: 1rem;
+    }
+}
+
+/* Medium devices (tablets, 481px and up) */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .NameTag h1 {
+        font-size: clamp(2rem, 8vw, 3rem);
+    }
+    
+    .menu-toggle {
+        display: flex;
+    }
+    
+    .homepage .nav-menu, .showcase .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 60%;
+        max-width: 350px;
+        height: 100vh;
+        background: var(--primary-black);
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding: 5rem 2rem 2rem;
+        gap: 0;
+        margin: 0;
+        border-left: 1px solid rgba(255, 255, 255, 0.1);
+        transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1150;
+        overflow-y: auto;
+        box-shadow: -5px 0 30px rgba(0, 0, 0, 0.8);
+    }
+    
+    .homepage .nav-menu.active, .showcase .nav-menu.active {
+        right: 0;
+    }
+    
+    .homepage .nav-menu a, .showcase .nav-menu a {
+        width: 100%;
+        margin: 0.5rem 0;
+        padding: 1rem 1.5rem;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }
+    
+    body.nav-open {
+        overflow: hidden;
+    }
+    
+    body.nav-open::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.85);
+        z-index: 1140;
+    }
+    
+    .posters-gallery {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+    
+    .homepage .skills-grid {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    }
+    
+    .homepage .About-me {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .homepage .About-me img {
+        width: 80%;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+    
+    .posters-cta {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .social-link {
+        flex: 0 1 auto;
+        min-width: 200px;
+    }
+}
+
+/* Large devices (tablets landscape, 769px and up) */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .posters-gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .homepage .skills-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+    
+    .homepage .About-me {
+        gap: 2rem;
+    }
+    
+    .homepage .About-me img {
+        width: 45%;
+    }
+}
+
+/* Extra large devices (desktops, 1025px and up) */
+@media screen and (min-width: 1025px) {
+    .posters-gallery {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .homepage .nav-menu, .showcase .nav-menu {
+        gap: 1.5rem;
+    }
+}
+
+/* Ultra-wide screens (1400px and up) */
+@media screen and (min-width: 1400px) {
+    .posters-gallery {
+        grid-template-columns: repeat(4, 1fr);
+        max-width: 1600px;
+        margin: 0 auto;
+    }
+    
+    .homepage .Certifications .edu-content {
+        max-width: 1000px;
+    }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+    /* Remove hover effects on touch devices, increase touch targets */
+    .homepage .skill-box:hover, .text-skill-box:hover {
+        transform: none;
+    }
+    
+    .poster-card:hover {
+        transform: none;
+    }
+    
+    /* Ensure all interactive elements are at least 44px */
+    button, a, input, select, textarea {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    .poster-card {
+        cursor: default;
+    }
+}
+
+/* Print styles */
+@media print {
+    .menu-toggle, .homepage .nav-menu, .homepage .top-btn {
+        display: none;
+    }
+    
+    body {
+        background: white;
+        color: black;
+    }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    :root {
+        --primary-white: #ffffff;
+        --primary-black: #000000;
+    }
+    
+    .homepage .skill-box, .text-skill-box {
+        border: 2px solid var(--primary-white);
+    }
+}
+
+/* Dark mode support (already dark, but ensure consistency) */
+@media (prefers-color-scheme: dark) {
+    /* Already optimized for dark mode */
+}
+
+/* ========================================
+   SKIP TO CONTENT (Accessibility)
+   ======================================== */
+.skip-to-content {
+    position: absolute;
+    top: -100px;
+    left: 0;
+    background: var(--primary-white);
+    color: var(--primary-black);
+    padding: 1rem 2rem;
+    text-decoration: none;
+    font-family: "Special Gothic Expanded One", sans-serif;
+    font-weight: 600;
+    z-index: 10000;
+    border: 2px solid var(--primary-black);
+    transition: top 0.3s ease;
+}
+
+.skip-to-content:focus {
+    top: 0;
+    outline: 3px solid var(--primary-white);
+    outline-offset: 2px;
+}
+
+/* ========================================
+   LIGHTBOX MODAL - Professional & Smooth
+   ======================================== */
+.lightbox-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.lightbox-modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+}
+
+.lightbox-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.98);
+    cursor: pointer;
+    will-change: opacity;
+    transform: translateZ(0);
+}
+
+.lightbox-content {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+    z-index: 10001;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    animation: lightboxFadeIn 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform, opacity;
+    transform: translateZ(0);
+}
+
+@keyframes lightboxFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateZ(0);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateZ(0);
+    }
+}
+
+.lightbox-image {
+    max-width: 100%;
+    max-height: 70vh;
+    object-fit: contain;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+    background: var(--accent-gray);
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+.lightbox-info {
+    text-align: center;
+    color: var(--primary-white);
+    max-width: 600px;
+    padding: 0 1rem;
+}
+
+.lightbox-title {
+    font-family: "Special Gothic Expanded One", sans-serif;
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.lightbox-description {
+    font-family: "Clash Display", sans-serif;
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    opacity: 0.9;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.lightbox-counter {
+    font-family: "Clash Display", sans-serif;
+    font-size: 0.9rem;
+    opacity: 0.7;
+    letter-spacing: 0.1em;
+}
+
+.lightbox-close,
+.lightbox-prev,
+.lightbox-next {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: var(--primary-white);
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                background 0.2s ease,
+                border-color 0.2s ease;
+    z-index: 10002;
+    min-height: 44px;
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+.lightbox-close:hover,
+.lightbox-prev:hover,
+.lightbox-next:hover {
+    background: var(--primary-white);
+    color: var(--primary-black);
+    border-color: var(--primary-white);
+    transform: scale(1.1);
+}
+
+.lightbox-close {
+    top: 2rem;
+    right: 2rem;
+}
+
+.lightbox-prev {
+    left: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.lightbox-next {
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.lightbox-prev:hover,
+.lightbox-next:hover {
+    transform: translateY(-50%) scale(1.08) translateZ(0);
+}
+
+/* Mobile lightbox adjustments */
+@media screen and (max-width: 768px) {
+    .lightbox-close {
+        top: 1rem;
+        right: 1rem;
+    }
+    
+    .lightbox-prev,
+    .lightbox-next {
+        width: 40px;
+        height: 40px;
+        left: 1rem;
+    }
+    
+    .lightbox-next {
+        left: auto;
+        right: 1rem;
+    }
+    
+    .lightbox-content {
+        max-width: 95vw;
+        padding: 1rem;
+    }
+    
+    .lightbox-image {
+        max-height: 60vh;
+    }
+}
+
+/* ========================================
+   LOADING STATES & SKELETONS
+   ======================================== */
+.skeleton {
+    background: linear-gradient(
+        90deg,
+        var(--accent-gray) 0%,
+        var(--highlight-gray) 50%,
+        var(--accent-gray) 100%
+    );
+    background-size: 200% 100%;
+    animation: skeletonLoading 1.5s ease-in-out infinite;
+    border-radius: 0;
+}
+
+@keyframes skeletonLoading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+.skeleton.loaded {
+    animation: none;
+    background: transparent;
+}
+
+.image-loading {
+    opacity: 0.3;
+    transition: opacity 0.3s ease;
+}
+
+.image-loaded {
+    opacity: 1;
+    animation: imageFadeIn 0.4s ease;
+}
+
+@keyframes imageFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.image-error {
+    opacity: 0.3;
+}
+
+.image-error-placeholder {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: var(--secondary-white);
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.image-error-placeholder svg {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 0.5rem;
+}
+
+.image-error-placeholder p {
+    font-family: "Clash Display", sans-serif;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+/* ========================================
+   ENHANCED ANIMATIONS & MICRO-INTERACTIONS
+   ======================================== */
+.section-visible {
+    animation: sectionFadeIn 0.8s ease forwards;
+}
+
+@keyframes sectionFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px) translateZ(0);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) translateZ(0);
+    }
+}
+
+.animated {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+/* Smooth scroll behavior enhancement */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+}
+
+/* Enhanced focus styles for accessibility */
+*:focus-visible {
+    outline: 2px solid var(--primary-white);
+    outline-offset: 2px;
+}
+
+button:focus-visible,
+a:focus-visible {
+    outline: 2px solid var(--primary-white);
+    outline-offset: 2px;
+}
+
+/* Loading state for body */
+body:not(.loaded) {
+    overflow: hidden;
+}
+
+body.loaded {
+    overflow: auto;
+}
+
+/* Performance: GPU Acceleration & Optimization */
+.poster-card.animated,
+.skill-box.animated,
+.project-card.animated,
+.hobby-card.animated {
+    will-change: auto;
+}
+
+/* Smooth scroll performance */
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Optimize rendering */
+body {
+    transform: translateZ(0);
+    -webkit-overflow-scrolling: touch;
+}
+
+/* All backdrop-filters removed for optimal performance */
+
+/* ========================================
+   STRUCTURED DATA (JSON-LD) - Added via script
+   ======================================== */
+structured-data {
+    display: none;
+}
+
+/* ========================================
+   POSTERS PAGE - WALL OF POSTERS
+   ======================================== */
+.posters-page {
+    background: var(--primary-black);
+    color: var(--primary-white);
+    overflow-x: hidden;
+}
+
+.posters-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: var(--primary-black);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+}
+
+.posters-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    flex: 1;
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.posters-contact {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+.brand-name {
+    font-family: "Special Gothic Expanded One", sans-serif;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    letter-spacing: 0.2em;
+    color: var(--primary-white);
+    margin: 0;
+    text-transform: uppercase;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.brand-logo-link {
+    display: inline-block;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+.brand-logo {
+    height: 60px;
+    width: auto;
+    filter: brightness(0) invert(1);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+.brand-logo-link:hover {
+    transform: scale(1.1) translateZ(0);
+}
+
+.brand-logo-link:hover .brand-logo {
+    filter: brightness(0) invert(1);
+    opacity: 0.9;
+    transform: translateZ(0);
+}
+
+.posters-nav {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-right: auto;
+}
+
+.posters-contact-btn {
+    padding: 0.8rem 1.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--primary-white);
+    text-decoration: none;
+    font-family: "Clash Display", sans-serif;
+    font-weight: 500;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+.posters-contact-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--primary-white);
+    transition: left 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: -1;
+}
+
+.posters-contact-btn:hover {
+    color: var(--primary-black);
+    border-color: var(--primary-white);
+    box-shadow: 0 24px 70px rgba(255, 255, 255, 0.4),
+                0 0 0 1px rgba(255, 255, 255, 0.15) inset,
+                0 12px 40px rgba(0, 0, 0, 0.5);
+    transform: translateY(-6px) scale(1.05) translateZ(0);
+    background: var(--primary-white);
+}
+
+.posters-contact-btn:hover::before {
+    left: 0;
+}
+
+.posters-nav a {
+    padding: 0.8rem 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.02);
+    color: var(--primary-white);
+    text-decoration: none;
+    font-family: "Special Gothic Expanded One", sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    will-change: transform, box-shadow;
+    transform: translateZ(0);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.posters-nav a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--primary-white);
+    transition: left 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: -1;
+}
+
+.posters-nav a:hover {
+    color: var(--primary-black);
+    border-color: var(--primary-white);
+    transform: translateY(-4px) scale(1.02) translateZ(0);
+    box-shadow: 0 8px 35px rgba(255, 255, 255, 0.35),
+                0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+.posters-nav a:hover::before {
+    left: 0;
+}
+
+.posters-main {
+    margin-top: 180px;
+    padding: 2rem;
+    min-height: calc(100vh - 180px);
+}
+
+.posters-wall {
+    position: relative;
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.poster-wall-item {
+    cursor: pointer;
+    margin-bottom: 20px;
+    position: relative;
+    will-change: transform, opacity;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    contain: layout style paint;
+}
+
+.poster-wall-image-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--accent-gray);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.poster-wall-item:hover .poster-wall-image-wrapper {
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-5px) translateZ(0);
+    box-shadow: 0 15px 40px rgba(255, 255, 255, 0.1);
+}
+
+.poster-wall-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+.poster-wall-item:hover .poster-wall-img {
+    transform: scale(1.05) translateZ(0);
+}
+
+.poster-wall-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.7), transparent);
+    opacity: 0;
+    transition: opacity 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    display: flex;
+    align-items: flex-end;
+    padding: 1.5rem;
+    will-change: opacity;
+}
+
+.poster-wall-item:hover .poster-wall-overlay {
+    opacity: 1;
+}
+
+.poster-wall-content {
+    color: var(--primary-white);
+    width: 100%;
+}
+
+.poster-wall-title {
+    font-family: "Special Gothic Expanded One", sans-serif;
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin: 0 0 0.5rem 0;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+}
+
+.poster-wall-description {
+    font-family: "Clash Display", sans-serif;
+    font-size: clamp(0.85rem, 1.5vw, 1rem);
+    line-height: 1.5;
+    margin: 0;
+    opacity: 0.95;
+}
+
+.posters-footer {
+    margin-top: 4rem;
+    padding: 3rem 2rem;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-family: "Clash Display", sans-serif;
+    color: var(--secondary-white);
+    opacity: 0.8;
+}
+
+.posters-footer p {
+    margin: 0.5rem 0;
+}
+
+/* Responsive Posters Wall */
+@media screen and (max-width: 768px) {
+    .posters-header {
+        padding: 1.5rem;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1.5rem;
+    }
+
+    .posters-brand {
+        position: static;
+        transform: none;
+        order: 1;
+        width: 100%;
+    }
+
+    .posters-nav {
+        order: 2;
+        width: 100%;
+        gap: 1rem;
+        justify-content: center;
+        margin-right: 0;
+    }
+
+    .posters-contact {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        margin-left: 0;
+    }
+
+    .posters-contact-btn {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .posters-main {
+        margin-top: 280px;
+        padding: 1rem;
+    }
+
+    .brand-logo {
+        height: 40px;
+    }
+
+    .posters-nav a {
+        flex: 1;
+        justify-content: center;
+        min-width: 0;
+        padding: 0.8rem 1rem;
+        font-size: 0.8rem;
+        max-width: 150px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .posters-main {
+        margin-top: 280px;
+        padding: 0.5rem;
+    }
+
+    .posters-wall {
+        padding: 0;
+    }
+}

@@ -1,0 +1,203 @@
+.studyhavn{
+    background: #1e1e1e;
+    color:#f5f5f5;
+    h1,h2,h3{
+        font-family:"Special Gothic Expanded One",sans-serif; ;
+    }
+    p,li,ul{
+         font-family:"Clash Display",sans-serif;
+    }
+    a{
+        text-decoration: none;
+        color:#000000;
+        border:2px solid #ffffff;
+        border-radius: 12px;
+        padding:0.5rem;
+        background: #f5f5f5;
+        font-family:"Special Gothic Expanded One",sans-serif; 
+        transition: background 0.2s ease color 0.2s ease;
+    }
+    a:hover{
+        background: #000000;
+        color:#f5f5f5;
+
+    }
+    .project-btn{
+        display: flex;
+        
+        
+
+        
+    }
+    h1{
+        width:50%;
+        display: flex;
+    }
+    .button-header{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+    }
+    .color-grid{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .img-header{
+        padding:1rem;
+        border-radius: 0.5rem;
+        text-align: center;
+        box-shadow: 0.5em 0.5em 0.5em 0.5em rgba(0,0,0,0.5);
+        height: fit-content;
+        justify-content: space-evenly;
+        transition: box-shadow 0.2s ease;
+         img{
+            width: 100%;
+            height: auto;
+            border-radius: 0.25em;
+         }
+
+    }
+
+    .img-header:hover{
+        box-shadow: none;
+
+    }
+    .img-set{
+        display: grid;
+        grid-template-columns: repeat(auto-fit,minmax(12rem,1fr));
+        gap:1rem;
+        padding:1rem;
+        
+    }
+
+    
+    .view-btn{
+        margin-top: 1rem;
+        display: block;
+        width:fit-content;
+        margin-left:auto;
+        margin-right: auto;}
+        
+
+    .bottom{
+        margin-top: 3.5rem;
+        margin-bottom: 1.25rem;
+        display: flex;
+        justify-content: space-between;
+        a{
+            
+            justify-content: space-evenly;
+        }
+        
+    }
+    .before-bottom{
+        align-content: center;
+        margin-top: 3rem;
+        margin-bottom: 1rem;
+        display: flex;
+        justify-content: space-around;
+        a{
+            background: #000000;
+            color:#f5f5f5;
+            justify-content: space-around;
+            transition: background 0.2s ease color 0.2s ease
+        }
+        a:hover{
+            background: #f5f5f5;
+            color:#000000;
+
+        }
+
+    }
+    
+    
+    
+
+    
+    
+    }
+.studyhavn .logo{
+     font-size: 2.25rem;
+    font-weight: 600;
+    color:#f5f5f5;
+    font-family:"Special Gothic Expanded One",sans-serif;
+    letter-spacing: 0.5px;
+    background: #000000;
+    display:flex;
+    
+    height:auto;
+    z-index:1000;
+    padding:0.4rem 0.8rem;
+    position:fixed;
+    top:0;
+   
+    width: 100%;
+    a{
+           all:unset;
+    cursor: pointer;
+    pointer-events: auto;
+    }
+    a:hover{
+        text-shadow:0 4px 12px rgba(245,245,245,0.8);
+    }
+}
+
+html{
+    scroll-behavior: smooth;
+    padding:0;
+    margin: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    width:100%;
+    height:100%;
+    word-spacing:0.05em ;
+    }
+
+*{
+    box-sizing: border-box;
+}
+.studyhavn .no-padding{
+     margin:0 -0.5rem;
+     margin-top: -0.5rem;
+}
+
+.studyhavn .project-image{
+    margin-top: 4rem;
+    box-shadow: 0.25em 0.25em 0.25em 0.25em rgba(0,0,0,0.5);
+    border-radius: 12px;
+    transition: box-shadow 0.2s ease;
+    
+}
+.studyhavn .project-image:hover{
+    box-shadow: none;
+
+}
+.studyhavn .site-footer{
+         font-family:"Special Gothic Expanded One",sans-serif;
+        background-color: #000000;
+        color:#f5f5f5;
+        padding: 0.5rem;
+        text-align: center;
+        font-size: 0.95rem;
+        margin-left:-0.5rem;
+        margin-bottom: -0.5rem;
+        margin-right: -0.5rem;
+        
+    }
+
+body{
+    margin: 0;
+    padding:0.5rem;
+}
+
+.studyhavn .color-grid{
+    border-radius: 10px;
+    border: 2px solid #f5f5f5;
+    transition:border 0.2s ease;
+}
+.studyhavn .color-grid:hover{
+    border:2px solid #000000;
+}
