@@ -15,7 +15,7 @@ const Posters = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.04,
+        staggerChildren: 0.02, // Reduced from 0.04 for faster initial load
       },
     },
   }
@@ -108,6 +108,7 @@ const Posters = () => {
                     <LazyImage
                       src={poster.image}
                       alt={poster.title || 'Poster'}
+                      priority={index < 8} // Load first 8 images immediately
                       className="w-full h-auto object-contain transition-transform duration-500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:scale-[1.03] will-change-transform"
                     />
                     <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-primary-black/90 via-primary-black/50 to-transparent p-3 sm:p-4 md:p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]">
