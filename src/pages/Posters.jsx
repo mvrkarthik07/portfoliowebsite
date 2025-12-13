@@ -75,11 +75,11 @@ const Posters = () => {
 
           <div className="order-3 w-full sm:w-auto">
             <button
-              onClick={() => navigateToSection('contact', navigate)}
+              onClick={() => window.location.href="https://www.instagram.com/kxrthxk.creatives/"}
               className="btn-secondary btn-no-sheen px-5 py-3 text-sm sm:text-base w-full sm:w-auto text-center"
-              aria-label="Go to contact section"
+              aria-label="Visit KXRTHXK.CREATIVES on Instagram"
             >
-              Contact Me
+              Visit Instagram Page
             </button>
           </div>
         </div>

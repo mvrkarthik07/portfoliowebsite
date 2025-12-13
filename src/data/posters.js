@@ -131,6 +131,12 @@ export const posters = [
     description:
       'Electric blue highlights carve Curry out of pure black, turning his drive to the basket into a sleek, almost holographic portrait of focus and motion.',
   },
+  {
+    image: '/Images/Posters/nikePoster.PNG',
+    title: 'Pulse of Victory',
+    description:
+      'A bold Nike poster that fuses swirling red, green, and blue textures with the iconic swoosh to capture the raw energy of movement and competition. Centered typography and the “JUST DO IT.” tagline amplify the message of fearless action, making the design feel intense, modern, and relentlessly driven.',
+  },
   
 ];
 
