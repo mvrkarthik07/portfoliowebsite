@@ -25,7 +25,7 @@ const Navbar = () => {
     { path: '/#about', label: 'About Me', type: 'hash' },
     { path: '/#projects', label: 'My Showcase', type: 'hash' },
     { path: '/posters', label: 'Posters', type: 'route' },
-    { path: '/Images/Resume_karthik.pdf', label: 'Resume', external: true },
+    { path: '/Images/ResumeKarthik_V2.pdf', label: 'Resume', external: true },
     { path: '/#contact', label: 'Contact Me', type: 'hash' },
   ]
 
