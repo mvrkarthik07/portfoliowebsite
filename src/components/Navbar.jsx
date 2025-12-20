@@ -20,13 +20,35 @@ const Navbar = () => {
     setIsMenuOpen(false)
   }, [location])
 
+  // Handle ESC key to close mobile menu
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape' && isMenuOpen) {
+        setIsMenuOpen(false)
+      }
+    }
+
+    if (isMenuOpen) {
+      document.addEventListener('keydown', handleEscape)
+      // Prevent body scroll when menu is open
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape)
+      document.body.style.overflow = 'unset'
+    }
+  }, [isMenuOpen])
+
   const navLinks = [
     { path: '/', label: 'Home', type: 'route' },
-    { path: '/#about', label: 'About Me', type: 'hash' },
-    { path: '/#projects', label: 'My Showcase', type: 'hash' },
+    { path: '/work', label: 'Work', type: 'route' },
     { path: '/posters', label: 'Posters', type: 'route' },
-    { path: '/Images/ResumeKarthik_V2.pdf', label: 'Resume', external: true },
-    { path: '/#contact', label: 'Contact Me', type: 'hash' },
+    { path: '/about', label: 'About', type: 'route' },
+    { path: '/resume', label: 'Resume', type: 'route' },
+    { path: '/contact', label: 'Contact', type: 'route' },
   ]
 
   const handleHomeClick = (e) => {
@@ -44,33 +66,6 @@ const Navbar = () => {
     setIsMenuOpen(false)
   }
 
-  const handleHashClick = (e, hash) => {
-    e.preventDefault()
-    if (location.pathname !== '/') {
-      // If not on home page, navigate to home first
-      window.location.href = '/'
-      setTimeout(() => {
-        const element = document.getElementById(hash.substring(2))
-        if (element) {
-          const offset = 80
-          const elementPosition = element.getBoundingClientRect().top
-          const offsetPosition = elementPosition + window.pageYOffset - offset
-          window.scrollTo({ top: offsetPosition, behavior: 'smooth' })
-        }
-      }, 100)
-    } else {
-      // Already on home page, just scroll
-      const element = document.getElementById(hash.substring(2))
-      if (element) {
-        const offset = 80
-        const elementPosition = element.getBoundingClientRect().top
-        const offsetPosition = elementPosition + window.pageYOffset - offset
-        element.focus({ preventScroll: true })
-        window.scrollTo({ top: offsetPosition, behavior: 'smooth' })
-      }
-    }
-    setIsMenuOpen(false)
-  }
 
   return (
     <motion.header
@@ -94,33 +89,6 @@ const Navbar = () => {
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-4 lg:gap-6">
           {navLinks.map((link) => {
-            if (link.external) {
-              return (
-                <a
-                  key={link.label}
-                  href={link.path}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-secondary focus:outline-none focus:ring-2 focus:ring-primary-white/50"
-                  aria-label={`${link.label} - Opens in new tab`}
-                >
-                  {link.label}
-                </a>
-              )
-            }
-            if (link.type === 'hash') {
-              return (
-                <a
-                  key={link.label}
-                  href={link.path}
-                  onClick={(e) => handleHashClick(e, link.path)}
-                  className="btn-secondary focus:outline-none focus:ring-2 focus:ring-primary-white/50"
-                  aria-label={link.label}
-                >
-                  {link.label}
-                </a>
-              )
-            }
             if (link.path === '/') {
               return (
                 <a
@@ -178,36 +146,11 @@ const Navbar = () => {
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
             className="md:hidden bg-primary-black border-t border-primary-white/10"
+            role="menu"
+            aria-label="Navigation menu"
           >
             <div className="px-4 py-6 flex flex-col gap-4">
               {navLinks.map((link) => {
-                if (link.external) {
-                  return (
-                    <a
-                      key={link.label}
-                      href={link.path}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn-secondary text-center focus:outline-none focus:ring-2 focus:ring-primary-white/50"
-                      aria-label={`${link.label} - Opens in new tab`}
-                    >
-                      {link.label}
-                    </a>
-                  )
-                }
-                if (link.type === 'hash') {
-                  return (
-                    <a
-                      key={link.label}
-                      href={link.path}
-                      onClick={(e) => handleHashClick(e, link.path)}
-                      className="btn-secondary text-center focus:outline-none focus:ring-2 focus:ring-primary-white/50"
-                      aria-label={link.label}
-                    >
-                      {link.label}
-                    </a>
-                  )
-                }
                 if (link.path === '/') {
                   return (
                     <a

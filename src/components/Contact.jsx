@@ -30,7 +30,7 @@ const Contact = () => {
     e.preventDefault()
     const link = document.createElement('a')
     link.href = href
-    link.download = 'ResumeKarthik_V2.pdf'
+    link.download = 'ResumeKarthik_V3.pdf'
     document.body.appendChild(link)
     link.click()
     document.body.removeChild(link)
@@ -86,7 +86,7 @@ const Contact = () => {
                 href={link.href}
                 target={link.type === 'email' ? undefined : '_blank'}
                 rel={link.type === 'email' ? undefined : 'noopener noreferrer'}
-                download={link.download ? 'ResumeKarthik_V2.pdf' : undefined}
+                download={link.download ? 'ResumeKarthik_V3.pdf' : undefined}
                 onClick={link.download ? (e) => handleResumeDownload(e, link.href) : undefined}
                 className="btn-secondary text-sm sm:text-base px-6 sm:px-8 py-3 sm:py-4"
                 aria-label={link.label}

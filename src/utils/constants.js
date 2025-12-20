@@ -5,7 +5,7 @@ export const APP_CONFIG = {
   email: 'mkarthik1725215@gmail.com',
   social: {
     linkedin: 'https://www.linkedin.com/in/karthik-manda-027038255/',
-    github: 'https://github.com/mkarthik2004',
+    github: 'https://github.com/mvrkarthik07',
     instagram: 'https://www.instagram.com/karthxk.mvr/',
   },
 }

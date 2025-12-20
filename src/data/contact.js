@@ -11,7 +11,7 @@ export const contactLinks = [
   },
   {
     label: 'Github',
-    href: 'https://github.com/mkarthik2004',
+    href: 'https://github.com/mvrkarthik07',
     type: 'github',
   },
   {
@@ -21,7 +21,7 @@ export const contactLinks = [
   },
   {
     label: 'Download Resume',
-    href: '/Images/Resume_karthik.pdf',
+    href: '/Images/ResumeKarthik_V3.pdf',
     type: 'resume',
     download: true,
   },
