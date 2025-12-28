@@ -132,10 +132,34 @@ export const posters = [
       'Electric blue highlights carve Curry out of pure black, turning his drive to the basket into a sleek, almost holographic portrait of focus and motion.',
   },
   {
-    image: '/Images/Posters/nikePoster.PNG',
+    image: '/Images/Posters/nikePoster.png',
     title: 'Pulse of Victory',
     description:
       'A bold Nike poster that fuses swirling red, green, and blue textures with the iconic swoosh to capture the raw energy of movement and competition. Centered typography and the “JUST DO IT.” tagline amplify the message of fearless action, making the design feel intense, modern, and relentlessly driven.',
+  },
+  {
+    image: '/Images/Posters/ghsockposter.png',
+    title:'G-SHOCK: Stress Test',
+    description:
+      'This poster examines the G-SHOCK watch as an object engineered for endurance, translating physical resilience into a visual language of distortion and saturation. Through aggressive color mapping, fragmented compositions, and high-contrast treatments, the work subjects the product to a graphic “stress test,” mirroring the conditions it is designed to survive. The piece explores the tension between industrial precision and visual chaos, reframing durability as both a functional and cultural attribute.',
+  },
+  {
+    image: '/Images/Posters/brands.png',
+    title:'LOGOS UNDER PRESSURE',
+    description:
+      'This poster deconstructs contemporary fashion and streetwear brand identities by stripping them down to pure form, contrast, and repetition. Familiar logos are removed from their commercial context and flattened into a shared visual field, where hierarchy dissolves and recognition relies solely on shape and memory. Through aggressive texture, monochrome treatment, and dense composition, the work questions how branding operates when prestige, color, and narrative are removed—revealing identity as both constructed and fragile.',
+  },
+  {
+    image: '/Images/Posters/tameimpala.png',
+    title:'Tame Impala: Colorful Chaos',
+    description:
+      'This poster interprets Tame Impala through typographic motion rather than literal imagery. Letterforms are stretched, curved, and fragmented to echo the fluid, psychedelic quality of the music—where rhythm feels elastic and time appears distorted. The subdued palette and soft glow emphasize atmosphere over clarity, allowing type to function as an expressive medium rather than a static carrier of text. The work explores how sound can be translated into form through movement, repetition, and controlled abstraction.',
+  },
+  {
+    image: '/Images/Posters/jellyfish.png',
+    title:'Specter.',
+    description:
+      'This poster studies the jellyfish as a form that exists between presence and absence. Rendered in stark monochrome and suspended within negative space, the subject is treated less as a biological specimen and more as a fleeting apparition. The fragmented textures and drifting composition emphasize unfamiliarity, scale, and isolation—echoing the way deep-sea life is perceived: distant, elusive, and only briefly revealed. The work explores how minimalism and contrast can transform natural forms into symbols of ambiguity and quiet tension.',
   },
   
 ];

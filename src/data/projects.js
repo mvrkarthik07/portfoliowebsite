@@ -215,6 +215,37 @@ export const projects = [
     ],
   },
   {
+  id: 'roleaudit',
+  title: 'RoleAudit',
+  type: 'AI-Assisted Resume-to-Role Analysis Tool',
+  projectType: 'technical',
+  description: 'A resume analysis tool that evaluates candidate fit against job roles and highlights strengths, gaps, and improvement areas.',
+  technicalChallenge: 'Designing a transparent, rule-based evaluation system that mirrors how roles assess resumes, while providing explainable scoring and actionable feedback instead of opaque pass/fail outcomes.',
+  technologies: ['JavaScript', 'React', 'Logic-Based Scoring', 'Resume Parsing', 'Rule Systems'],
+  githubLink: 'https://github.com/mvrkarthik07/RoleAudit', // update if different
+  projectLink: null,
+  category: 'Product & Backend Logic',
+  tags: ['Resume Analysis', 'ATS Logic', 'Product Thinking', 'Rule-Based Systems'],
+  featured: true,
+
+  // Custom sections for RoleAudit
+  overview: 'RoleAudit is a candidate-facing resume evaluation tool designed to assess how well a resume aligns with a specific role or role category. Instead of acting as an employer-side ATS, the system exposes the underlying evaluation logic to help users understand where their resume performs well and where it falls short.',
+
+  myContribution: 'I designed the evaluation logic and product flow end-to-end, focusing on translating role requirements into structured scoring criteria. This included defining skill categories, weighting mechanisms, and gap detection logic, as well as shaping the output to be clear, interpretable, and actionable for users. The emphasis was on product clarity and explainability rather than black-box AI.',
+
+  systemStructure: 'The system parses resume inputs, maps extracted skills and experiences against predefined role criteria, and computes both overall and category-level scores. Results are surfaced as strengths, weaknesses, and missing signals, allowing users to diagnose resume fit in a structured manner. The architecture is intentionally modular to allow future expansion into multi-role comparison and recommendation.',
+
+  technicalFocus: 'This project focused on logic-driven evaluation systems, product-oriented backend design, explainable scoring mechanisms, and translating abstract hiring criteria into concrete, inspectable rules.',
+
+  learnings: [
+    'Transparency builds more trust than opaque automation',
+    'Hiring logic can be approximated effectively without black-box ML',
+    'Clear scoring frameworks are more valuable than raw accuracy',
+    'Product framing is as important as technical correctness'
+  ],
+},
+
+  {
     id: 'scdf-dashboard',
     title: 'SCDF Dashboard.',
     type: 'Dashboard Prototype',
