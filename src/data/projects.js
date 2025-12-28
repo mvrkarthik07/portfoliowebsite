@@ -223,7 +223,7 @@ export const projects = [
   technicalChallenge: 'Designing a transparent, rule-based evaluation system that mirrors how roles assess resumes, while providing explainable scoring and actionable feedback instead of opaque pass/fail outcomes.',
   technologies: ['JavaScript', 'React', 'Logic-Based Scoring', 'Resume Parsing', 'Rule Systems'],
   githubLink: 'https://github.com/mvrkarthik07/RoleAudit', // update if different
-  projectLink: null,
+  projectLink: 'https://roleaudit.netlify.app/',
   category: 'Product & Backend Logic',
   tags: ['Resume Analysis', 'ATS Logic', 'Product Thinking', 'Rule-Based Systems'],
   featured: true,
