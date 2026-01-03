@@ -202,7 +202,7 @@ export const posters = [
     title:'NEW YORK.',
     description:
       'An experimental poster exploring identity and reinvention in a dense, digital cityscape. Glitch textures, high-contrast neon tones, and distorted typography create visual tension, reflecting fragmentation and constant change in modern urban life. The composition prioritizes impact over convention, using controlled chaos to communicate self-redefinition through design.',
-  },
+  }
   
 ];
 
