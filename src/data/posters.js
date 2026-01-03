@@ -197,6 +197,12 @@ export const posters = [
     description:
       'This design captures the dynamic energy of Singapore, blending the city’s iconic skyline with the raw, vibrant essence of its culture. The deep red and blue contrasts, along with the sharp chrome typography, evoke both strength and innovation, reflecting Singapore’s growth from a modest island to a global powerhouse. The rich textures of the background evoke a sense of depth and complexity, while the subtle elements of nature and architecture in the scene hint at Singapore’s perfect balance between modernity and greenery. This piece is a visual homage to the Lion City’s bold spirit, showcasing my ability to merge urban elements with artistic expression to create a captivating narrative.',
   },
+  {
+    image: '/Images/Posters/nyposter.png',
+    title:'NEW YORK.',
+    description:
+      'An experimental poster exploring identity and reinvention in a dense, digital cityscape. Glitch textures, high-contrast neon tones, and distorted typography create visual tension, reflecting fragmentation and constant change in modern urban life. The composition prioritizes impact over convention, using controlled chaos to communicate self-redefinition through design.',
+  },
   
 ];
 
