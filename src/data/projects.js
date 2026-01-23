@@ -244,6 +244,61 @@ export const projects = [
     'Product framing is as important as technical correctness'
   ],
 },
+{
+  id: 'heliodesk',
+  title: 'HelioDesk',
+  type: 'Cross-Platform Personal Productivity Dashboard',
+  projectType: 'technical',
+  description:
+    'A cross-platform desktop productivity dashboard that consolidates personal tools, workflows, and signals into a single, focused command-center interface.',
+
+  technicalChallenge:
+    'Designing a low-friction, single-viewport productivity system that balances feature density with clarity, while ensuring cross-device compatibility, secure authentication, and native desktop behavior without introducing unnecessary backend complexity.',
+
+  technologies: [
+    'React',
+    'Vite',
+    'Tauri',
+    'Supabase',
+    'Google OAuth',
+    'PostgreSQL',
+    'ESLint'
+  ],
+
+  githubLink: 'https://github.com/mvrkarthik07/HelioDesk', // update if needed
+  projectLink: 'https://heliodesk.netlify.app/',
+  category: 'Product Engineering & Desktop Applications',
+  tags: [
+    'Desktop Applications',
+    'Productivity Tools',
+    'React',
+    'Tauri',
+    'OAuth',
+    'Product Design'
+  ],
+  featured: true,
+
+  // Custom sections for HelioDesk
+  overview:
+    'HelioDesk is a personal productivity dashboard designed as a career-focused command center rather than a traditional task manager. The application prioritizes fast access, minimal context switching, and a calm visual hierarchy, allowing users to manage tasks, notes, shortcuts, and time awareness within a single, non-scrolling viewport.',
+
+  myContribution:
+    'I designed and implemented HelioDesk end-to-end, spanning UI architecture, frontend logic, authentication flows, and desktop packaging. This included defining the information layout, building modular widgets, implementing Supabase-based Google OAuth, and adapting the application for native desktop behavior using Tauri.',
+
+  systemStructure:
+    'The application is built as a modular React system with isolated widgets for tasks, notes, shortcuts, and calendar navigation. Authentication and user data are handled via Supabase with PostgreSQL and Row Level Security for per-user isolation. The web application is packaged as a native desktop app using Tauri, enabling lightweight distribution without a traditional backend server.',
+
+  technicalFocus:
+    'This project emphasized frontend system design, cross-platform desktop application development, OAuth-based authentication, secure client–database interaction, and building production-ready tooling with clear separation between development and release environments.',
+
+  learnings: [
+    'Single-viewport interfaces force better prioritization and UX discipline',
+    'Desktop apps introduce constraints that web apps often abstract away',
+    'OAuth redirect handling differs fundamentally between browser and native environments',
+    'Security is most robust when enforced at the database level rather than the UI'
+  ],
+},
+
 
   {
     id: 'scdf-dashboard',
