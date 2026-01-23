@@ -131,6 +131,95 @@ export const posters = [
     description:
       'Electric blue highlights carve Curry out of pure black, turning his drive to the basket into a sleek, almost holographic portrait of focus and motion.',
   },
-  
+  {
+    image: '/Images/Posters/nikePoster.png',
+    title: 'Pulse of Victory',
+    description:
+      'A bold Nike poster that fuses swirling red, green, and blue textures with the iconic swoosh to capture the raw energy of movement and competition. Centered typography and the “JUST DO IT.” tagline amplify the message of fearless action, making the design feel intense, modern, and relentlessly driven.',
+  },
+  {
+    image: '/Images/Posters/ghsockposter.png',
+    title:'G-SHOCK: Stress Test',
+    description:
+      'This poster examines the G-SHOCK watch as an object engineered for endurance, translating physical resilience into a visual language of distortion and saturation. Through aggressive color mapping, fragmented compositions, and high-contrast treatments, the work subjects the product to a graphic “stress test,” mirroring the conditions it is designed to survive. The piece explores the tension between industrial precision and visual chaos, reframing durability as both a functional and cultural attribute.',
+  },
+  {
+    image: '/Images/Posters/brands.png',
+    title:'LOGOS UNDER PRESSURE',
+    description:
+      'This poster deconstructs contemporary fashion and streetwear brand identities by stripping them down to pure form, contrast, and repetition. Familiar logos are removed from their commercial context and flattened into a shared visual field, where hierarchy dissolves and recognition relies solely on shape and memory. Through aggressive texture, monochrome treatment, and dense composition, the work questions how branding operates when prestige, color, and narrative are removed—revealing identity as both constructed and fragile.',
+  },
+  {
+    image: '/Images/Posters/tameimpala.png',
+    title:'Tame Impala: Colorful Chaos',
+    description:
+      'This poster interprets Tame Impala through typographic motion rather than literal imagery. Letterforms are stretched, curved, and fragmented to echo the fluid, psychedelic quality of the music—where rhythm feels elastic and time appears distorted. The subdued palette and soft glow emphasize atmosphere over clarity, allowing type to function as an expressive medium rather than a static carrier of text. The work explores how sound can be translated into form through movement, repetition, and controlled abstraction.',
+  },
+  {
+    image: '/Images/Posters/jellyfish.png',
+    title:'Specter.',
+    description:
+      'This poster studies the jellyfish as a form that exists between presence and absence. Rendered in stark monochrome and suspended within negative space, the subject is treated less as a biological specimen and more as a fleeting apparition. The fragmented textures and drifting composition emphasize unfamiliarity, scale, and isolation—echoing the way deep-sea life is perceived: distant, elusive, and only briefly revealed. The work explores how minimalism and contrast can transform natural forms into symbols of ambiguity and quiet tension.',
+  },
+  {
+    image: '/Images/Posters/nb.png',
+    title:'MINIMAL.',
+    description:
+      'Embodying timeless style with modern minimalism, this design highlights the iconic New Balance 996. Celebrating its heritage and revered comfort, the shoe is presented in a clean, bold aesthetic that reflects its status as a long-standing symbol in the running shoe industry. The poster balances striking typography and clean lines, underscoring the brand\'s minimalist approach while honoring its detailed craftsmanship. Perfect for showcasing my design ethos, this piece blends simplicity with sophistication in visual storytelling, capturing the essence of iconic design with precision and elegance.',
+  },
+  {
+    image: '/Images/Posters/TRAV.png',
+    title:'ASTROWORLD.',
+    description:
+      'Inspired by the iconic Astroworld album cover, this design captures the essence of Travis Scott’s larger-than-life influence on culture. The dynamic figure standing atop the globe creates a striking visual metaphor for his dominance in the music industry and his reach beyond the ordinary. The dark, moody color scheme paired with bold red typography mirrors the intensity of the album\'s vibe. This piece exemplifies my skill in blending graphic elements and typography to evoke both energy and an immersive experience. A true celebration of modern music and artistic expression, perfect for showcasing my work in visual and poster design.',
+  },
+  {
+    image: '/Images/Posters/hydposter.png',
+    title:'HYDERABAD.',
+    description:
+      'This design celebrates the vibrant city of Hyderabad, blending modern aesthetics with rich cultural elements. The bold use of red and black creates a striking visual contrast, drawing attention to the iconic Charminar and the city’s name in both English and Telugu. The faint background texture symbolizes the dynamic and historic essence of Hyderabad, a city that balances tradition with contemporary growth. This piece captures the spirit of the city and my design approach—fusing typography with heritage, conveying both boldness and depth in a visually engaging way.',
+  },
+  {
+    image: '/Images/Posters/WALLPAPER.png',
+    title:'Minimalism: The art of simplicity',
+    description:
+      'This design encapsulates the essence of minimalism, showcasing the concept through sleek, reflective typography that seamlessly merges form and function. The glossy black and white contrast highlights the simplicity and elegance of the message, creating a striking visual presence. The reflective floor beneath the bold letters adds depth and dimension, drawing attention to the essence of minimal design principles.',
+  },
+  {
+    image: '/Images/Posters/Tokyoposter.png',
+    title:'TOKYO.',
+    description:
+      'This design captures the essence of Tokyo, where neon lights and rich culture collide in a dynamic fusion. The vibrant, electric blue hues highlight the city\'s bustling streets, while the chrome typography adds a modern, futuristic touch to the classic blend of tradition and innovation. The intricate details in the background, depicting the lively streets of Tokyo, emphasize its role as a global cultural and technological hub. This piece reflects my ability to weave narrative and design into a single visual, illustrating the energy and vibrancy of Tokyo through sharp contrasts and bold imagery.',
+  },
+  {
+    image: '/Images/Posters/sgposter.png',
+    title:'SINGAPORE.',
+    description:
+      'This design captures the dynamic energy of Singapore, blending the city’s iconic skyline with the raw, vibrant essence of its culture. The deep red and blue contrasts, along with the sharp chrome typography, evoke both strength and innovation, reflecting Singapore’s growth from a modest island to a global powerhouse. The rich textures of the background evoke a sense of depth and complexity, while the subtle elements of nature and architecture in the scene hint at Singapore’s perfect balance between modernity and greenery. This piece is a visual homage to the Lion City’s bold spirit, showcasing my ability to merge urban elements with artistic expression to create a captivating narrative.',
+  },
+  {
+    image: '/Images/Posters/nyposter.png',
+    title:'NEW YORK.',
+    description:
+      'An experimental poster exploring identity and reinvention in a dense, digital cityscape. Glitch textures, high-contrast neon tones, and distorted typography create visual tension, reflecting fragmentation and constant change in modern urban life. The composition prioritizes impact over convention, using controlled chaos to communicate self-redefinition through design.',
+  },
+  {
+    image: '/Images/Posters/laposter.png',
+    title:'LOS ANGELES.',
+    description:
+      'This poster captures the essence of Los Angeles, blending the city’s iconic skyline with the raw, vibrant essence of its culture. The deep red and blue contrasts, along with the sharp chrome typography, evoke both strength and innovation, reflecting Los Angeles’ growth from a modest island to a global powerhouse. The rich textures of the background evoke a sense of depth and complexity, while the subtle elements of nature and architecture in the scene hint at Los Angeles’ perfect balance between modernity and greenery. This piece is a visual homage to the City of Angels’ bold spirit, showcasing my ability to merge urban elements with artistic expression to create a captivating narrative.',
+  },
+  {
+    image: '/Images/Posters/PARISPOSTER.PNG',
+    title:'PARIS.',
+    description:
+      'A visual study of place, memory, and structure. Architectural landmarks fragmented and reassembled through edge detection, contrasting permanence with motion and distortion.',
+  },
+  {
+    image: '/Images/Posters/GKPOSTER.PNG',
+    title:'GUNTUR KAARAM',
+    description:
+      'An exploration of halftone textures, extreme contrast, and aggressive framing to capture raw cinematic energy.',
+  }
 ];
 

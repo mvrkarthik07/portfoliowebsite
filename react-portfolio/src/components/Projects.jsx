@@ -79,19 +79,11 @@ const Projects = () => {
           className="mt-12 md:mt-14 flex flex-col items-center gap-3 text-center"
         >
           <p className="font-clash text-sm sm:text-base md:text-lg text-secondary-white/80">
-            <span className="font-gothic tracking-widest text-primary-white">KXRTHXK.CREATIVES</span> — the visual playground where I craft culture-inspired posters, high-contrast layouts, and loud design statements. Browse the gallery or hit me up for custom drops.
+            <span className="font-gothic tracking-widest text-primary-white">KXRTHXK.CREATIVES</span> — the visual playground where I craft culture-inspired posters, high-contrast layouts, and loud design statements. Browse the gallery or hit me up for custom drops. Visit my Instagram page for more.
           </p>
-          <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4">
-            <a href="/posters" className="btn-secondary px-5 py-3 text-sm sm:text-base">
-              View Poster Wall
-            </a>
-            <button
-              onClick={() => navigateToSection('contact', navigate)}
-              className="btn-primary px-5 py-3 text-sm sm:text-base"
-            >
-              Contact Me
-            </button>
-          </div>
+          <a href="https://www.instagram.com/kxrthxk.creatives/" className="btn-secondary px-5 py-3 text-sm sm:text-base">
+            Visit Instagram Page
+          </a>
         </motion.div>
 
         <motion.p

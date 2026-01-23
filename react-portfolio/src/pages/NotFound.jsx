@@ -50,8 +50,8 @@ const NotFound = () => {
             <Link to="/" className="btn-primary text-center">
               Go Home
             </Link>
-            <Link to="/#projects" className="btn-secondary text-center">
-              View Projects
+            <Link to="/work" className="btn-secondary text-center">
+              View Work
             </Link>
           </motion.div>
         </motion.div>

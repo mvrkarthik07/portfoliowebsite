@@ -14,6 +14,18 @@
     scroll-behavior: smooth;
   }
 
+  /* Prevent text overflow on all devices */
+  * {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  /* Ensure images are responsive */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
   /* Custom scrollbar */
   ::-webkit-scrollbar {
     width: 8px;
@@ -50,7 +62,9 @@
   .btn-primary:hover {
     @apply bg-primary-white text-primary-black border-primary-white;
     transform: translateY(-2px) scale(1.02) translateZ(0);
-    box-shadow: 0 12px 40px rgba(255, 255, 255, 0.4);
+    box-shadow: 0 12px 40px rgba(255, 255, 255, 0.3),
+                0 0 15px rgba(255, 255, 255, 0.2),
+                0 0 30px rgba(255, 255, 255, 0.08);
   }
 
   .btn-primary:active {
@@ -89,7 +103,9 @@
   .btn-secondary:hover {
     @apply bg-primary-white text-primary-black border-primary-white;
     transform: translateY(-2px) scale(1.02) translateZ(0);
-    box-shadow: 0 12px 40px rgba(255, 255, 255, 0.35);
+    box-shadow: 0 12px 40px rgba(255, 255, 255, 0.25),
+                0 0 12px rgba(255, 255, 255, 0.15),
+                0 0 25px rgba(255, 255, 255, 0.08);
   }
 
   .btn-secondary:active {
@@ -116,6 +132,25 @@
   /* Section styles */
   .section-container {
     @apply min-h-screen flex flex-col justify-center items-center px-4 sm:px-6 md:px-8 py-16 sm:py-20 md:py-32;
+    position: relative;
+  }
+
+  /* Futuristic section background effect */
+  .section-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.02) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .section-container > * {
+    position: relative;
+    z-index: 1;
   }
 
   /* Heading styles */
@@ -150,7 +185,9 @@
     border-color: rgba(255, 255, 255, 0.4);
     background-color: rgba(255, 255, 255, 0.06);
     box-shadow: 0 24px 60px rgba(255, 255, 255, 0.2),
-                0 12px 30px rgba(255, 255, 255, 0.1);
+                0 12px 30px rgba(255, 255, 255, 0.12),
+                0 0 25px rgba(255, 255, 255, 0.08),
+                inset 0 0 15px rgba(255, 255, 255, 0.03);
   }
 
   .card::before {
@@ -183,11 +220,54 @@
 
 @layer utilities {
   .text-shadow-glow {
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3),
+                 0 0 20px rgba(255, 255, 255, 0.15),
+                 0 0 30px rgba(255, 255, 255, 0.05);
   }
 
   .text-shadow-subtle {
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+  }
+
+  .neon-border {
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.08),
+                inset 0 0 8px rgba(255, 255, 255, 0.03);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .neon-border:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2),
+                0 0 30px rgba(255, 255, 255, 0.1),
+                inset 0 0 15px rgba(255, 255, 255, 0.06);
+  }
+
+  .futuristic-glow {
+    position: relative;
+  }
+
+  .futuristic-glow::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      135deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.03) 50%,
+      transparent 100%
+    );
+    opacity: 0;
+    transition: opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .futuristic-glow:hover::after {
+    opacity: 1;
   }
 
   /* Disable button sheen/slide effect when needed */
@@ -238,6 +318,80 @@
   animation: spinner-rotate 1s linear infinite !important;
   transform-origin: center !important;
   will-change: transform;
+}
+
+/* Futuristic grid animation */
+@keyframes grid-move {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(50px, 50px);
+  }
+}
+
+/* iPhone Frame Styling */
+.iphone-frame {
+  padding: 12px;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+  border-radius: 40px;
+  box-shadow: 
+    0 0 0 8px rgba(255, 255, 255, 0.1),
+    0 0 0 12px rgba(0, 0, 0, 0.3),
+    inset 0 0 20px rgba(0, 0, 0, 0.5),
+    0 10px 40px rgba(0, 0, 0, 0.6);
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.iphone-frame img,
+.iphone-frame > *,
+.iphone-frame > * > img {
+  border-radius: 30px;
+  overflow: hidden;
+  display: block;
+  width: 100%;
+  height: auto;
+  transform-origin: center center;
+  position: relative;
+  z-index: 1;
+  will-change: transform;
+}
+
+.iphone-frame > * {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 30px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Rectangle Frame Styling (for dashboards) */
+.rectangle-frame {
+  padding: 16px;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+  border-radius: 8px;
+  box-shadow: 
+    0 0 0 2px rgba(255, 255, 255, 0.1),
+    inset 0 0 20px rgba(0, 0, 0, 0.5),
+    0 10px 40px rgba(0, 0, 0, 0.6);
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.rectangle-frame img,
+.rectangle-frame > *,
+.rectangle-frame > * > img {
+  border-radius: 4px;
+  overflow: hidden;
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.rectangle-frame > * {
+  width: 100%;
 }
 
 /* stylelint-enable at-rule-no-unknown */
