@@ -202,7 +202,24 @@ export const posters = [
     title:'NEW YORK.',
     description:
       'An experimental poster exploring identity and reinvention in a dense, digital cityscape. Glitch textures, high-contrast neon tones, and distorted typography create visual tension, reflecting fragmentation and constant change in modern urban life. The composition prioritizes impact over convention, using controlled chaos to communicate self-redefinition through design.',
+  },
+  {
+    image: '/Images/Posters/laposter.png',
+    title:'LOS ANGELES.',
+    description:
+      'This poster captures the essence of Los Angeles, blending the city’s iconic skyline with the raw, vibrant essence of its culture. The deep red and blue contrasts, along with the sharp chrome typography, evoke both strength and innovation, reflecting Los Angeles’ growth from a modest island to a global powerhouse. The rich textures of the background evoke a sense of depth and complexity, while the subtle elements of nature and architecture in the scene hint at Los Angeles’ perfect balance between modernity and greenery. This piece is a visual homage to the City of Angels’ bold spirit, showcasing my ability to merge urban elements with artistic expression to create a captivating narrative.',
+  },
+  {
+    image: '/Images/Posters/PARISPOSTER.PNG',
+    title:'PARIS.',
+    description:
+      'A visual study of place, memory, and structure. Architectural landmarks fragmented and reassembled through edge detection, contrasting permanence with motion and distortion.',
+  },
+  {
+    image: '/Images/Posters/GKPOSTER.PNG',
+    title:'GUNTUR KAARAM',
+    description:
+      'An exploration of halftone textures, extreme contrast, and aggressive framing to capture raw cinematic energy.',
   }
-  
 ];
 
