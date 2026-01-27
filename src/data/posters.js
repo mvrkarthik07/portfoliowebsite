@@ -220,6 +220,18 @@ export const posters = [
     title:'GUNTUR KAARAM',
     description:
       'An exploration of halftone textures, extreme contrast, and aggressive framing to capture raw cinematic energy.',
+  },
+  {
+    image: '/Images/Posters/MLIPOSTER.PNG',
+    title:'MR NEGATIVE',
+    description:
+      'An experimental poster exploring inversion as both a visual and conceptual device. The figure is rendered through aggressive tonal distortion and reflective textures, creating a fragmented, almost metallic form suspended in motion.',
+  },
+  {
+    image: '/Images/Posters/bwnikeposter.png',
+    title:'JUST DO IT. — Deconstructed',
+    description:
+      'A minimalist reinterpretation of Nike’s Just Do It philosophy, stripped down to form, motion, and contrast. The composition uses extreme black-and-white thresholding to emphasize movement over identity, turning the athlete into an abstract symbol of action rather than a person.',
   }
 ];
 
