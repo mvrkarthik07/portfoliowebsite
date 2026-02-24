@@ -299,6 +299,62 @@ export const projects = [
   ],
 },
 
+{
+  id: 'coderecon',
+  title: 'CodeRecon',
+  type: 'CLI-Based Code Intelligence & Architecture Review Tool',
+  projectType: 'technical',
+  description:
+    'A deterministic static analysis engine layered with a local LLM to perform structured architecture reviews, functional mapping, and risk assessment on any codebase.',
+
+  technicalChallenge:
+    'Developing a hybrid analysis system that extracts high-fidelity structural signals using AST parsing and dependency density, while orchestrating local LLM inference via Ollama to provide reasoned architectural insights without compromising data privacy or hitting cloud APIs.',
+
+  technologies: [
+    'Python',
+    'AST (Abstract Syntax Tree)',
+    'Ollama (Llama3)',
+    'Model Context Protocol (MCP)',
+    'Argparse',
+    'Pytest',
+    'GitHub Actions',
+    'PyPI'
+  ],
+
+  githubLink: 'https://github.com/mvrkarthik07/CodeRecon', // update if needed
+  projectLink: 'https://pypi.org/project/coderecon/',
+  category: 'Developer Tools & AI Engineering',
+  tags: [
+    'CLI Tools',
+    'Static Analysis',
+    'Local AI',
+    'Software Architecture',
+    'Automation',
+    'Python Packaging'
+  ],
+  featured: true,
+
+  // Custom sections for CodeRecon
+  overview:
+    'CodeRecon is a pragmatic engineering tool designed to treat code as structured data rather than text. It bridges the gap between raw source code and high-level architectural understanding by automating repository reconnaissance, identifying hotspots, and generating formal audit reports with Mermaid diagrams.',
+
+  myContribution:
+    'I architected the entire system from the ground up, including the core MSA (Modular Static Analysis) engine, the functional bucketing logic for dependency classification, and the local inference pipeline. I also handled the full DevOps lifecycle, from implementing GitHub Actions for CI/CD to publishing the package on PyPI.',
+
+  systemStructure:
+    'The system follows a three-layer architecture: a Deterministic Layer (AST-based signal extraction), an Aggregation Layer (topological ordering and functional bucketing), and a Reasoning Layer (local LLM-driven audits). It includes a robust CLI suite with environment diagnostics (doctor), help systems, and ephemeral storage management for remote repository audits.',
+
+  technicalFocus:
+    'This project prioritized structural code discovery, Model Context Protocol (MCP) integration, local-first AI orchestration, and production-grade Python packaging. It focused on building a tool that is deterministic first and intelligently reasoned second, ensuring zero-hallucination architectural reporting.',
+
+  learnings: [
+    'AST parsing provides a level of truth that regular expressions or LLMs alone cannot reach',
+    'Model Context Protocol is the emerging standard for bridging the gap between local tools and AI agents',
+    'Privacy-first AI tools require careful management of context windows and token optimization',
+    'Maintaining a public PyPI package demands high standards for environment validation and backward compatibility'
+  ],
+},
+
 
   {
     id: 'scdf-dashboard',
