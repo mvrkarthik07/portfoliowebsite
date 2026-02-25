@@ -232,6 +232,12 @@ export const posters = [
     title:'JUST DO IT. — Deconstructed',
     description:
       'A minimalist reinterpretation of Nike’s Just Do It philosophy, stripped down to form, motion, and contrast. The composition uses extreme black-and-white thresholding to emphasize movement over identity, turning the athlete into an abstract symbol of action rather than a person.',
+  },
+  {
+    image: '/Images/Posters/wallpaper2.png',
+    title:'Edge of Identity: A Study in Form and Reflection',
+    description:
+      'This composition distills visual intensity into its purest structural elements. The arched metallic typography emerges from darkness with razor-sharp highlights, allowing contrast—not clutter—to define presence. The black void functions as negative space, amplifying the reflective chrome texture and giving the form room to breathe.The distortion along the letter edges introduces controlled chaos within an otherwise restrained layout, balancing aggression and precision. Light is used sparingly, grazing the surface just enough to reveal dimension without overwhelming the frame. The curvature of the text subtly suggests motion and dominance, while the high-gloss finish reinforces a modern, almost industrial aesthetic.Minimal in elements, maximal in impact.',
   }
 ];
 
