@@ -60,7 +60,7 @@ const Resume = () => {
                 </div>
               )}
               <iframe
-                src="/Images/ResumeKarthik_TR.pdf"
+                src="/Images/ResumeKarthik_V3.pdf"
                 className="w-full h-[600px] md:h-[800px] lg:h-[1000px] border-0"
                 title="Resume PDF"
                 onLoad={() => setIsLoading(false)}
