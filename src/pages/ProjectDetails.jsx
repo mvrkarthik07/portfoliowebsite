@@ -17,6 +17,8 @@ const ProjectDetails = () => {
     return <Navigate to="/work" replace />
   }
 
+  const isPdfLink = typeof project.projectLink === 'string' && project.projectLink.toLowerCase().endsWith('.pdf')
+
   // Redirect technical projects back to work page (they use inline expansion)
   if (project.projectType === 'technical') {
     return <Navigate to="/work" replace />
@@ -480,6 +482,25 @@ const ProjectDetails = () => {
               )}
             </motion.section>
 
+            {/* Case Study PDF */}
+            {isPdfLink && (
+              <motion.section
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.38, ease: [0.25, 0.46, 0.45, 0.94] }}
+                className="mb-16"
+              >
+                <h2 className="font-gothic text-2xl md:text-3xl mb-6">Case Study PDF</h2>
+                <div className="border border-primary-white/15 hover:border-primary-white/30 transition-colors duration-300 overflow-hidden">
+                  <iframe
+                    title={`${project.title} PDF`}
+                    src={project.projectLink}
+                    className="w-full h-[70vh] bg-primary-black"
+                  />
+                </div>
+              </motion.section>
+            )}
+
             {/* Status & Scope - Custom section for SCDF and SeniorConnect */}
             {project.statusScope && (
               <motion.section
@@ -529,7 +550,7 @@ const ProjectDetails = () => {
                     whileTap={{ scale: 0.95 }}
                     className="btn-primary px-6 md:px-8 py-3 md:py-4 text-sm md:text-base"
                   >
-                    View Live Demo
+                    {project.projectLinkLabel || (isPdfLink ? 'View Case Study PDF' : 'View Live Demo')}
                   </motion.a>
                 )}
               </div>

@@ -467,6 +467,65 @@ export const projects = [
     ],
     featured: true,
   },
+  {
+    id: 'gobusiness-ux-audit',
+    title: 'GoBusiness.',
+    type: 'UX Audit & Redesign',
+    projectType: 'product',
+    description: 'A self-initiated heuristic evaluation and redesign of GoBusiness — Singapore\'s government-to-business portal facilitating over 6 million transactions.',
+    problemStatement: 'Despite its scale, GoBusiness has several usability gaps that create friction for business owners navigating an already complex regulatory landscape — from flat navigation and inaccessible interfaces to a dashboard that doesn\'t surface what users actually need.',
+    role: 'UX Research + UI/UX Design',
+    detailedDescription: 'A self-initiated UX audit of GoBusiness, Singapore\'s official government-to-business portal. Using Nielsen\'s 10 usability heuristics as a structured framework, I identified 7 findings across navigation, accessibility, information architecture, and dashboard interactivity — and redesigned all of them. Every finding is severity-rated, backed by real screenshots from the live portal, and each redesign includes the reasoning behind every decision.',
+    image: '/gobusiness/gobusinesslogo.png',
+    link: '/work/gobusiness-ux-audit',
+    figmaLink: 'https://www.figma.com/design/lF3N2mGh0MDXzUBUorUIjA/GoBusiness-Prototype?node-id=0-1&t=lq0Guj6CIfotcSgW-1', // placeholder
+    projectLink: '/GoBusiness_CaseStudy.pdf', // placeholder (place PDF in /public)
+    projectLinkLabel: 'View Case Study PDF',
+    category: 'UI/UX Design',
+    tags: ['Figma', 'UX Audit', 'Heuristic Evaluation', 'Government Design', 'Accessibility'],
+    resources: ['Figma', 'Nielsen\'s 10 Heuristics', 'WCAG 2.1', 'SGDS', 'UX Research'],
+    functions: [
+      {
+        title: 'Dropdown Navigation:',
+        description: 'Restructured the flat top navigation into grouped lifecycle-based categories — Start, Run, Grow, Support — with hover-triggered dropdowns revealing sub-items and one-line descriptions.'
+      },
+      {
+        title: 'Dark Mode & Language Selector:',
+        description: 'Added a system-preference-aware dark mode toggle and a persistent language selector supporting Singapore\'s four official languages — English, Mandarin, Malay, and Tamil.'
+      },
+      {
+        title: 'Resizable Chat Widget:',
+        description: 'Made the GoBiz chat widget draggable and resizable so users can reference page content while chatting without losing their context.'
+      },
+      {
+        title: 'Back Button on Login Page:',
+        description: 'Added a clearly labelled back navigation affordance to the login screen, removing a critical trapped state that eroded user trust before sign-in.'
+      },
+      {
+        title: 'Colour-Backed Sub-Topics & A–Z Index:',
+        description: 'Introduced visual differentiation between sub-topic groupings and a clickable alphabetical index bar on the Licences page for faster targeted navigation.'
+      },
+      {
+        title: 'Dashboard Interactivity:',
+        description: 'Added hover states, quick-look dropdown panels, and a personalised recommendations strip to the logged-in dashboard — surfacing what users need to do next without extra navigation.'
+      },
+      {
+        title: 'Personalised Homepage:',
+        description: 'Redesigned the logged-in homepage to adapt based on user profile — business type, industry, licence history — so every session starts with relevant content rather than a generic overview.'
+      },
+    ],
+    colorsImage: '/Images/gobusiness-grid.png',
+    typefaces: ['Inter'],
+    screenshots: [
+      { title: 'Redesign 1 — Dropdown Navigation', image: '/gobusiness/ReDesign - 1 with sub topic hover option..png' },
+      { title: 'Redesign 2 — Dark Mode', image: '/gobusiness/ReDesign - 2 (Dark mode).png' },
+      { title: 'Redesign 5 — Back Button on Login', image: '/gobusiness/ReDesign - 5 with back button on login page.png' },
+      { title: 'Redesign 6 — A–Z Index & Colour Backing', image: '/gobusiness/ReDesign - 6 Colour backing and Alphabetical Index.png' },
+      { title: 'Redesign 7 — Dashboard Interactivity', image: '/gobusiness/ReDesign - 7 Dashboard Interactivity adn Quick Scan option..png' },
+      { title: 'Dashboard Interactivity — Expanded', image: '/gobusiness/ReDesign - 7A Dashboard Interactivity adn Quick Scan option (expanded animation)..png' },
+    ],
+    featured: true,
+  }
 ];
 
 export const getAllProjects = () => projects;
