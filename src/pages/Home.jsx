@@ -103,12 +103,12 @@ const Home = () => {
             id="hero"
             className="section-container relative isolate z-10 min-h-[calc(100svh-9rem)] overflow-hidden !items-center !justify-center !py-8 sm:!py-12 md:!py-16 !px-3 sm:!px-4 md:!px-5 lg:!px-4 xl:!px-5 2xl:!px-6 supports-[height:100dvh]:min-h-[calc(100dvh-9rem)]"
           >
-            <div className="relative z-10 mx-auto flex w-full min-w-0 max-w-5xl flex-col items-center justify-center gap-6 text-center sm:gap-10 md:max-w-6xl md:gap-12">
+            <div className="relative z-10 mx-auto flex w-full min-w-0 max-w-5xl flex-col items-center justify-center gap-8 text-center sm:gap-10 md:max-w-6xl md:gap-12">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.75, ease: [0.25, 0.46, 0.45, 0.94] }}
-                className="pointer-events-auto h-[min(30svh,260px)] w-full max-w-[100%] text-primary-white sm:h-[min(34svh,360px)] md:h-[min(32svh,400px)] md:max-w-5xl lg:h-[min(30svh,440px)]"
+                className="pointer-events-auto h-[clamp(280px,34svh,460px)] w-full max-w-[100%] overflow-hidden text-primary-white md:max-w-5xl"
               >
                 <CursorDrivenParticleTypography
                   text={
