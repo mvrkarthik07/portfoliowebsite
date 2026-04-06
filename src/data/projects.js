@@ -1,5 +1,6 @@
 export const projects = [
-  {
+  { 
+    
     id: 'studyhavn',
     title: 'StudyHavn.',
     type: 'App Prototype',
@@ -49,6 +50,68 @@ export const projects = [
       { title: 'Search Page', image: '/Studyhavn/Screenshot 2025-06-13 150743.png' }
     ],
     featured: true,
+  },
+  {
+    id: 'coverbuddy',
+    title: 'CoverBuddy',
+    type: 'AI-Assisted Cover Letter Workflow Platform',
+    projectType: 'technical',
+    description:
+      'A full-stack web application that helps users generate, edit, save, and export tailored cover letters through a structured workflow combining resume parsing, evidence selection, AI-assisted drafting, and PDF export.',
+  
+    technicalChallenge:
+      'Designing a reliable end-to-end writing workflow that feels polished enough for real job applications, while balancing parser accuracy, grounded text generation, fallback behavior, authentication, draft persistence, and document-quality export across both web and deployed environments.',
+  
+    technologies: [
+      'React',
+      'TypeScript',
+      'Vite',
+      'FastAPI',
+      'Python',
+      'Supabase',
+      'PostgreSQL',
+      'Google Gemini API',
+      'Pydantic',
+      'PyMuPDF',
+      'WeasyPrint',
+      'ReportLab',
+      'Framer Motion'
+    ],
+  
+    githubLink: 'https://github.com/mvrkarthik07/CoverBuddy', // update if needed
+    projectLink: 'https://covbuddy.netlify.app/', // update if needed
+    category: 'Full-Stack Product Engineering & AI Workflow Systems',
+    tags: [
+      'Full-Stack Development',
+      'AI Applications',
+      'Document Generation',
+      'Authentication',
+      'React',
+      'FastAPI',
+      'Supabase',
+      'Product Design'
+    ],
+    featured: true,
+  
+    overview:
+      'CoverBuddy is a production-oriented cover letter workflow platform built to support real job applications rather than one-off AI text generation. The system guides users through resume upload, structured profile creation, job description input, evidence selection, draft generation, draft editing, persistence, regeneration, and PDF export. The focus was on building a dependable writing workflow with high usability, grounded output, and document-quality presentation.',
+  
+    myContribution:
+      'I led the product and engineering direction of CoverBuddy end-to-end. This included designing the user workflow, defining the frontend route structure, shaping the parser and generation logic, refining the editor experience, implementing authentication and per-user draft persistence, improving fallback behavior between Gemini and deterministic local generation, and hardening the deployment flow across Netlify, Render, and Supabase.',
+  
+    systemStructure:
+      'The system is structured as a React frontend and FastAPI backend with Supabase used for authentication and persistent storage. The backend parses uploaded resumes into structured profile data, stores applications and drafts, generates cover letter content using Gemini with a deterministic local fallback, validates and formats the output, and exports the final result to PDF. The frontend provides a multi-step workflow with protected routes, editor-state management, regeneration review, saved drafts, and a responsive app shell split from the public marketing/auth layers.',
+  
+    technicalFocus:
+      'This project emphasized full-stack product architecture, deterministic parser design, grounded AI-assisted content generation, authentication and session management, resilient fallback systems, document rendering, and deployment-aware engineering. A major focus was ensuring the product still worked well when external AI providers failed or rate-limited, which required a strong local generation path rather than a fragile API-dependent experience.',
+  
+    learnings: [
+      'AI-assisted writing products need strong workflow design, not just model calls',
+      'Fallback systems must be good enough that provider failures do not break product trust',
+      'Parser quality and generation quality are tightly coupled in document automation systems',
+      'Authentication, draft persistence, and export quality matter as much as the AI layer in real user workflows',
+      'Polished frontend structure and editor UX heavily influence whether an AI product feels production-ready or like a demo'
+    ],
   },
   {
     id: 'citydrip',
@@ -473,7 +536,7 @@ export const projects = [
     type: 'Interactive System Architecture Simulator',
     projectType: 'technical',
     description:
-      'A high-performance simulation engine designed to visualize real-time software architecture failures and optimizations, acting as a "flight simulator" for backend engineers.',
+      'APPLE STUDENT SWIFT CHALLENGE 2026 WINNING high-performance simulation engine designed to visualize real-time software architecture failures and optimizations, acting as a "flight simulator" for backend engineers.',
   
     technicalChallenge:
       'Engineering a deterministic, thread-safe simulation environment capable of 60fps rendering while calculating high-frequency metrics (latency, throughput, cost) across concurrent nodes without third-party dependencies.',
@@ -489,7 +552,7 @@ export const projects = [
     ],
   
     githubLink: 'https://github.com/mvrkarthik07/ArchLab', // Update with your actual repo
-    projectLink: 'N/A - Swift Student Challenge 2026 Winner', 
+     
     category: 'Systems Engineering & Educational Tooling',
     tags: [
       'Systems Design',
@@ -567,6 +630,7 @@ export const projects = [
         title: 'Personalised Homepage:',
         description: 'Redesigned the logged-in homepage to adapt based on user profile — business type, industry, licence history — so every session starts with relevant content rather than a generic overview.'
       },
+      
     ],
     colorsImage: '/Images/gobusiness-grid.png',
     typefaces: ['Inter'],
