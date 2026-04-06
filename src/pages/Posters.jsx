@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { posters } from '../data/posters'
 import LazyImage from '../components/LazyImage'
 import SEO from '../components/SEO'
-import Footer from '../components/Footer'
+import DotBox from '@/components/ui/dot-box'
 
 const Posters = () => {
   const [selectedPoster, setSelectedPoster] = useState(null)
@@ -37,7 +37,7 @@ const Posters = () => {
         title="KXRTHXK.CREATIVES"
         description="KXRTHXK.CREATIVES - A collection of digital art and poster designs by Karthik Manda. Streetwear aesthetics meet futuristic design. Follow @kxrthxk.creatives on Instagram."
       />
-      <div className="min-h-screen bg-primary-black">
+      <div className="min-h-screen">
         {/* Brand Header */}
         <motion.header
           initial={{ opacity: 0, y: -20 }}
@@ -149,7 +149,7 @@ const Posters = () => {
                     className="group cursor-pointer break-inside-avoid mb-4 sm:mb-6 md:mb-8"
                     onClick={() => setSelectedPoster(index)}
                   >
-                    <div className="relative overflow-hidden border border-primary-white/15 bg-primary-white/5 transition-all duration-500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] hover:border-primary-white/35 hover:bg-primary-white/10 hover:-translate-y-2 hover:shadow-[0_24px_60px_rgba(255,255,255,0.2)] will-change-transform">
+                    <DotBox className="transition-transform duration-300 group-hover:-translate-y-2">
                       <LazyImage
                         src={poster.image}
                         alt={poster.title || 'Poster'}
@@ -166,7 +166,7 @@ const Posters = () => {
                           </p>
                         )}
                       </div>
-                    </div>
+                    </DotBox>
                   </motion.div>
                 )
               })}

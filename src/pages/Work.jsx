@@ -6,6 +6,7 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import SEO from '../components/SEO'
 import LazyImage from '../components/LazyImage'
+import DotBox from '@/components/ui/dot-box'
 
 const Work = () => {
   const productProjects = getProductProjects()
@@ -65,7 +66,7 @@ const Work = () => {
         title="Work"
         description="Product & UX projects and technical engineering work by Karthik Manda. Design thinking and engineering depth."
       />
-      <div className="min-h-screen bg-primary-black">
+      <div className="min-h-screen">
         <Navbar />
         <main className="pt-24 md:pt-32 pb-16">
           <div className="max-w-7xl mx-auto px-4 md:px-8">
@@ -116,7 +117,7 @@ const Work = () => {
                       to={`/work/${project.id}`}
                       className="block h-full"
                     >
-                      <div className="h-full neon-border bg-primary-white/5 hover:bg-primary-white/10 transition-all duration-500 overflow-hidden futuristic-glow">
+                      <DotBox className="h-full overflow-hidden">
                         {project.image ? (
                           <div className="relative aspect-video overflow-hidden">
                             <LazyImage
@@ -161,7 +162,7 @@ const Work = () => {
                             View Case Study →
                           </div>
                         </div>
-                      </div>
+                      </DotBox>
                     </Link>
                   </motion.div>
                 ))}
@@ -189,7 +190,7 @@ const Work = () => {
                   <motion.div
                     key={project.id}
                     variants={itemVariants}
-                    className="neon-border bg-primary-white/3 hover:bg-primary-white/5 transition-all duration-300 futuristic-glow h-fit self-start cursor-pointer focus-within:ring-2 focus-within:ring-primary-white/50"
+                    className="h-fit self-start cursor-pointer focus-within:ring-2 focus-within:ring-primary-white/50"
                     onClick={() => setSelectedTechnical(project)}
                     onKeyDown={(e) => {
                       if (e.key === 'Enter' || e.key === ' ') {
@@ -201,45 +202,47 @@ const Work = () => {
                     role="button"
                     aria-label={`View details for ${project.title}`}
                   >
-                    <div className="p-4 sm:p-5 md:p-6 w-full">
-                      <div className="flex items-start justify-between gap-3 sm:gap-4 mb-2 sm:mb-3">
-                        <h3 className="font-gothic text-base sm:text-lg md:text-xl break-words flex-1">
-                          {project.title}
-                        </h3>
-                      </div>
-                      
-                      <p className="font-clash text-xs sm:text-sm md:text-base text-secondary-white mb-3 sm:mb-4 break-words">
-                        {project.description}
-                      </p>
+                    <DotBox className="h-full">
+                      <div className="w-full p-4 sm:p-5 md:p-6">
+                        <div className="mb-2 flex items-start justify-between gap-3 sm:mb-3 sm:gap-4">
+                          <h3 className="flex-1 break-words font-gothic text-base sm:text-lg md:text-xl">
+                            {project.title}
+                          </h3>
+                        </div>
 
-                      <div className="flex flex-wrap gap-2 sm:gap-3">
-                        <span className="font-clash text-xs sm:text-sm text-secondary-white/70">
-                          View Details →
-                        </span>
-                        {project.githubLink && (
-                          <a
-                            href={project.githubLink}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="font-clash text-xs sm:text-sm text-secondary-white/70 hover:text-primary-white transition-colors"
-                            onClick={(e) => e.stopPropagation()}
-                          >
-                            GitHub →
-                          </a>
-                        )}
-                        {project.projectLink && (
-                          <a
-                            href={project.projectLink}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="font-clash text-xs sm:text-sm text-secondary-white/70 hover:text-primary-white transition-colors"
-                            onClick={(e) => e.stopPropagation()}
-                          >
-                            Demo →
-                          </a>
-                        )}
+                        <p className="mb-3 break-words font-clash text-xs text-secondary-white sm:mb-4 sm:text-sm md:text-base">
+                          {project.description}
+                        </p>
+
+                        <div className="flex flex-wrap gap-2 sm:gap-3">
+                          <span className="font-clash text-xs text-secondary-white/70 sm:text-sm">
+                            View Details →
+                          </span>
+                          {project.githubLink && (
+                            <a
+                              href={project.githubLink}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="font-clash text-xs text-secondary-white/70 transition-colors hover:text-primary-white sm:text-sm"
+                              onClick={(e) => e.stopPropagation()}
+                            >
+                              GitHub →
+                            </a>
+                          )}
+                          {project.projectLink && (
+                            <a
+                              href={project.projectLink}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="font-clash text-xs text-secondary-white/70 transition-colors hover:text-primary-white sm:text-sm"
+                              onClick={(e) => e.stopPropagation()}
+                            >
+                              Demo →
+                            </a>
+                          )}
+                        </div>
                       </div>
-                    </div>
+                    </DotBox>
                   </motion.div>
                 ))}
               </motion.div>

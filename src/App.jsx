@@ -2,8 +2,10 @@ import { lazy, Suspense } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async'
 import ErrorBoundary from './components/ErrorBoundary'
-import LoadingSpinner from './components/LoadingSpinner'
+import BoxLoader from '@/components/ui/box-loader'
+import { ShaderAnimation } from '@/components/ui/shader-lines'
 import SEO from './components/SEO'
+import InteractiveNeuralVortexBackground from '@/components/ui/interactive-neural-vortex-background'
 
 // Lazy load pages for better performance
 const Home = lazy(() => import('./pages/Home'))
@@ -17,8 +19,13 @@ const NotFound = lazy(() => import('./pages/NotFound'))
 
 // Loading fallback component
 const PageLoader = () => (
-  <div className="min-h-screen flex items-center justify-center bg-primary-black">
-    <LoadingSpinner size="lg" />
+  <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-primary-black">
+    <div className="pointer-events-none absolute inset-0 z-0 min-h-screen">
+      <ShaderAnimation />
+    </div>
+    <div className="relative z-10 flex flex-col items-center bg-primary-black/55 px-6 py-16">
+      <BoxLoader label="Portfolio Loading" />
+    </div>
   </div>
 )
 
@@ -27,20 +34,25 @@ function App() {
     <HelmetProvider>
       <ErrorBoundary>
         <SEO />
-        <Router>
-          <Suspense fallback={<PageLoader />}>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/work" element={<Work />} />
-              <Route path="/work/:projectId" element={<ProjectDetails />} />
-              <Route path="/posters" element={<Posters />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/resume" element={<Resume />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </Suspense>
-        </Router>
+        <div className="relative isolate min-h-screen">
+          <InteractiveNeuralVortexBackground />
+          <div className="relative z-10 min-h-screen bg-primary-black/72">
+            <Router>
+              <Suspense fallback={<PageLoader />}>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/work" element={<Work />} />
+                  <Route path="/work/:projectId" element={<ProjectDetails />} />
+                  <Route path="/posters" element={<Posters />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/resume" element={<Resume />} />
+                  <Route path="/contact" element={<Contact />} />
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </Suspense>
+            </Router>
+          </div>
+        </div>
       </ErrorBoundary>
     </HelmetProvider>
   )

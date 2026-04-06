@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import LazyImage from './LazyImage'
+import DotBox from '@/components/ui/dot-box'
 
 const ProjectCard = ({ project, index }) => {
   return (
@@ -15,24 +16,24 @@ const ProjectCard = ({ project, index }) => {
         className="block group focus:outline-none focus:ring-2 focus:ring-primary-white/50 focus:ring-offset-2 focus:ring-offset-primary-black"
         aria-label={`View ${project.title} project - ${project.type}`}
       >
-        <div className="card overflow-hidden">
+        <DotBox className="overflow-hidden">
           <div className="relative overflow-hidden">
             <LazyImage
               src={project.image}
               alt={project.title}
               className="transition-transform duration-500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:scale-[1.08] will-change-transform"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-primary-black/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]" />
+            <div className="absolute inset-0 bg-gradient-to-t from-primary-black/90 via-transparent to-transparent opacity-0 transition-opacity duration-500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:opacity-100" />
           </div>
-          <div className="p-4 md:p-6 bg-primary-black/85 border-t border-primary-white/10">
-            <span className="block text-xs md:text-sm uppercase tracking-wider text-secondary-white/70 mb-2">
+          <div className="border-t border-primary-white/10 bg-primary-black/85 p-4 md:p-6">
+            <span className="mb-2 block text-xs uppercase tracking-wider text-secondary-white/70 md:text-sm">
               {project.type}
             </span>
-            <h3 className="font-gothic text-xl md:text-2xl font-semibold">
+            <h3 className="font-gothic text-xl font-semibold md:text-2xl">
               {project.title}
             </h3>
           </div>
-        </div>
+        </DotBox>
       </Link>
     </motion.div>
   )

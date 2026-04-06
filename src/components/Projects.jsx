@@ -1,12 +1,10 @@
 import { motion } from 'framer-motion'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { getFeaturedProjects } from '../data/projects'
 import ProjectCard from './ProjectCard'
-import { navigateToSection } from '../utils/navigation'
 
 const Projects = () => {
   const projects = getFeaturedProjects()
-  const navigate = useNavigate()
 
   return (
     <section id="projects" className="section-container">

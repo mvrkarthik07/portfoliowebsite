@@ -5,9 +5,13 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import ScrollToTop from '../components/ScrollToTop'
 import SEO from '../components/SEO'
-import LoadingSpinner from '../components/LoadingSpinner'
+import BoxLoader from '@/components/ui/box-loader'
+import { ShaderAnimation } from '@/components/ui/shader-lines'
 import { getFeaturedProjects } from '../data/projects'
 import LazyImage from '../components/LazyImage'
+import TextMarquee from '@/components/ui/text-marque'
+import { CursorDrivenParticleTypography } from '@/components/ui/cursor-driven-particles-typography'
+import DotBox from '@/components/ui/dot-box'
 
 const Home = () => {
   const [showIntro, setShowIntro] = useState(true)
@@ -23,7 +27,7 @@ const Home = () => {
     <>
       <SEO 
         title="Home"
-        description="Karthik Manda - I design and build usable digital products. Computer Engineering undergraduate working across frontend development, UI/UX, and visual design."
+        description="Karthik Manda — Computer Engineering undergraduate and Apple Student Swift Challenge 2026 Winner, working across UI/UX design, frontend engineering, and visual systems."
       />
       <a
         href="#main-content"
@@ -32,17 +36,21 @@ const Home = () => {
       >
         Skip to main content
       </a>
-      <div className="min-h-screen">
+      <div className="min-h-screen overflow-x-hidden">
         <AnimatePresence>
           {showIntro && (
             <motion.div
               key="intro"
-              className="fixed inset-0 z-[80] flex flex-col items-center justify-center bg-primary-black px-6 text-center"
+              className="fixed inset-0 z-[80] flex flex-col items-center justify-center overflow-hidden px-6 text-center"
               initial={{ opacity: 1, filter: 'blur(2px)' }}
               animate={{ opacity: 1, filter: 'blur(0px)' }}
               exit={{ opacity: 0, filter: 'blur(6px)' }}
               transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
+              <div className="pointer-events-none absolute inset-0 z-0">
+                <ShaderAnimation />
+              </div>
+              <div className="relative z-10 flex min-h-full w-full flex-col items-center justify-center bg-primary-black/55 py-12">
               <motion.h1
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -51,95 +59,126 @@ const Home = () => {
               >
                 KARTHIK MANDA
               </motion.h1>
-              <motion.p
+              <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
-                className="mt-3 font-clash text-sm sm:text-base text-secondary-white/80 tracking-wider"
+                className="mt-8"
               >
-                Loading portfolio…
-              </motion.p>
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.35 }}
-                className="mt-6"
-              >
-                <LoadingSpinner size="lg" />
+                <BoxLoader label="Portfolio Loading" />
               </motion.div>
+              </div>
             </motion.div>
           )}
         </AnimatePresence>
 
         <Navbar />
         <main id="main-content" tabIndex={-1}>
-          {/* Hero Section */}
-          <section className="section-container min-h-[100svh] flex items-center relative overflow-hidden">
-            {/* Subtle animated background grid */}
-            <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
-              <div className="absolute inset-0" style={{
-                backgroundImage: `
-                  linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-                  linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px)
-                `,
-                backgroundSize: '50px 50px',
-                animation: 'grid-move 20s linear infinite'
-              }} />
-            </div>
-            
-            <div className="max-w-4xl mx-auto text-center px-4 relative z-10">
-              <motion.h1
-                initial={{ opacity: 0, y: 50, scale: 0.95 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ 
-                  duration: 1,
-                  ease: [0.25, 0.46, 0.45, 0.94]
-                }}
-                className="font-gothic text-4xl md:text-5xl lg:text-6xl xl:text-7xl mb-6 text-shadow-glow"
+          {/* Marquee band above hero */}
+          <section
+            className="relative z-20 border-b border-t border-primary-white/10 bg-transparent pb-1.5 pt-24 md:pb-2 md:pt-28"
+            aria-label="Highlights"
+          >
+            <div className="pointer-events-none flex flex-col gap-2 md:gap-3" aria-hidden>
+              <TextMarquee
+                delay={500}
+                baseVelocity={-0.75}
+                scrollDependent
+                className="text-[4vw] font-bold uppercase leading-tight tracking-wide text-white sm:text-[3.5vw] md:text-2xl lg:text-3xl xl:text-4xl md:tracking-wider"
               >
-                I design and build clear, usable digital products.
-              </motion.h1>
-              
-              <motion.p
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ 
-                  duration: 0.8,
-                  delay: 0.2,
-                  ease: [0.25, 0.46, 0.45, 0.94]
-                }}
-                className="font-clash text-base md:text-lg lg:text-xl text-secondary-white mb-12 max-w-3xl mx-auto leading-relaxed"
+                ✦ APPLE STUDENT SWIFT CHALLENGE 2026 WINNER ✦ UI/UX DESIGN ✦ SOFTWARE ENGINEERING ✦ SYSTEMS THINKING ✦ APPLE STUDENT SWIFT CHALLENGE 2026 WINNER ✦ AI ENGINEERING ✦ EMBEDDED SYSTEMS ✦ SYSTEMS THINKING ✦
+              </TextMarquee>
+              <TextMarquee
+                delay={500}
+                baseVelocity={-1}
+                scrollDependent
+                className="text-[4vw] font-bold uppercase leading-tight tracking-wide text-white sm:text-[3.5vw] md:text-2xl lg:text-3xl xl:text-4xl md:tracking-wider"
               >
-                Computer Engineering undergraduate working across frontend development, UI/UX, and visual design—turning vague ideas into structured interfaces and systems.
-              </motion.p>
-
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ 
-                  duration: 0.8,
-                  delay: 0.4,
-                  ease: [0.25, 0.46, 0.45, 0.94]
-                }}
-                className="flex flex-col sm:flex-row gap-4 justify-center"
-              >
-                <Link
-                  to="/work"
-                  className="btn-primary px-8 py-4 text-base md:text-lg"
-                >
-                  View Work
-                </Link>
-                <Link
-                  to="/posters"
-                  className="btn-secondary px-8 py-4 text-base md:text-lg"
-                >
-                  View Posters
-                </Link>
-              </motion.div>
+                ✦ PRODUCT DESIGN ✦ SOFTWARE DEVELOPMENT ✦ AVAILABLE FOR PROJECTS ✦ ✦ PRODUCT DESIGN ✦ SOFTWARE DEVELOPMENT ✦ AVAILABLE FOR PROJECTS ✦
+              </TextMarquee>
             </div>
           </section>
 
-          {/* Featured Work */}
+          <section
+            id="hero"
+            className="section-container relative isolate z-10 min-h-[calc(100svh-9rem)] overflow-hidden !items-center !justify-center !py-8 sm:!py-12 md:!py-16 !px-3 sm:!px-4 md:!px-5 lg:!px-4 xl:!px-5 2xl:!px-6 supports-[height:100dvh]:min-h-[calc(100dvh-9rem)]"
+          >
+            <div className="relative z-10 mx-auto flex w-full min-w-0 max-w-5xl flex-col items-center justify-center gap-6 text-center sm:gap-10 md:max-w-6xl md:gap-12">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.75, ease: [0.25, 0.46, 0.45, 0.94] }}
+                className="pointer-events-auto h-[min(30svh,260px)] w-full max-w-[100%] text-primary-white sm:h-[min(34svh,360px)] md:h-[min(32svh,400px)] md:max-w-5xl lg:h-[min(30svh,440px)]"
+              >
+                <CursorDrivenParticleTypography
+                  text={
+                    'I turn complex problems\ninto seamless\nexperiences.'
+                  }
+                  fontSize={88}
+                  fontFamily='"Special Gothic Expanded One", sans-serif'
+                  particleSize={1}
+                  particleDensity={2}
+                  dispersionStrength={19}
+                  returnSpeed={0.085}
+                  color="rgba(255, 255, 255, 0.94)"
+                  textAlign="center"
+                  uppercase
+                  className="min-h-0 h-full w-full"
+                />
+              </motion.div>
+
+              <div className="pointer-events-auto flex w-full min-w-0 max-w-2xl flex-col items-center gap-5 px-1 sm:gap-8 sm:px-0">
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.7,
+                    delay: 0.12,
+                    ease: [0.25, 0.46, 0.45, 0.94],
+                  }}
+                  className="font-clash text-base leading-relaxed text-secondary-white/90 sm:text-xl md:text-2xl"
+                >
+                  Building at the intersection of design, software, and systems. Computer Engineering
+                  undergraduate. Apple Student Swift Challenge 2026 Winner. Open to internships, freelance,
+                  and collaboration.
+                </motion.p>
+                <motion.div
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.65,
+                    delay: 0.22,
+                    ease: [0.25, 0.46, 0.45, 0.94],
+                  }}
+                  className="flex w-full max-w-md flex-col items-stretch justify-center gap-3 sm:max-w-none sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-4"
+                >
+                  <Link
+                    to="/work"
+                    className="btn-primary inline-block min-h-[44px] w-full px-8 py-3 text-center sm:w-auto"
+                  >
+                    VIEW WORK
+                  </Link>
+                  <Link
+                    to="/contact"
+                    className="btn-secondary inline-block min-h-[44px] w-full px-8 py-3 text-center sm:w-auto"
+                  >
+                    GET IN TOUCH
+                  </Link>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.7, delay: 0.75, ease: [0.25, 0.46, 0.45, 0.94] }}
+                  className="flex flex-col items-center gap-2 text-white/60"
+                >
+                  <span className="font-clash text-sm tracking-wide">Scroll to explore</span>
+                  <span className="animate-bounce text-2xl">↓</span>
+                </motion.div>
+              </div>
+            </div>
+          </section>
+
+          {/* Selected Projects */}
           <section className="section-container">
             <div className="max-w-7xl mx-auto px-4">
               <motion.h2
@@ -147,9 +186,9 @@ const Home = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-                className="font-gothic text-3xl md:text-4xl lg:text-5xl mb-12"
+                className="mb-12 text-center font-gothic text-3xl md:text-4xl lg:text-5xl"
               >
-                Featured Work
+                Selected Projects
               </motion.h2>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
@@ -180,7 +219,7 @@ const Home = () => {
                         className="block h-full focus:outline-none focus:ring-2 focus:ring-primary-white/50 focus:ring-offset-2 focus:ring-offset-primary-black"
                         aria-label={`View ${project.title} - ${project.type}`}
                       >
-                        <div className="h-full neon-border bg-primary-white/5 hover:bg-primary-white/10 transition-all duration-500 overflow-hidden futuristic-glow">
+                        <DotBox className="h-full overflow-hidden">
                           {project.image ? (
                             <div className="relative aspect-video overflow-hidden">
                               <LazyImage
@@ -225,7 +264,7 @@ const Home = () => {
                               {isProduct ? 'View Case Study →' : 'View Details →'}
                             </div>
                           </div>
-                        </div>
+                        </DotBox>
                       </Link>
                     </motion.div>
                   )
@@ -234,7 +273,7 @@ const Home = () => {
             </div>
           </section>
 
-          {/* What I Do */}
+          {/* Services */}
           <section className="section-container">
             <div className="max-w-7xl mx-auto px-4">
               <motion.h2
@@ -242,28 +281,32 @@ const Home = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-                className="font-gothic text-3xl md:text-4xl lg:text-5xl mb-12"
+                className="mb-12 text-center font-gothic text-3xl md:text-4xl lg:text-5xl"
               >
-                What I Do
+                Services
               </motion.h2>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
+              <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-10 lg:grid-cols-3 lg:gap-12">
                 {[
                   {
                     title: 'Product & UX Design',
-                    description: 'Research-driven flows, usability decisions, and design systems that solve real user problems.'
+                    description: 'From research and user flows to design systems and prototypes — structured around real user problems and measurable outcomes.'
                   },
                   {
-                    title: 'Frontend Engineering',
-                    description: 'Translating designs into responsive, maintainable interfaces with clean structure and performance in mind.'
+                    title: 'Software Engineering',
+                    description: 'Building robust, scalable software across C, C++, and modern web stacks. From low-level logic to application-level architecture — written to perform and built to last.'
                   },
                   {
-                    title: 'Visual Design',
-                    description: 'Posters, typography, and visual exploration focused on clarity, hierarchy, and style.'
+                    title: 'Hardware & Systems',
+                    description: 'Working across the full stack — from hardware-level programming and embedded systems to system design, bridging the gap between silicon and software.'
+                  },
+                  {
+                    title: 'AI & LLM Integration',
+                    description: 'Implementing and integrating large language models into real products. Focused on practical AI applications — from prompt engineering to building LLM-powered features that actually ship.'
                   },
                   {
                     title: 'Systems & Technical Thinking',
-                    description: 'Breaking complex requirements into structured components, making informed trade-offs, and building solutions that scale.'
+                    description: 'Scoping complex requirements, identifying trade-offs, and architecting solutions that are built to scale from day one.'
                   }
                 ].map((item, index) => (
                   <motion.div
@@ -277,68 +320,18 @@ const Home = () => {
                       ease: [0.25, 0.46, 0.45, 0.94]
                     }}
                     whileHover={{ y: -4, transition: { duration: 0.3 } }}
-                    className="neon-border p-6 rounded-sm futuristic-glow"
+                    className="h-full"
                   >
-                    <h3 className="font-gothic text-xl md:text-2xl mb-4 relative z-10">
-                      {item.title}
-                    </h3>
-                    <p className="font-clash text-base md:text-lg text-secondary-white leading-relaxed relative z-10">
-                      {item.description}
-                    </p>
+                    <DotBox className="h-full p-6">
+                      <h3 className="mb-3 font-gothic text-xl md:text-2xl">
+                        {item.title}
+                      </h3>
+                      <p className="font-clash text-base leading-relaxed text-secondary-white md:text-lg">
+                        {item.description}
+                      </p>
+                    </DotBox>
                   </motion.div>
                 ))}
-              </div>
-            </div>
-          </section>
-
-          {/* Technical Focus */}
-          <section className="section-container -mt-32 md:-mt-40">
-            <div className="max-w-7xl mx-auto px-4">
-              <motion.h2 
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
-                className="font-gothic text-3xl md:text-4xl lg:text-5xl mb-3"
-              >
-                Technical Focus
-              </motion.h2>
-              
-              <motion.p 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.6, delay: 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
-                className="font-clash text-sm md:text-base text-secondary-white/60 mb-10 max-w-[600px] mx-auto"
-              >
-                Core areas where I focus my technical decision-making.
-              </motion.p>
-
-              <div className="max-w-[600px] mx-auto">
-                <ul className="space-y-5 font-clash text-base md:text-lg text-secondary-white">
-                  {[
-                    'Frontend architecture and component structure',
-                    'State management and data flow',
-                    'Performance, accessibility, and responsiveness',
-                    'Bridging design intent with implementation constraints'
-                  ].map((item, index) => (
-                    <motion.li
-                      key={index}
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true, margin: "-50px" }}
-                      transition={{
-                        duration: 0.6,
-                        delay: 0.3 + index * 0.1,
-                        ease: [0.25, 0.46, 0.45, 0.94]
-                      }}
-                      className="flex items-start"
-                    >
-                      <span className="mr-4 text-secondary-white/40">—</span>
-                      <span>{item}</span>
-                    </motion.li>
-                  ))}
-                </ul>
               </div>
             </div>
           </section>
@@ -353,10 +346,10 @@ const Home = () => {
                 transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
               >
                 <h2 className="font-gothic text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 sm:mb-6">
-                  Let's Work Together
+                  {"Let's build something together."}
                 </h2>
                 <p className="font-clash text-sm sm:text-base md:text-lg text-secondary-white/80 mb-6 sm:mb-8 max-w-2xl mx-auto px-4">
-                  Have a project in mind? I'd love to hear from you.
+                  Whether you have a defined brief or just an idea at the back of your mind — bring it. Open to internships, freelance projects, and long-term collaborations.
                 </p>
                 <Link
                   to="/contact"
@@ -367,7 +360,7 @@ const Home = () => {
                     whileTap={{ scale: 0.95 }}
                     className="btn-primary px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 text-sm sm:text-base md:text-lg"
                   >
-                    Contact Me
+                    GET IN TOUCH
                   </motion.button>
                 </Link>
               </motion.div>

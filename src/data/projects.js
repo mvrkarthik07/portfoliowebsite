@@ -4,7 +4,7 @@ export const projects = [
     title: 'StudyHavn.',
     type: 'App Prototype',
     projectType: 'product',
-    description: 'A modern study management platform designed for students. Features intuitive UI/UX with clean, minimalist aesthetics and seamless navigation.',
+    description: 'End-to-end UX design for a student productivity platform. Scope included user research, information architecture, user flows, and a polished hi-fi prototype — built around how students actually think and work.',
     problemStatement: 'Students struggle to find available study spaces on campus, leading to wasted time and frustration.',
     role: 'UI/UX + Frontend',
     detailedDescription: 'New to your university? Libraries and benches too crowded? Here\'s StudyHavn. Your one stop application that lets students find various study spots around their university that are often hidden or unknown.',
@@ -55,7 +55,7 @@ export const projects = [
     title: 'CityDrip.',
     type: 'App Prototype',
     projectType: 'product',
-    description: 'Urban lifestyle app blending streetwear culture with modern design principles. Showcases dynamic layouts and interactive elements.',
+    description: 'Product design for an urban lifestyle app rooted in streetwear culture. Delivered dynamic layouts, a strong visual system, and interactive elements that feel authentic to the audience.',
     problemStatement: 'Fashion shoppers waste time visiting multiple stores and websites to find products, often discovering items are out of stock.',
     role: 'UI/UX + Frontend',
     detailedDescription: 'Tired of visiting malls that do not have all the stores you need? or finding an outlet almost 20km away from you just to hear the "sorry it\'s out of stock"? Introducing CityDrip. A one stop app that provides you with all the information about a certain product, it\'s availability on e-commerce platforms or retail outlets. Not only that also provides you insights and suggestions on various malls or shopping locations so that you can find Everything, EveryWEAR, all at once.',
@@ -103,10 +103,10 @@ export const projects = [
   },
   {
     id: 'portfolio',
-    title: 'My Portfolio',
+    title: 'Portfolio.',
     type: 'Website',
     projectType: 'technical',
-    description: 'A fully responsive portfolio website built with modern web technologies. Features smooth animations and clean design.',
+    description: 'Designed and engineered a fully responsive personal portfolio. Built with attention to component architecture, animation, and the gap between design intent and implementation.',
     technicalChallenge: 'Building a performant, accessible React SPA with smooth animations and optimal loading strategies.',
     technologies: ['React', 'TailwindCSS', 'Framer Motion', 'React Router', 'Vite'],
     githubLink: 'https://github.com/mvrkarthik07',
@@ -466,6 +466,60 @@ export const projects = [
       { title: 'Voucher Details', image: '/SeniorConnect/voucher-details.png' }
     ],
     featured: true,
+  },
+  {
+    id: 'archlab',
+    title: 'ArchLab',
+    type: 'Interactive System Architecture Simulator',
+    projectType: 'technical',
+    description:
+      'A high-performance simulation engine designed to visualize real-time software architecture failures and optimizations, acting as a "flight simulator" for backend engineers.',
+  
+    technicalChallenge:
+      'Engineering a deterministic, thread-safe simulation environment capable of 60fps rendering while calculating high-frequency metrics (latency, throughput, cost) across concurrent nodes without third-party dependencies.',
+  
+    technologies: [
+      'Swift 6',
+      'SwiftUI',
+      'SwiftUI Canvas',
+      'Taptic Engine API',
+      '@Observable Macro',
+      'Foundation',
+      'Core Graphics'
+    ],
+  
+    githubLink: 'https://github.com/mvrkarthik07/ArchLab', // Update with your actual repo
+    projectLink: 'N/A - Swift Student Challenge 2026 Winner', 
+    category: 'Systems Engineering & Educational Tooling',
+    tags: [
+      'Systems Design',
+      'Swift 6',
+      'Concurrency',
+      'Computer Science Education',
+      'Data Visualization',
+      'Haptics'
+    ],
+    featured: true,
+  
+    // Custom sections for ArchLab
+    overview:
+      'ArchLab bridges the gap between static system design diagrams and production reality. It provides a reactive sandbox where users can simulate "Black Friday" traffic spikes, observe cascading failures in a red-vignetted HUD, and implement architectural solutions—like Redis caching or Message Queues—to see immediate performance recovery.',
+  
+    myContribution:
+      'I architected and built the entire simulation engine and UI. This involved developing a custom rendering system using SwiftUI Canvas for packet visualization, implementing strict Swift 6 concurrency for thread-safe state management, and designing a multi-sensory diagnostic experience using haptic textures.',
+  
+    systemStructure:
+      'The application follows a modular "Engine-State-View" architecture. The Core Simulation Engine handles the mathematical modeling of data flow, the Reactive State Layer utilizes the @Observable macro for granular UI updates, and the View Layer uses high-performance Cubic Bézier pathing for 2D rendering. All operations are isolated via @MainActor to ensure UI responsiveness during high-stress simulations.',
+  
+    technicalFocus:
+      'The project focused on high-performance graphics rendering, robust state management in concurrent environments, and human-centric design. By mapping system stress to physical haptic pulses, the project explores how developers can "feel" architectural bottlenecks through multi-modal feedback.',
+  
+    learnings: [
+      'Visualizing abstract concepts like "latency" requires precise temporal and spatial UI cues',
+      'Swift 6 concurrency is a necessity, not an option, for high-frequency data simulations',
+      'A zero-dependency approach reveals the true power (and constraints) of native Apple frameworks',
+      'Accessibility in technical tools is most effective when integrated into the core diagnostic loop (e.g., haptic error pulses)'
+    ],
   },
   {
     id: 'gobusiness-ux-audit',

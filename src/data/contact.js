@@ -21,7 +21,7 @@ export const contactLinks = [
   },
   {
     label: 'Download Resume',
-    href: '/Images/ResumeKarthik_V3.pdf',
+    href: '/Images/ResumeKarthik_TR.pdf',
     type: 'resume',
     download: true,
   },

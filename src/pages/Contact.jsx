@@ -29,16 +29,6 @@ const Contact = () => {
     },
   }
 
-  const handleResumeDownload = (e, href) => {
-    e.preventDefault()
-    const link = document.createElement('a')
-    link.href = href
-    link.download = 'ResumeKarthik_V3.pdf'
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
-  }
-
   // Filter out resume from contact links (it's in navigation now)
   const displayLinks = contactLinks.filter(link => link.type !== 'resume')
 
@@ -48,7 +38,7 @@ const Contact = () => {
         title="Contact"
         description="Get in touch with Karthik Manda. Email, LinkedIn, GitHub, and Instagram links."
       />
-      <div className="min-h-screen bg-primary-black">
+      <div className="min-h-screen">
         <Navbar />
         <main className="pt-24 md:pt-32 pb-16">
           <div className="max-w-4xl mx-auto px-4 md:px-8 text-center">

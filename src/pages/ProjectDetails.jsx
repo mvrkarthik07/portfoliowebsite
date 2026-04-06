@@ -1,4 +1,4 @@
-import { useParams, Link, Navigate, useNavigate } from 'react-router-dom'
+import { useParams, Link, Navigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { getProjectById, getNextProject, getPreviousProject } from '../data/projects'
 import Navbar from '../components/Navbar'
@@ -8,7 +8,6 @@ import SEO from '../components/SEO'
 
 const ProjectDetails = () => {
   const { projectId } = useParams()
-  const navigate = useNavigate()
   const project = getProjectById(projectId)
   const nextProject = getNextProject(projectId)
   const prevProject = getPreviousProject(projectId)
@@ -47,7 +46,7 @@ const ProjectDetails = () => {
         image={project.image}
         url={`https://karthikmanda.netlify.app/work/${project.id}`}
       />
-      <div className="min-h-screen bg-primary-black">
+      <div className="min-h-screen">
         <Navbar />
         <main className="pt-24 md:pt-32 pb-16">
           <div className="max-w-6xl mx-auto px-4 md:px-8">

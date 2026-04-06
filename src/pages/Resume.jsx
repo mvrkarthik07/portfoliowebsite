@@ -10,8 +10,8 @@ const Resume = () => {
   const handleResumeDownload = (e) => {
     e.preventDefault()
     const link = document.createElement('a')
-    link.href = '/Images/ResumeKarthik_V3.pdf'
-    link.download = 'ResumeKarthik_V3.pdf'
+    link.href = '/resume/ResumeKarthik_TR.pdf'
+    link.download = 'ResumeKarthik_TR.pdf'
     document.body.appendChild(link)
     link.click()
     document.body.removeChild(link)
@@ -23,7 +23,7 @@ const Resume = () => {
         title="Resume"
         description="Resume of Karthik Manda - Computer Engineering student specializing in frontend development, UI/UX design, and visual design."
       />
-      <div className="min-h-screen bg-primary-black">
+      <div className="min-h-screen">
         <Navbar />
         <main className="pt-24 md:pt-32 pb-16">
           <div className="max-w-4xl mx-auto px-4 md:px-8">
@@ -60,7 +60,7 @@ const Resume = () => {
                 </div>
               )}
               <iframe
-                src="/Images/ResumeKarthik_V3.pdf"
+                src="/resume/ResumeKarthik_TR.pdf"
                 className="w-full h-[600px] md:h-[800px] lg:h-[1000px] border-0"
                 title="Resume PDF"
                 onLoad={() => setIsLoading(false)}

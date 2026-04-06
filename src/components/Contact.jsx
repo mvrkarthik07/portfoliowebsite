@@ -56,7 +56,7 @@ const Contact = () => {
           transition={{ duration: 0.7, delay: 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
           className="font-clash text-sm sm:text-base md:text-lg lg:text-xl text-secondary-white mb-8 sm:mb-12 md:mb-16 leading-relaxed"
         >
-          Hit me up — Whether it's collaboration, freelance projects, or just to talk design, streetwear, and innovation. Always down to connect and create something fresh.
+          Hit me up — Whether it&apos;s collaboration, freelance projects, or just to talk design, streetwear, and innovation. Always down to connect and create something fresh.
         </motion.p>
 
         {/* Contact Form */}
