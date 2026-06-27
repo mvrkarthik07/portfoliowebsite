@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from 'react'
-import { motion } from 'framer-motion'
 
 const LazyImage = ({ src, alt, className = '', priority = false, ...props }) => {
   const [isLoading, setIsLoading] = useState(true)
@@ -42,18 +41,16 @@ const LazyImage = ({ src, alt, className = '', priority = false, ...props }) => 
   return (
     <div ref={imgRef} className={`relative overflow-hidden ${className}`}>
       {isLoading && shouldLoad && (
-        <div className="absolute inset-0 bg-accent-gray animate-pulse flex items-center justify-center">
-          <div className="w-8 h-8 border-2 border-primary-white/20 border-t-primary-white rounded-full animate-spin" />
-        </div>
+        <div className="skeleton absolute inset-0" aria-hidden />
       )}
       {hasError ? (
-        <div className="absolute inset-0 bg-accent-gray flex items-center justify-center">
+        <div className="absolute inset-0 flex items-center justify-center bg-surface-raised">
           <div className="text-center p-4">
-            <p className="text-secondary-white/50 text-sm">Image unavailable</p>
+            <p className="text-secondary-white text-sm">Image unavailable</p>
           </div>
         </div>
       ) : shouldLoad ? (
-        <motion.img
+        <img
           src={src}
           alt={alt}
           className={`w-full h-auto ${isLoading ? 'opacity-0' : 'opacity-100'} transition-opacity duration-200`}
@@ -67,7 +64,7 @@ const LazyImage = ({ src, alt, className = '', priority = false, ...props }) => 
           {...props}
         />
       ) : (
-        <div className="w-full h-auto bg-accent-gray/20 aspect-square" />
+        <div className="skeleton aspect-square w-full" />
       )}
     </div>
   )

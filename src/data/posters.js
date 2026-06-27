@@ -15,7 +15,7 @@ export const posters = [
     image: '/Images/Posters/POSTERSUNFLOWER.png',
     title: 'SUNFLOWER – Neon Spider-Verse',
     description:
-      'A stylized Miles Morales silhouette outlined in chrome-like strokes and ultraviolet glows, translating the song\'s dreamy vibe into a minimal hero poster.',
+      'A stylized Miles Morales silhouette outlined in chrome-like strokes, translating the song into a minimal hero poster.',
   },
   {
     image: '/Images/Posters/OGGGG2.png',
@@ -129,7 +129,7 @@ export const posters = [
     image: '/Images/Posters/IMG_9624.PNG',
     title: 'STEPHEN CURRY – Night Game',
     description:
-      'Electric blue highlights carve Curry out of pure black, turning his drive to the basket into a sleek, almost holographic portrait of focus and motion.',
+      'Electric blue highlights carve Curry out of pure black, turning his drive to the basket into a focused sports portrait.',
   },
   {
     image: '/Images/Posters/nikePoster.png',
@@ -153,7 +153,7 @@ export const posters = [
     image: '/Images/Posters/tameimpala.png',
     title:'Tame Impala: Colorful Chaos',
     description:
-      'This poster interprets Tame Impala through typographic motion rather than literal imagery. Letterforms are stretched, curved, and fragmented to echo the fluid, psychedelic quality of the music—where rhythm feels elastic and time appears distorted. The subdued palette and soft glow emphasize atmosphere over clarity, allowing type to function as an expressive medium rather than a static carrier of text. The work explores how sound can be translated into form through movement, repetition, and controlled abstraction.',
+      'This poster interprets Tame Impala through stretched, curved, and fragmented letterforms rather than literal imagery. The subdued palette prioritises atmosphere over clarity, allowing type to function as an expressive medium rather than a static carrier of text.',
   },
   {
     image: '/Images/Posters/jellyfish.png',
@@ -171,31 +171,31 @@ export const posters = [
     image: '/Images/Posters/TRAV.png',
     title:'ASTROWORLD.',
     description:
-      'Inspired by the iconic Astroworld album cover, this design captures the essence of Travis Scott’s larger-than-life influence on culture. The dynamic figure standing atop the globe creates a striking visual metaphor for his dominance in the music industry and his reach beyond the ordinary. The dark, moody color scheme paired with bold red typography mirrors the intensity of the album\'s vibe. This piece exemplifies my skill in blending graphic elements and typography to evoke both energy and an immersive experience. A true celebration of modern music and artistic expression, perfect for showcasing my work in visual and poster design.',
+      'This Travis Scott poster references the Astroworld album cover with a globe figure, bold red typography, and a dark performance-style palette.',
   },
   {
     image: '/Images/Posters/hydposter.png',
     title:'HYDERABAD.',
     description:
-      'This design celebrates the vibrant city of Hyderabad, blending modern aesthetics with rich cultural elements. The bold use of red and black creates a striking visual contrast, drawing attention to the iconic Charminar and the city’s name in both English and Telugu. The faint background texture symbolizes the dynamic and historic essence of Hyderabad, a city that balances tradition with contemporary growth. This piece captures the spirit of the city and my design approach—fusing typography with heritage, conveying both boldness and depth in a visually engaging way.',
+      'This Hyderabad poster centers the Charminar with red-and-black contrast, English and Telugu city text, and a textured heritage backdrop.',
   },
   {
     image: '/Images/Posters/WALLPAPER.png',
     title:'Minimalism: The art of simplicity',
     description:
-      'This design encapsulates the essence of minimalism, showcasing the concept through sleek, reflective typography that seamlessly merges form and function. The glossy black and white contrast highlights the simplicity and elegance of the message, creating a striking visual presence. The reflective floor beneath the bold letters adds depth and dimension, drawing attention to the essence of minimal design principles.',
+      'This minimalism study uses reflective black-and-white typography, a floor reflection, and a reduced composition to test form against negative space.',
   },
   {
     image: '/Images/Posters/Tokyoposter.png',
     title:'TOKYO.',
     description:
-      'This design captures the essence of Tokyo, where neon lights and rich culture collide in a dynamic fusion. The vibrant, electric blue hues highlight the city\'s bustling streets, while the chrome typography adds a modern, futuristic touch to the classic blend of tradition and innovation. The intricate details in the background, depicting the lively streets of Tokyo, emphasize its role as a global cultural and technological hub. This piece reflects my ability to weave narrative and design into a single visual, illustrating the energy and vibrancy of Tokyo through sharp contrasts and bold imagery.',
+      'This Tokyo poster uses electric blue street imagery, chrome typography, and dense city detail to frame the city as a nightlife study.',
   },
   {
     image: '/Images/Posters/sgposter.png',
     title:'SINGAPORE.',
     description:
-      'This design captures the dynamic energy of Singapore, blending the city’s iconic skyline with the raw, vibrant essence of its culture. The deep red and blue contrasts, along with the sharp chrome typography, evoke both strength and innovation, reflecting Singapore’s growth from a modest island to a global powerhouse. The rich textures of the background evoke a sense of depth and complexity, while the subtle elements of nature and architecture in the scene hint at Singapore’s perfect balance between modernity and greenery. This piece is a visual homage to the Lion City’s bold spirit, showcasing my ability to merge urban elements with artistic expression to create a captivating narrative.',
+      'This Singapore poster combines the skyline, red-and-blue contrast, chrome typography, and urban textures into a Lion City composition.',
   },
   {
     image: '/Images/Posters/nyposter.png',
@@ -225,7 +225,7 @@ export const posters = [
     image: '/Images/Posters/MLIPOSTER.PNG',
     title:'MR NEGATIVE',
     description:
-      'An experimental poster exploring inversion as both a visual and conceptual device. The figure is rendered through aggressive tonal distortion and reflective textures, creating a fragmented, almost metallic form suspended in motion.',
+      'An experimental poster exploring inversion as both a visual and conceptual device. The figure is rendered through aggressive tonal distortion and reflective textures.',
   },
   {
     image: '/Images/Posters/bwnikeposter.png',
