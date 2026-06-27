@@ -1,36 +1,42 @@
-import { useState, useEffect } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useEffect, useState } from 'react'
+import { Link, NavLink, useLocation } from 'react-router-dom'
+
+const navLinks = [
+  { path: '/', label: 'Home', end: true },
+  { path: '/work', label: 'Work' },
+  { path: '/experience', label: 'Experience' },
+  { path: '/about', label: 'About' },
+  { path: '/resume', label: 'Resume' },
+  { path: '/posters', label: 'Posters' },
+  { path: '/contact', label: 'Contact' },
+]
+
+const linkClass = ({ isActive }) =>
+  `nav-link${isActive ? ' nav-link--active' : ''}`
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const location = useLocation()
-  const navigate = useNavigate()
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-    }
+    const handleScroll = () => setIsScrolled(window.scrollY > 48)
+    handleScroll()
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   useEffect(() => {
     setIsMenuOpen(false)
-  }, [location])
+  }, [location.pathname])
 
-  // Handle ESC key to close mobile menu
   useEffect(() => {
-    const handleEscape = (e) => {
-      if (e.key === 'Escape' && isMenuOpen) {
-        setIsMenuOpen(false)
-      }
+    const handleEscape = (event) => {
+      if (event.key === 'Escape') setIsMenuOpen(false)
     }
 
     if (isMenuOpen) {
       document.addEventListener('keydown', handleEscape)
-      // Prevent body scroll when menu is open
       document.body.style.overflow = 'hidden'
     } else {
       document.body.style.overflow = 'unset'
@@ -42,146 +48,47 @@ const Navbar = () => {
     }
   }, [isMenuOpen])
 
-  const navLinks = [
-    { path: '/', label: 'Home', type: 'route' },
-    { path: '/work', label: 'Work', type: 'route' },
-    { path: '/posters', label: 'Posters', type: 'route' },
-    { path: '/about', label: 'About', type: 'route' },
-    { path: '/resume', label: 'Resume', type: 'route' },
-    { path: '/contact', label: 'Contact', type: 'route' },
-  ]
-
-  const handleHomeClick = (e) => {
-    e.preventDefault()
-    if (location.pathname === '/') {
-      // Already on home page, scroll to top
-      window.scrollTo({ top: 0, behavior: 'smooth' })
-    } else {
-      // Navigate to home
-      navigate('/')
-      setTimeout(() => {
-        window.scrollTo({ top: 0, behavior: 'smooth' })
-      }, 100)
-    }
-    setIsMenuOpen(false)
-  }
-
-
   return (
-    <motion.header
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-primary-black/95 backdrop-blur-sm shadow-lg' : 'bg-transparent'
-      } border-b border-primary-white/10`}
+    <header
+      className={`site-nav${isScrolled ? ' site-nav--scrolled' : ''}`}
     >
-      <nav className="max-w-7xl mx-auto px-4 md:px-8 py-4 flex items-center justify-between">
-        <Link
-          to="/"
-          onClick={handleHomeClick}
-          className="font-gothic text-xl md:text-2xl font-semibold text-primary-white hover:text-shadow-glow transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary-white/50 focus:ring-offset-2 focus:ring-offset-primary-black"
-          aria-label="Karthik Manda - Home"
-        >
-          KARTHIK MANDA
+      <nav className="site-nav__inner" aria-label="Primary navigation">
+        <Link to="/" className="site-nav__brand" aria-label="Karthik Manda home">
+          <span>Karthik Manda</span>
         </Link>
 
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-4 lg:gap-6">
-          {navLinks.map((link) => {
-            if (link.path === '/') {
-              return (
-                <a
-                  key={link.label}
-                  href={link.path}
-                  onClick={handleHomeClick}
-                  className="btn-secondary focus:outline-none focus:ring-2 focus:ring-primary-white/50"
-                  aria-label={link.label}
-                >
-                  {link.label}
-                </a>
-              )
-            }
-            return (
-              <Link
-                key={link.label}
-                to={link.path}
-                className="btn-secondary focus:outline-none focus:ring-2 focus:ring-primary-white/50"
-                aria-label={link.label}
-              >
-                {link.label}
-              </Link>
-            )
-          })}
+        <div className="site-nav__links">
+          {navLinks.map((link) => (
+            <NavLink key={link.path} to={link.path} end={link.end} className={linkClass}>
+              <span>{link.label}</span>
+            </NavLink>
+          ))}
         </div>
 
-        {/* Mobile Menu Button */}
         <button
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="md:hidden w-11 h-11 flex flex-col justify-center items-center gap-1.5 border border-primary-white/30 hover:border-primary-white transition-colors focus:outline-none focus:ring-2 focus:ring-primary-white/50"
-          aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+          type="button"
+          className="site-nav__menu-button"
+          aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
           aria-expanded={isMenuOpen}
+          onClick={() => setIsMenuOpen((value) => !value)}
         >
-          <motion.span
-            animate={isMenuOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
-            className="w-5 h-0.5 bg-primary-white block transition-all"
-          />
-          <motion.span
-            animate={isMenuOpen ? { opacity: 0 } : { opacity: 1 }}
-            className="w-5 h-0.5 bg-primary-white block transition-all"
-          />
-          <motion.span
-            animate={isMenuOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
-            className="w-5 h-0.5 bg-primary-white block transition-all"
-          />
+          <span />
+          <span />
+          <span />
         </button>
       </nav>
 
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden bg-primary-black border-t border-primary-white/10"
-            role="menu"
-            aria-label="Navigation menu"
-          >
-            <div className="px-4 py-6 flex flex-col gap-4">
-              {navLinks.map((link) => {
-                if (link.path === '/') {
-                  return (
-                    <a
-                      key={link.label}
-                      href={link.path}
-                      onClick={handleHomeClick}
-                      className="btn-secondary text-center focus:outline-none focus:ring-2 focus:ring-primary-white/50"
-                      aria-label={link.label}
-                    >
-                      {link.label}
-                    </a>
-                  )
-                }
-                return (
-                  <Link
-                    key={link.label}
-                    to={link.path}
-                    className="btn-secondary text-center focus:outline-none focus:ring-2 focus:ring-primary-white/50"
-                    aria-label={link.label}
-                  >
-                    {link.label}
-                  </Link>
-                )
-              })}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.header>
+      {isMenuOpen && (
+        <div className="site-nav__drawer">
+          {navLinks.map((link) => (
+            <NavLink key={link.path} to={link.path} end={link.end} className={linkClass}>
+              <span>{link.label}</span>
+            </NavLink>
+          ))}
+        </div>
+      )}
+    </header>
   )
 }
 
 export default Navbar
-

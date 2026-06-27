@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { motion } from 'framer-motion'
 import emailjs from '@emailjs/browser'
 import { EMAILJS_CONFIG, GOOGLE_SHEETS_WEBHOOK } from '../utils/emailConfig'
 
@@ -125,18 +124,14 @@ const ContactForm = () => {
   }
 
   return (
-    <motion.form
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.8, delay: 0.4 }}
+    <form
       onSubmit={handleSubmit}
-      className="max-w-2xl mx-auto w-full space-y-6"
+      className="contact-form"
       noValidate
     >
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <div>
-          <label htmlFor="name" className="block font-clash text-sm font-medium mb-2 text-secondary-white">
+          <label htmlFor="name">
             Name <span className="text-primary-white">*</span>
           </label>
           <input
@@ -147,15 +142,13 @@ const ContactForm = () => {
             onChange={handleChange}
             required
             aria-required="true"
-            className="w-full px-4 py-3 bg-primary-black border border-primary-white/15 text-primary-white font-clash 
-                     focus:outline-none focus:border-primary-white/40 focus:ring-2 focus:ring-primary-white/20 
-                     transition-all duration-300"
+            className="form-field"
             placeholder="Your name"
           />
         </div>
 
         <div>
-          <label htmlFor="email" className="block font-clash text-sm font-medium mb-2 text-secondary-white">
+          <label htmlFor="email">
             Email <span className="text-primary-white">*</span>
           </label>
           <input
@@ -166,16 +159,14 @@ const ContactForm = () => {
             onChange={handleChange}
             required
             aria-required="true"
-            className="w-full px-4 py-3 bg-primary-black border border-primary-white/15 text-primary-white font-clash 
-                     focus:outline-none focus:border-primary-white/40 focus:ring-2 focus:ring-primary-white/20 
-                     transition-all duration-300"
+            className="form-field"
             placeholder="your.email@example.com"
           />
         </div>
       </div>
 
       <div>
-        <label htmlFor="subject" className="block font-clash text-sm font-medium mb-2 text-secondary-white">
+        <label htmlFor="subject">
           Subject
         </label>
         <input
@@ -184,15 +175,13 @@ const ContactForm = () => {
           name="subject"
           value={formData.subject}
           onChange={handleChange}
-          className="w-full px-4 py-3 bg-primary-black border border-primary-white/15 text-primary-white font-clash 
-                   focus:outline-none focus:border-primary-white/40 focus:ring-2 focus:ring-primary-white/20 
-                   transition-all duration-300"
+          className="form-field"
           placeholder="What's this about?"
         />
       </div>
 
       <div>
-        <label htmlFor="message" className="block font-clash text-sm font-medium mb-2 text-secondary-white">
+        <label htmlFor="message">
           Message <span className="text-primary-white">*</span>
         </label>
         <textarea
@@ -203,42 +192,32 @@ const ContactForm = () => {
           required
           aria-required="true"
           rows={6}
-          className="w-full px-4 py-3 bg-primary-black border border-primary-white/15 text-primary-white font-clash 
-                   focus:outline-none focus:border-primary-white/40 focus:ring-2 focus:ring-primary-white/20 
-                   transition-all duration-300 resize-none"
+          className="form-field resize-none"
           placeholder="Tell me about your project, collaboration idea, or just say hi..."
         />
-        <p className="mt-2 text-xs text-secondary-white/60 font-clash">
+        <p className="form-help">
           {formData.message.length} characters {formData.message.length < 10 && '(minimum 10)'}
         </p>
       </div>
 
       {status.message && (
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className={`p-4 border ${
-            status.type === 'error' 
-              ? 'border-red-500/50 bg-red-500/10 text-red-400' 
-              : 'border-green-500/50 bg-green-500/10 text-green-400'
-          } font-clash text-sm`}
+        <div
+          className={`form-status ${status.type === 'error' ? 'form-status--error' : 'form-status--success'}`}
           role="alert"
           aria-live="polite"
         >
           {status.message}
-        </motion.div>
+        </div>
       )}
 
-      <motion.button
+      <button
         type="submit"
         disabled={isSubmitting}
-        className="btn-primary w-full sm:w-auto px-8 py-4 disabled:opacity-50 disabled:cursor-not-allowed"
-        whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
-        whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
+        className="form-submit w-full sm:w-auto disabled:cursor-not-allowed disabled:opacity-50"
       >
         {isSubmitting ? 'Sending...' : 'Send Message'}
-      </motion.button>
-    </motion.form>
+      </button>
+    </form>
   )
 }
 

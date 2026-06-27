@@ -1,0 +1,23 @@
+:root {
+  --bg-base: #000000;
+  --bg-surface: #101010;
+  --bg-surface-raised: #1a1a1a;
+  --text-primary: #edeae3;
+  --text-secondary: #9a968c;
+  --rule-line: #1f1f1f;
+  --signal: #ffdd00;
+  --success: #ffdd00;
+  --warning: #ffdd00;
+  --error: #d16d65;
+  --focus-ring: var(--signal);
+  --radius-sharp: 2px;
+  --radius-pill: 999px;
+  --font-display: "Libre Baskerville", Georgia, "Times New Roman", serif;
+  --font-heading: var(--font-display);
+  --font-body: "Noto Sans", -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "Noto Sans", -apple-system, "Segoe UI", sans-serif;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --duration-fast: 180ms;
+  --duration-med: 260ms;
+}
