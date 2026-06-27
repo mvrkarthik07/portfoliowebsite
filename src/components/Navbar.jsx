@@ -54,7 +54,7 @@ const Navbar = () => {
     >
       <nav className="site-nav__inner" aria-label="Primary navigation">
         <Link to="/" className="site-nav__brand" aria-label="Karthik Manda home">
-          <span>Karthik Manda</span>
+          <img src="/Images/logo.png" alt="" className="site-nav__logo" />
         </Link>
 
         <div className="site-nav__links">
