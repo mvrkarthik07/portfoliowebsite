@@ -61,8 +61,12 @@ const Resume = () => {
               </p>
             </div>
             <div className="resume-pdf-actions">
+              <span className="resume-pdf-file">ResumeKarthik_Latest.pdf</span>
               <a className="text-link" href={resumeUrl} target="_blank" rel="noopener noreferrer">
-                Open ResumeKarthik_Latest.pdf
+                <span>Open Resume in New Tab</span>
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M7 17 17 7M9 7h8v8" />
+                </svg>
               </a>
               <button type="button" className="btn-secondary" onClick={handleResumeDownload}>
                 Download PDF

@@ -651,6 +651,26 @@
     margin-bottom: 24px;
   }
 
+  .resume-pdf-file {
+    color: var(--text-secondary);
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .resume-pdf-actions .text-link {
+    gap: 8px;
+  }
+
+  .resume-pdf-actions .text-link svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
   .resume-pdf-frame {
     position: relative;
     overflow: hidden;
