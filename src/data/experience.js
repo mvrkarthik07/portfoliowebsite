@@ -1,6 +1,6 @@
 export const experience = [
   {
-    role: 'Alpha Researcher',
+    role: 'Research Consultant',
     company: 'WorldQuant BRAIN',
     level: 'Gold Tier (Top 5% Globally)',
     dateRange: '2026 - Present',

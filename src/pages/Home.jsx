@@ -83,8 +83,8 @@ const Home = () => {
                 <strong>Apple Swift Student Challenge 2026, Global Top 300</strong>
               </div>
               <Link className="home-hero__proof-card home-hero__proof-card--link" to="/experience">
-                <span>Read Next</span>
-                <strong>Open the structured experience timeline</strong>
+                <span>Experience</span>
+                <strong>Trace the work behind the finance, AI, and embedded systems claims</strong>
               </Link>
             </div>
           </section>
