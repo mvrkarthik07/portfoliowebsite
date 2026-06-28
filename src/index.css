@@ -651,12 +651,6 @@
     margin-bottom: 24px;
   }
 
-  .resume-pdf-file {
-    color: var(--text-secondary);
-    font-size: 14px;
-    font-weight: 500;
-  }
-
   .resume-pdf-actions .text-link {
     gap: 8px;
   }

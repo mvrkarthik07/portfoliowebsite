@@ -61,7 +61,6 @@ const Resume = () => {
               </p>
             </div>
             <div className="resume-pdf-actions">
-              <span className="resume-pdf-file">ResumeKarthik_Latest.pdf</span>
               <a className="text-link" href={resumeUrl} target="_blank" rel="noopener noreferrer">
                 <span>Open Resume in New Tab</span>
                 <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
