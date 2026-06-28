@@ -340,11 +340,11 @@
   }
 
   .nav-link {
-    position: relative;
     display: inline-flex;
     min-width: 44px;
     min-height: 44px;
     align-items: center;
+    justify-content: center;
     color: var(--text-secondary);
     font-size: 14px;
     font-weight: 500;
@@ -352,11 +352,16 @@
     transition: color var(--duration-fast) var(--ease-standard);
   }
 
-  .nav-link::after {
+  .nav-link span {
+    position: relative;
+    display: inline-block;
+  }
+
+  .nav-link span::after {
     content: '';
     position: absolute;
     right: 0;
-    bottom: 8px;
+    bottom: -8px;
     left: 0;
     height: 1px;
     background: var(--signal);
@@ -369,7 +374,7 @@
     color: var(--text-primary);
   }
 
-  .nav-link--active::after {
+  .nav-link--active span::after {
     opacity: 1;
   }
 
