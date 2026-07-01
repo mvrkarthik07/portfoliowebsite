@@ -29,11 +29,10 @@ const Resume = () => {
       <div className="page-shell">
         <Navbar />
         <main className="page-main">
-          <section className="page-hero">
-            <h1>Resume</h1>
-            <p>
-              Structured experience and skills are listed here, with the PDF available for download.
-            </p>
+          <section className="page-hero scale-page-hero">
+            <span className="section-label">Resume</span>
+            <h1>Structured evidence travels.</h1>
+            <p>Experience, skills, and a downloadable PDF are available for review.</p>
             <button type="button" className="btn-secondary" onClick={handleResumeDownload}>
               Download Full Resume
             </button>

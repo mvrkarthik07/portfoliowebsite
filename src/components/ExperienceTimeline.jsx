@@ -18,11 +18,11 @@ const ExperienceTimeline = ({ compact = false }) => (
           <div className="experience-item__header">
             <div>
               <h3>{item.role}</h3>
-              <p className="experience-item__company">
+              <div className="experience-item__company">
                 {item.company} <span>{item.level}</span>
-              </p>
+              </div>
             </div>
-            <p className="experience-item__date">{item.dateRange}</p>
+            <div className="experience-item__date">{item.dateRange}</div>
           </div>
           <ul className={compact ? 'experience-item__bullets compact' : 'experience-item__bullets'}>
             {item.achievements.slice(0, compact ? 2 : 3).map((achievement) => (

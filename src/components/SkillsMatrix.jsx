@@ -5,7 +5,7 @@ const SkillsMatrix = () => (
     {skillPillars.map((pillar) => (
       <section className="surface-card skills-matrix__item" key={pillar.title}>
         <h3>{pillar.title}</h3>
-        <p>{pillar.description}</p>
+        <div className="skills-matrix__description">{pillar.description}</div>
         <div className="tag-row">
           {pillar.tags.map((tag) => (
             <span className="tag-chip" key={`${pillar.title}-${tag}`}>

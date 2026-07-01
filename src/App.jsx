@@ -50,7 +50,7 @@ function App() {
       <ErrorBoundary>
         <MotionConfig reducedMotion="user">
           <SEO />
-          <div className="relative isolate min-h-screen bg-primary-black">
+          <div className="relative isolate min-h-screen bg-bg-base">
             <div className="relative z-10 min-h-screen">
               <Router>
                 <AnimatedRoutes />

@@ -132,7 +132,7 @@ const ContactForm = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <div>
           <label htmlFor="name">
-            Name <span className="text-primary-white">*</span>
+            Name <span className="text-text-primary">*</span>
           </label>
           <input
             type="text"
@@ -149,7 +149,7 @@ const ContactForm = () => {
 
         <div>
           <label htmlFor="email">
-            Email <span className="text-primary-white">*</span>
+            Email <span className="text-text-primary">*</span>
           </label>
           <input
             type="email"
@@ -182,7 +182,7 @@ const ContactForm = () => {
 
       <div>
         <label htmlFor="message">
-          Message <span className="text-primary-white">*</span>
+          Message <span className="text-text-primary">*</span>
         </label>
         <textarea
           id="message"
@@ -195,9 +195,9 @@ const ContactForm = () => {
           className="form-field resize-none"
           placeholder="Tell me about your project, collaboration idea, or just say hi..."
         />
-        <p className="form-help">
+        <div className="form-help">
           {formData.message.length} characters {formData.message.length < 10 && '(minimum 10)'}
-        </p>
+        </div>
       </div>
 
       {status.message && (

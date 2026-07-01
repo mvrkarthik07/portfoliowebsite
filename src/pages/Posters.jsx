@@ -17,11 +17,10 @@ const Posters = () => {
       <div className="page-shell">
         <Navbar />
         <main className="page-main">
-          <section className="page-hero">
-            <h1>Posters</h1>
-            <p>
-              Poster work uses Photoshop, Canva, and Figma to test typography, layout, and image-led composition.
-            </p>
+          <section className="page-hero scale-page-hero">
+            <span className="section-label">Posters</span>
+            <h1>Visual systems test taste.</h1>
+            <p>Photoshop, Canva, and Figma shape typography, layout, and image-led composition.</p>
             <a
               className="text-link"
               href="https://www.instagram.com/kxrthxk.creatives/"
