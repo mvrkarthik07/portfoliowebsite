@@ -44,9 +44,9 @@ const LazyImage = ({ src, alt, className = '', priority = false, ...props }) => 
         <div className="skeleton absolute inset-0" aria-hidden />
       )}
       {hasError ? (
-        <div className="absolute inset-0 flex items-center justify-center bg-surface-raised">
+        <div className="absolute inset-0 flex items-center justify-center bg-bg-surface-raised">
           <div className="text-center p-4">
-            <p className="text-secondary-white text-sm">Image unavailable</p>
+            <p className="text-text-secondary text-sm">Image unavailable</p>
           </div>
         </div>
       ) : shouldLoad ? (

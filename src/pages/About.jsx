@@ -13,21 +13,19 @@ const About = () => (
       description="About Karthik Manda - Computer Engineering undergraduate at NTU working across software, AI, embedded systems, quant research, and design."
     />
     <div className="page-shell">
-      <Navbar />
-      <main className="page-main">
-        <section className="about-intro">
-          <div className="page-hero">
-            <h1>Karthik Manda</h1>
-            <p>
-              Computer Engineering undergraduate at NTU working across quant research,
-              embedded systems, full-stack engineering, and applied ML.
-            </p>
-            <p>
-              Project work spans React dashboards, STM32 control, WCAG 2.1 AA web
-              delivery, and WorldQuant BRAIN alpha research.
+        <Navbar />
+        <main className="page-main">
+        <section className="scale-section about-intro" aria-labelledby="about-title">
+          <div className="scale-section__header">
+            <span className="section-label">Bio</span>
+            <h1 id="about-title" className="section-heading">
+              Karthik builds applied systems.
+            </h1>
+            <p className="section-support">
+              Computer Engineering at NTU connects quant research, embedded systems, full-stack engineering, and applied ML.
             </p>
             <Link className="text-link" to="/experience">
-              Read professional experience
+              Read Experience
             </Link>
           </div>
           <div className="about-photo surface-card">
@@ -35,19 +33,26 @@ const About = () => (
           </div>
         </section>
 
-        <section className="section-band">
-          <div className="section-header">
-            <h2 className="section-heading">Four Technical Pillars</h2>
+        <section className="scale-section" aria-labelledby="skills-title">
+          <div className="scale-section__header">
+            <span className="section-label">Skills</span>
+            <h2 id="skills-title" className="section-heading">
+              Technical pillars drive delivery.
+            </h2>
             <p className="section-description">
-              Four pillars combine STM32 and CAN bus work with React, FastAPI, PyTorch, and WorldQuant BRAIN research.
+              STM32, React, FastAPI, PyTorch, and WorldQuant research form the working stack.
             </p>
           </div>
           <SkillsMatrix />
         </section>
 
-        <section className="section-band">
-          <div className="section-header">
-            <h2 className="section-heading">Recognition</h2>
+        <section className="scale-section" aria-labelledby="about-recognition-title">
+          <div className="scale-section__header">
+            <span className="section-label">Recognition</span>
+            <h2 id="about-recognition-title" className="section-heading">
+              Proof travels with the work.
+            </h2>
+            <p className="section-description">Recognition spans Apple, HTX, and WorldQuant-adjacent engineering outcomes.</p>
           </div>
           <div className="recognition-row">
             {recognitions.map((recognition) => (
