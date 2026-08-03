@@ -31,13 +31,25 @@
 
   * {
     box-sizing: border-box;
+    min-width: 0;
     overflow-wrap: break-word;
+  }
+
+  html,
+  body,
+  #root {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
   }
 
   img,
   svg,
   video,
-  canvas {
+  canvas,
+  iframe,
+  embed,
+  object {
     max-width: 100%;
   }
 
@@ -999,7 +1011,7 @@
     padding-block: 28px;
   }
 
-  .project-scroll__item button {
+  .project-scroll__item > button {
     display: grid;
     width: 100%;
     grid-template-columns: 40px minmax(0, 1fr);
@@ -1013,14 +1025,14 @@
     transition: color 200ms var(--ease-standard);
   }
 
-  .project-scroll__item button span {
+  .project-scroll__item > button span {
     color: var(--text-secondary);
     font-size: 12px;
     font-weight: 500;
     line-height: 1.35;
   }
 
-  .project-scroll__item button {
+  .project-scroll__item > button {
     font-family: var(--font-body);
     font-size: 32px;
     font-weight: 700;
@@ -1028,8 +1040,8 @@
     letter-spacing: 0;
   }
 
-  .project-scroll__item.is-active button,
-  .project-scroll__item button:hover {
+  .project-scroll__item.is-active > button,
+  .project-scroll__item > button:hover {
     color: var(--text-primary);
   }
 
@@ -1095,6 +1107,7 @@
 
   .project-scroll__link {
     display: inline-flex;
+    flex: 0 0 auto;
     min-width: 44px;
     min-height: 44px;
     align-items: center;
@@ -1104,6 +1117,7 @@
     padding: 0;
     font-size: 14px;
     font-weight: 600;
+    white-space: nowrap;
     text-decoration: none;
     cursor: pointer;
   }
@@ -1626,7 +1640,7 @@
       min-height: 0;
     }
 
-    .project-scroll__item button {
+    .project-scroll__item > button {
       font-size: 32px;
     }
 
