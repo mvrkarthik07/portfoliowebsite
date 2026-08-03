@@ -4,9 +4,8 @@
  * If on another page, navigates to home then scrolls to the section
  * 
  * @param {string} sectionId - The ID of the section to scroll to (without #)
- * @param {Function} navigate - React Router's navigate function (optional, not used but kept for API consistency)
  */
-export const navigateToSection = (sectionId, navigate = null) => {
+export const navigateToSection = (sectionId) => {
   const offset = 80 // Account for fixed navbar
   
   if (window.location.pathname === '/') {

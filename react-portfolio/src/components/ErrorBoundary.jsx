@@ -18,17 +18,17 @@ class ErrorBoundary extends Component {
   render() {
     if (this.state.hasError) {
       return (
-        <div className="min-h-screen flex items-center justify-center bg-primary-black px-4">
+        <div className="min-h-screen flex items-center justify-center bg-bg-base px-4">
           <div className="max-w-md w-full text-center">
-            <h1 className="font-gothic text-4xl md:text-6xl mb-6">Oops!</h1>
-            <p className="font-clash text-lg md:text-xl text-secondary-white mb-8">
-              Something went wrong. Don't worry, this happens sometimes.
+            <h1 className="section-heading mb-6">Something went wrong</h1>
+            <p className="text-text-secondary mb-8">
+              Something went wrong. Don&apos;t worry, this happens sometimes.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 to="/"
                 onClick={() => this.setState({ hasError: false, error: null })}
-                className="btn-primary text-center"
+                className="btn-secondary text-center"
               >
                 Go Home
               </Link>

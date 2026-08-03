@@ -9,15 +9,15 @@
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "/Images/favicon.ico",
-      "sizes": "any",
-      "type": "image/x-icon"
+      "src": "/Images/favicon.png",
+      "sizes": "14x18",
+      "type": "image/png"
     },
     {
-      "src": "/Images/portfolio.png",
-      "sizes": "512x512",
+      "src": "/Images/logo.png",
+      "sizes": "98x8",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     }
   ],
   "categories": ["portfolio", "design", "development"],
