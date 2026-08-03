@@ -12,7 +12,7 @@ export const experience = [
     tags: ['Alpha Research', 'BRAIN Pipeline', 'Factor Design', 'Quant Research'],
   },
   {
-    role: 'Technology & AI Intern',
+    role: 'AI Engineer Intern',
     company: 'BNP Paribas',
     level: 'Incoming',
     dateRange: 'Jul - Dec 2026',

@@ -9,7 +9,7 @@ import ProjectScrollDriver from '../components/ProjectScrollDriver'
 const credentials = [
   'WorldQuant BRAIN -- Gold Tier Research Consultant',
   'Apple Swift Student Challenge 2026 -- Global Top 300',
-  'BNP Paribas Technology & AI -- Incoming Intern, Jul-Dec 2026',
+  'BNP Paribas AI Engineer Intern -- Incoming, Jul-Dec 2026',
   'HTX HackX 2025 -- Top 15 of 60 teams',
   'NTU Computer Engineering -- Year 3',
 ]
