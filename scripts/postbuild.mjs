@@ -45,9 +45,9 @@ function ogSvg(title, result) {
       const y = 370 - j * 14 - Math.sin(i / 2.8) * (18 + j * 1.5)
       return `${x},${Math.round(y)}`
     }).join(' ')
-    return `<polyline points="${points}" fill="none" stroke="#A45560" stroke-opacity="${(0.12 + j * 0.03).toFixed(2)}"/>`
+    return `<polyline points="${points}" fill="none" stroke="#8F302C" stroke-opacity="${(0.12 + j * 0.03).toFixed(2)}"/>`
   }).join('')
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630"><rect width="1200" height="630" fill="#050707"/><rect x="28" y="28" width="1144" height="574" fill="none" stroke="#4B5750"/><rect x="28" y="28" width="1144" height="44" fill="#181C1A"/><text x="52" y="57" fill="#D7878D" font-family="monospace" font-size="20">KM ▸ ${escape(title.toUpperCase())}</text>${lines}<text x="54" y="290" fill="#F3F5F3" font-family="monospace" font-size="56" font-weight="600">${escape(title)}</text><text x="54" y="352" fill="#D7878D" font-family="monospace" font-size="22">${escape(result)}</text><text x="54" y="555" fill="#B0BAB4" font-family="monospace" font-size="18">mvrkarthik.netlify.app</text></svg>`
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630"><rect width="1200" height="630" fill="#080A0B"/><rect x="28" y="28" width="1144" height="574" fill="none" stroke="#3F4947"/><rect x="28" y="28" width="1144" height="44" fill="#1B1F20"/><text x="52" y="57" fill="#E05A50" font-family="monospace" font-size="20">KM ▸ ${escape(title.toUpperCase())}</text>${lines}<text x="54" y="290" fill="#EDF0EF" font-family="monospace" font-size="56" font-weight="600">${escape(title)}</text><text x="54" y="352" fill="#E05A50" font-family="monospace" font-size="22">${escape(result)}</text><text x="54" y="555" fill="#ABB4B2" font-family="monospace" font-size="18">mvrkarthik.netlify.app</text></svg>`
 }
 for (const route of routes) {
   const project = projects.find(({ slug }) => route.path === `/work/${slug}`)
