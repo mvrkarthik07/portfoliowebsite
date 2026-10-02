@@ -1,0 +1,68 @@
+import assert from 'node:assert/strict'
+import sharp from 'sharp'
+import { chromium } from 'playwright'
+import AxeBuilder from '@axe-core/playwright'
+const url = 'http://127.0.0.1:4173'
+const executablePath = '/Applications/Brave Browser.app/Contents/MacOS/Brave Browser'
+const browser = await chromium.launch({ headless: true, executablePath, args: ['--no-sandbox'] })
+const errors = []
+const widths = [320, 375, 768, 1024, 1280, 1520, 1920]
+for (const width of widths) {
+  const page = await browser.newPage({ viewport: { width, height: width === 375 ? 812 : 800 } })
+  page.on('pageerror', (error) => errors.push(error.message))
+  await page.goto(url, { waitUntil: 'networkidle' })
+  const data = await page.evaluate(() => ({ scrollWidth: document.documentElement.scrollWidth, hero: document.querySelector('#des').getBoundingClientRect().toJSON(), positions: document.querySelector('#positions').getBoundingClientRect().toJSON(), work: document.querySelector('#work').getBoundingClientRect().toJSON(), pageHeight: document.documentElement.scrollHeight }))
+  assert(data.scrollWidth <= width, `horizontal scroll at ${width}`)
+  if (width === 1280) { assert(data.hero.bottom < 800 && data.positions.bottom < 800 && data.work.top < 800); assert(data.pageHeight <= 2400) }
+  if (width === 375) { assert(data.hero.height <= 0.78 * 812 && data.positions.top < 812) }
+  await page.close()
+}
+console.log('Layout: seven widths pass')
+const context = await browser.newContext({ viewport: { width: 1280, height: 800 }, permissions: ['clipboard-read', 'clipboard-write'] })
+const page = await context.newPage()
+page.on('pageerror', (error) => errors.push(error.message))
+for (const route of ['/', '/about', '/archive', '/work/coderecon', '/missing']) {
+  await page.goto(`${url}${route}`, { waitUntil: 'networkidle' })
+  const axe = await new AxeBuilder({ page }).analyze()
+  assert.equal(axe.violations.length, 0, `axe ${route}: ${axe.violations.map((x) => x.id).join(', ')}`)
+  const meta = await page.evaluate(() => ({ canonical: [...document.querySelectorAll('link[rel="canonical"]')].map((el) => el.href), og: [...document.querySelectorAll('meta[property="og:url"]')].map((el) => el.content), image: document.querySelector('meta[property="og:image"]')?.content }))
+  assert.equal(meta.canonical.length, 1); assert.equal(meta.og.length, 1)
+  assert(meta.canonical[0].startsWith('https://mvrkarthik.netlify.app/')); assert(meta.og[0].startsWith('https://mvrkarthik.netlify.app/')); assert(meta.image.startsWith('https://mvrkarthik.netlify.app/'))
+}
+console.log('Accessibility and meta: five routes pass')
+await page.goto(url, { waitUntil: 'networkidle' })
+const command = page.getByRole('combobox', { name: 'Command' })
+await command.fill('WORK'); await command.press('Enter'); await page.waitForTimeout(120)
+assert.equal(new URL(page.url()).hash, '#work'); assert.equal(await page.evaluate(() => document.activeElement?.id), 'work-title')
+await command.fill('UNKN'); await command.press('Enter'); assert(await page.getByText('Unknown command "UNKN". Try HELP.').isVisible())
+await command.fill('CV'); const popupPromise = page.waitForEvent('popup'); await command.press('Enter'); const popup = await popupPromise; assert(new URL(popup.url()).pathname === '/resume.pdf'); await popup.close()
+await command.fill('MSG'); await command.press('Enter'); await page.waitForTimeout(120); assert.equal(new URL(page.url()).hash, '#msg'); assert.equal(await page.evaluate(() => document.activeElement?.id), 'msg-title')
+await command.fill('3'); await command.press('3'); assert.equal(new URL(page.url()).hash, '#msg')
+await command.press('Escape'); await command.press('Escape'); await page.keyboard.press('3'); await page.waitForTimeout(120); assert.equal(new URL(page.url()).hash, '#work')
+await page.getByRole('button', { name: 'QUANT', exact: true }).click(); assert.equal(new URL(page.url()).search, '?f=quant'); assert.equal(await page.locator('.work-row').count(), 1)
+await page.reload({ waitUntil: 'networkidle' }); assert.equal(await page.locator('.work-row').count(), 1)
+console.log('Commands, shortcuts and filter persistence: pass')
+await page.goto(`${url}/archive`, { waitUntil: 'networkidle' })
+const transferred = await page.evaluate(() => performance.getEntriesByType('resource').filter((entry) => entry.name.includes('/posters/')).reduce((sum, entry) => sum + (entry.transferSize || entry.encodedBodySize), 0))
+assert(transferred <= 2_000_000, `archive pre-scroll ${transferred} bytes`)
+console.log(`Archive pre-scroll: ${(transferred/1e6).toFixed(2)} MB`)
+await page.getByRole('button', { name: /View MUSIC/ }).click(); assert(await page.getByRole('dialog', { name: /MUSIC/ }).isVisible()); await page.keyboard.press('Escape'); await page.waitForTimeout(100); assert.equal(await page.evaluate(() => document.activeElement?.getAttribute('aria-label')), 'View MUSIC. – Visual Discography')
+const mobile = await browser.newContext({ viewport: { width: 375, height: 812 }, reducedMotion: 'reduce' })
+const mobilePage = await mobile.newPage(); mobilePage.on('pageerror', (error) => errors.push(error.message))
+await mobilePage.goto(url, { waitUntil: 'networkidle' })
+await mobilePage.getByRole('button', { name: /MENU/ }).click()
+assert(await mobilePage.getByRole('dialog', { name: 'Navigation' }).isVisible()); assert.equal(await mobilePage.locator('main').getAttribute('inert'), '')
+const menuAxe = await new AxeBuilder({ page: mobilePage }).analyze(); assert.equal(menuAxe.violations.length, 0, `mobile menu axe: ${menuAxe.violations.map((x) => x.id).join(',')}`)
+await mobilePage.keyboard.press('Escape'); assert.equal(await mobilePage.locator('main').getAttribute('inert'), null)
+const shot1 = await mobilePage.screenshot(); await mobilePage.waitForTimeout(2200); const shot2 = await mobilePage.screenshot()
+const a = await sharp(shot1).raw().toBuffer(); const b = await sharp(shot2).raw().toBuffer()
+assert.equal(Buffer.compare(a,b), 0, 'reduced motion frame changed')
+console.log('Mobile menu and reduced motion: pass')
+const noGl = await chromium.launch({ headless: true, executablePath, args: ['--no-sandbox', '--disable-webgl'] })
+const fallback = await noGl.newPage(); fallback.on('pageerror', (error) => errors.push(error.message)); await fallback.goto(url, { waitUntil: 'networkidle' }); await fallback.waitForTimeout(1700)
+assert(await fallback.locator('.surface-static').isVisible()); assert.equal(await fallback.locator('.surface-canvas canvas').count(), 0)
+await noGl.close()
+console.log('WebGL fallback: pass')
+assert.equal(errors.length, 0, `Browser errors: ${errors.join('; ')}`)
+await browser.close()
+console.log('All acceptance checks passed')

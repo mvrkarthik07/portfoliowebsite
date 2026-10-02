@@ -1,67 +1,22 @@
-import { lazy, Suspense } from 'react'
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
-import { HelmetProvider } from 'react-helmet-async'
-import { AnimatePresence, MotionConfig } from 'framer-motion'
-import ErrorBoundary from './components/ErrorBoundary'
-import SEO from './components/SEO'
-import BrandedLoader from './components/BrandedLoader'
-import PageTransition from './components/PageTransition'
-
-// Lazy load pages for better performance
-const Home = lazy(() => import('./pages/Home'))
-const Work = lazy(() => import('./pages/Work'))
-const Posters = lazy(() => import('./pages/Posters'))
-const About = lazy(() => import('./pages/About'))
-const Experience = lazy(() => import('./pages/Experience'))
-const Resume = lazy(() => import('./pages/Resume'))
-const Contact = lazy(() => import('./pages/Contact'))
-const ProjectDetails = lazy(() => import('./pages/ProjectDetails'))
-const NotFound = lazy(() => import('./pages/NotFound'))
-
-const PageLoader = () => <BrandedLoader label="Portfolio loading" fullscreen />
-
-const AnimatedRoutes = () => {
-  const location = useLocation()
-
-  return (
-    <AnimatePresence mode="wait">
-      <PageTransition key={location.pathname}>
-        <Suspense fallback={<PageLoader />}>
-          <Routes location={location}>
-            <Route path="/" element={<Home />} />
-            <Route path="/work" element={<Work />} />
-            <Route path="/work/:projectId" element={<ProjectDetails />} />
-            <Route path="/posters" element={<Posters />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/experience" element={<Experience />} />
-            <Route path="/resume" element={<Resume />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Suspense>
-      </PageTransition>
-    </AnimatePresence>
-  )
+import { lazy, Suspense, useEffect, useRef, useState } from 'react'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { LazyMotion, domAnimation, MotionConfig } from 'framer-motion'
+import Chrome from './terminal/Chrome'
+import StatusBar from './terminal/StatusBar'
+import Meta from './terminal/Meta'
+import Home from './terminal/Home'
+const AboutPage = lazy(() => import('./terminal/Pages').then((module) => ({ default: module.AboutPage })))
+const ArchivePage = lazy(() => import('./terminal/Pages').then((module) => ({ default: module.ArchivePage })))
+const CaseStudyPage = lazy(() => import('./terminal/Pages').then((module) => ({ default: module.CaseStudyPage })))
+const NotFoundPage = lazy(() => import('./terminal/Pages').then((module) => ({ default: module.NotFoundPage })))
+export function Site() {
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [message, setMessage] = useState('')
+  const mainRef = useRef(null)
+  const footerRef = useRef(null)
+  useEffect(() => {
+    for (const ref of [mainRef, footerRef]) { if (menuOpen) ref.current?.setAttribute('inert', ''); else ref.current?.removeAttribute('inert') }
+  }, [menuOpen])
+  return <><a className="skip-link" href="#main">Skip to main content</a><Meta /><Chrome menuOpen={menuOpen} setMenuOpen={setMenuOpen} onMessage={setMessage} /><div className="global-message" aria-live="polite">{message}</div><main id="main" ref={mainRef}><Suspense fallback={<div className="route-loading">Loading…</div>}><Routes><Route path="/" element={<Home />} /><Route path="/about" element={<AboutPage />} /><Route path="/archive" element={<ArchivePage />} /><Route path="/work/:slug" element={<CaseStudyPage />} /><Route path="*" element={<NotFoundPage />} /></Routes></Suspense></main><div ref={footerRef}><StatusBar /></div></>
 }
-
-function App() {
-  return (
-    <HelmetProvider>
-      <ErrorBoundary>
-        <MotionConfig reducedMotion="user">
-          <SEO />
-          <div className="relative isolate min-h-screen bg-bg-base">
-            <div className="relative z-10 min-h-screen">
-              <Router>
-                <AnimatedRoutes />
-              </Router>
-            </div>
-          </div>
-        </MotionConfig>
-      </ErrorBoundary>
-    </HelmetProvider>
-  )
-}
-
-export default App
-
+export default function App() { return <MotionConfig reducedMotion="user"><LazyMotion features={domAnimation}><BrowserRouter><Site /></BrowserRouter></LazyMotion></MotionConfig> }

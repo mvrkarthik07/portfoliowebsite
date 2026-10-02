@@ -28,3 +28,6 @@ dist-ssr
 .env.local
 .env.production
 
+
+# Generated per-build metadata
+src/generated/
