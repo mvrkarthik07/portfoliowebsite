@@ -3,10 +3,6 @@
   publish = "dist"
 
 [[redirects]]
-  from = "/experience"
-  to = "/#exp"
-  status = 301
-[[redirects]]
   from = "/resume"
   to = "/resume.pdf"
   status = 301
@@ -17,10 +13,6 @@
 [[redirects]]
   from = "/contact"
   to = "/#msg"
-  status = 301
-[[redirects]]
-  from = "/work"
-  to = "/#work"
   status = 301
 [[redirects]]
   from = "/*"

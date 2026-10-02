@@ -9,6 +9,9 @@ const AboutPage = lazy(() => import('./terminal/Pages').then((module) => ({ defa
 const ArchivePage = lazy(() => import('./terminal/Pages').then((module) => ({ default: module.ArchivePage })))
 const CaseStudyPage = lazy(() => import('./terminal/Pages').then((module) => ({ default: module.CaseStudyPage })))
 const NotFoundPage = lazy(() => import('./terminal/Pages').then((module) => ({ default: module.NotFoundPage })))
+const WorkPage = lazy(() => import('./terminal/Sections').then((module) => ({ default: module.WorkPage })))
+const ExperiencePage = lazy(() => import('./terminal/Sections').then((module) => ({ default: module.ExperiencePage })))
+const ExperienceDetailPage = lazy(() => import('./terminal/Sections').then((module) => ({ default: module.ExperienceDetailPage })))
 export function Site() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [message, setMessage] = useState('')
@@ -17,6 +20,6 @@ export function Site() {
   useEffect(() => {
     for (const ref of [mainRef, footerRef]) { if (menuOpen) ref.current?.setAttribute('inert', ''); else ref.current?.removeAttribute('inert') }
   }, [menuOpen])
-  return <><a className="skip-link" href="#main">Skip to main content</a><Meta /><Chrome menuOpen={menuOpen} setMenuOpen={setMenuOpen} onMessage={setMessage} /><div className="global-message" aria-live="polite">{message}</div><main id="main" ref={mainRef}><Suspense fallback={<div className="route-loading">Loading…</div>}><Routes><Route path="/" element={<Home />} /><Route path="/about" element={<AboutPage />} /><Route path="/archive" element={<ArchivePage />} /><Route path="/work/:slug" element={<CaseStudyPage />} /><Route path="*" element={<NotFoundPage />} /></Routes></Suspense></main><div ref={footerRef}><StatusBar /></div></>
+  return <><a className="skip-link" href="#main">Skip to main content</a><Meta /><Chrome menuOpen={menuOpen} setMenuOpen={setMenuOpen} onMessage={setMessage} /><div className="global-message" aria-live="polite">{message}</div><main id="main" ref={mainRef}><Suspense fallback={<div className="route-loading">Loading…</div>}><Routes><Route path="/" element={<Home />} /><Route path="/work" element={<WorkPage />} /><Route path="/work/:slug" element={<CaseStudyPage />} /><Route path="/experience" element={<ExperiencePage />} /><Route path="/experience/:slug" element={<ExperienceDetailPage />} /><Route path="/about" element={<AboutPage />} /><Route path="/archive" element={<ArchivePage />} /><Route path="*" element={<NotFoundPage />} /></Routes></Suspense></main><div ref={footerRef}><StatusBar /></div></>
 }
 export default function App() { return <MotionConfig reducedMotion="user"><LazyMotion features={domAnimation}><BrowserRouter><Site /></BrowserRouter></LazyMotion></MotionConfig> }

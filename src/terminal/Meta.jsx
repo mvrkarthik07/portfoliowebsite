@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { projects } from '../content/projects'
+import { experience } from '../content/experience'
 import { profile } from '../content/profile'
 export const SITE_URL = 'https://mvrkarthik.netlify.app'
 function setMeta(selector, attrs, value) {
@@ -12,15 +13,16 @@ export default function Meta() {
   const { pathname } = useLocation()
   useEffect(() => {
     const project = projects.find(({ slug }) => pathname === `/work/${slug}`)
-    const page = pathname === '/' ? 'Home' : pathname === '/about' ? 'About' : pathname === '/archive' ? 'Visual archive' : project?.name || 'Route not found'
-    const description = project?.summary || (pathname === '/about' ? profile.bio[0] : pathname === '/archive' ? 'Poster and visual design studies by Karthik Manda.' : profile.thesis)
+    const role = experience.find(({ slug }) => pathname === `/experience/${slug}`)
+    const page = pathname === '/' ? 'Home' : pathname === '/work' ? 'Work' : pathname === '/experience' ? 'Experience' : pathname === '/about' ? 'About' : pathname === '/archive' ? 'Visual archive' : project?.name || role?.role || 'Route not found'
+    const description = project?.summary || role?.summary || (pathname === '/work' ? 'Systems, AI tools and quant research by Karthik Manda.' : pathname === '/experience' ? 'Professional and campus experience of Karthik Manda.' : pathname === '/about' ? profile.bio[0] : pathname === '/archive' ? 'Poster and visual design studies by Karthik Manda.' : profile.thesis)
     const title = `${page} — ${profile.name}`
     const url = new URL(pathname, SITE_URL).href
-    const image = `${SITE_URL}/og/${project?.slug || 'home'}.png`
+    const image = `${SITE_URL}/og/${project?.slug || (role ? `experience-${role.slug}` : 'home')}.png`
     document.title = title
     setMeta('meta[name="description"]', { name: 'description' }, description)
     setMeta('link[rel="canonical"]', { rel: 'canonical', href: '' }, url)
-    for (const [name, value] of Object.entries({ 'og:type': project ? 'article' : 'website', 'og:title': title, 'og:description': description, 'og:url': url, 'og:image': image })) setMeta(`meta[property="${name}"]`, { property: name }, value)
+    for (const [name, value] of Object.entries({ 'og:type': project || role ? 'article' : 'website', 'og:title': title, 'og:description': description, 'og:url': url, 'og:image': image })) setMeta(`meta[property="${name}"]`, { property: name }, value)
     for (const [name, value] of Object.entries({ 'twitter:card': 'summary_large_image', 'twitter:title': title, 'twitter:description': description, 'twitter:image': image })) setMeta(`meta[name="${name}"]`, { name }, value)
     let json = document.head.querySelector('script[type="application/ld+json"]')
     if (pathname === '/') {

@@ -6,7 +6,7 @@ import { ticker } from '../content/ticker'
 import { profile } from '../content/profile'
 
 const keys = [
-  ['F1', 'HOME', '/'], ['F2', 'WORK', '/#work'], ['F3', 'EXP', '/#exp'],
+  ['F1', 'HOME', '/'], ['F2', 'WORK', '/work'], ['F3', 'EXP', '/experience'],
   ['F4', 'ABOUT', '/about'], ['F5', 'MSG', '/#msg'], ['F6', 'CV', '/resume.pdf'],
 ]
 const commands = [...mnemonics, ...projects.map((project) => ({ command: project.code, aliases: [project.name.toUpperCase()], description: `Open ${project.name}`, shortcut: '' }))]
@@ -35,6 +35,7 @@ export default function Chrome({ menuOpen, setMenuOpen, onMessage }) {
   const [visible, setVisible] = useState(true)
   const [shortcuts, setShortcuts] = useState(() => typeof window === 'undefined' || localStorage.getItem('shortcuts') !== 'off')
   const inputRef = useRef(null)
+  const commandBarRef = useRef(null)
   const menuRef = useRef(null)
   const menuButtonRef = useRef(null)
   const filtered = query.trim() && query.trim() !== '?' ? commands.filter(({ command, aliases, description }) => [command, ...aliases, description].some((x) => x.toLowerCase().includes(query.trim().toLowerCase()))).slice(0, 8) : commands.slice(0, 8)
@@ -54,6 +55,15 @@ export default function Chrome({ menuOpen, setMenuOpen, onMessage }) {
   }, [])
   useEffect(() => { localStorage.setItem('shortcuts', shortcuts ? 'on' : 'off') }, [shortcuts])
   useEffect(() => {
+    if (!open) return
+    const dismiss = (event) => { if (!commandBarRef.current?.contains(event.target)) { setOpen(false); setQuery(''); setError(''); inputRef.current?.blur() } }
+    const escape = (event) => { if (event.key === 'Escape' && document.activeElement !== inputRef.current) { setOpen(false); setQuery(''); setError('') } }
+    document.addEventListener('pointerdown', dismiss, true)
+    document.addEventListener('keydown', escape)
+    return () => { document.removeEventListener('pointerdown', dismiss, true); document.removeEventListener('keydown', escape) }
+  }, [open])
+  useEffect(() => { setOpen(false); inputRef.current?.blur() }, [location.pathname])
+  useEffect(() => {
     if (!menuOpen) return
     const first = menuRef.current?.querySelector('a')
     first?.focus()
@@ -71,7 +81,7 @@ export default function Chrome({ menuOpen, setMenuOpen, onMessage }) {
     return () => document.removeEventListener('keydown', keyHandler)
   }, [menuOpen, setMenuOpen])
   useEffect(() => {
-    const found = ['/', '/about', '/archive'].includes(location.pathname) || projects.some((project) => project.caseStudy && location.pathname === `/work/${project.slug}`)
+    const found = ['/', '/about', '/archive', '/work', '/experience'].includes(location.pathname) || projects.some((project) => project.caseStudy && location.pathname === `/work/${project.slug}`) || /^\/experience\/[^/]+$/.test(location.pathname)
     if (!found) { setQuery(location.pathname); setError(`Route "${location.pathname}" not found. Try WORK, EXP, MSG, or HELP.`) }
   }, [location.pathname])
   useEffect(() => {
@@ -97,15 +107,15 @@ export default function Chrome({ menuOpen, setMenuOpen, onMessage }) {
     const item = commands.find(({ command, aliases }) => command === value || aliases.includes(value))
     if (!item) { setError(`Unknown command "${value}". Try HELP.`); return }
     const cmd = item.command
-    if (cmd === 'WORK') goPanel('work')
-    else if (cmd === 'EXP') goPanel('exp')
+    if (cmd === 'WORK') navigate('/work')
+    else if (cmd === 'EXP') navigate('/experience')
     else if (cmd === 'MSG') { goPanel('msg'); await copyEmail() }
     else if (cmd === 'CV') window.open(profile.resume, '_blank', 'noopener,noreferrer')
     else if (cmd === 'ABOUT') navigate('/about')
     else if (cmd === 'ARCH') navigate('/archive')
     else if (cmd === 'BRAIN') { goPanel('positions'); setTimeout(() => document.getElementById('position-1')?.click(), 100) }
     else if (cmd === 'HELP') { setQuery('HELP'); setOpen(true) }
-    else { const project = projects.find(({ code }) => code === cmd); if (project?.caseStudy) navigate(`/work/${project.slug}`); else goPanel('work') }
+    else { const project = projects.find(({ code }) => code === cmd); if (project?.caseStudy) navigate(`/work/${project.slug}`); else navigate('/work') }
   }
   useEffect(() => {
     const handler = (event) => {
@@ -130,13 +140,13 @@ export default function Chrome({ menuOpen, setMenuOpen, onMessage }) {
     if (event.key === 'Enter') { event.preventDefault(); execute(filtered[selected]?.command && open && query !== 'HELP' ? filtered[selected].command : query) }
     if (event.key === 'Escape') { if (query || open) { setQuery(''); setOpen(false); setError('') } else inputRef.current?.blur() }
   }
-  const navLink = ([fkey, label, href]) => href.endsWith('.pdf') ? <a key={fkey} href={href} target="_blank" rel="noopener noreferrer" aria-label={`${label} PDF, opens in new tab`}><span className="keycap">{fkey}</span><span>{label}</span></a> : <Link key={fkey} to={href} onClick={() => setMenuOpen(false)} className={location.pathname === href || (href === '/' && location.pathname === '/') ? 'active' : ''}><span className="keycap">{fkey}</span><span>{label}</span></Link>
+  const navLink = ([fkey, label, href]) => href.endsWith('.pdf') ? <a key={fkey} href={href} target="_blank" rel="noopener noreferrer" aria-label={`${label} PDF, opens in new tab`}><span className="keycap">{fkey}</span><span>{label}</span></a> : <Link key={fkey} to={href} onClick={() => { setMenuOpen(false); setOpen(false) }} className={location.pathname === href || (href !== '/' && !href.includes('#') && location.pathname.startsWith(`${href}/`)) ? 'active' : ''}><span className="keycap">{fkey}</span><span>{label}</span></Link>
   return <header className="chrome">
-    <div className="commandbar">
+    <div className="commandbar" ref={commandBarRef}>
       <Link className="brand" to="/" aria-label="Karthik Manda home">KM ▸</Link>
-      <div className="command-field">
+      <div className={`command-field ${open ? 'is-open' : ''}`}>
         <input ref={inputRef} role="combobox" aria-label="Command" aria-autocomplete="list" aria-expanded={open} aria-controls="command-list" aria-activedescendant={open && filtered[selected] ? `command-${selected}` : undefined} placeholder="type a command: WORK, CV, MSG…" value={query} onChange={(e) => { setQuery(e.target.value); setSelected(0); setError(''); setOpen(true) }} onFocus={() => setOpen(true)} onKeyDown={onInputKey} />
-        <button className="mobile-command" type="button" onClick={() => { setOpen(true); inputRef.current?.focus() }} aria-label="Open command palette">⌘</button>
+        <button className="mobile-command" type="button" aria-expanded={open} aria-controls="command-list" onClick={() => { if (open) { setOpen(false); setQuery(''); setError(''); inputRef.current?.blur() } else { setOpen(true); inputRef.current?.focus() } }} aria-label={open ? 'Close command palette' : 'Open command palette'}>{open ? '×' : '⌘'}</button>
         {open && <div className="command-dropdown" id="command-list" role="listbox" aria-label="Commands">
           {query === 'HELP' && <button className="shortcut-toggle" type="button" onClick={() => setShortcuts((x) => !x)}>Keyboard shortcuts: {shortcuts ? 'on' : 'off'}</button>}
           {filtered.map((item, index) => <button type="button" id={`command-${index}`} role="option" aria-selected={index === selected} className={index === selected ? 'selected' : ''} key={item.command} onMouseDown={(e) => e.preventDefault()} onClick={() => execute(item.command)}><strong>{item.command}</strong><span>{item.description}</span><small>{item.shortcut}</small></button>)}

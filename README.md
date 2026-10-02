@@ -1,6 +1,6 @@
 # Karthik Manda — terminal portfolio
 
-A React, Vite, Tailwind CSS and Framer Motion portfolio hosted on Netlify. The home page is a six-panel terminal workspace with keyboard navigation, a command palette and a progressively loaded Three.js volatility surface.
+A React, Vite, Tailwind CSS and Framer Motion portfolio hosted on Netlify. The home page is a six-panel terminal workspace with keyboard navigation, a command palette and a progressively loaded Three.js volatility surface. Work and experience have dedicated overview pages, with a page for each project case study and role.
 
 ## Run locally
 
@@ -28,7 +28,7 @@ npm run preview
 - `src/content/projects.ts` holds project records, case studies and links.
 - `src/content/ticker.ts` holds the static credentials shown in the tape.
 - `src/content/archive.json` lists responsive poster derivatives.
-- `/`, `/about`, `/archive` and `/work/:slug` are prerendered during the build. `/resume.pdf` is a static asset.
+- `/`, `/work`, `/work/:slug`, `/experience`, `/experience/:slug`, `/about` and `/archive` are prerendered during the build. `/resume.pdf` is a static asset.
 
 The work blotter presents MARL as research. Its reported metrics are user supplied and are described as unverified without a known out-of-sample split or trading-cost assumptions.
 
