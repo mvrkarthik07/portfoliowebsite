@@ -32,7 +32,7 @@ npm run preview
 
 The work blotter presents MARL as research. Its reported metrics are user supplied and are described as unverified without a known out-of-sample split or trading-cost assumptions.
 
-`GITHUB_TOKEN` is optional at build time. If present, `scripts/fetch-activity.mjs` fetches real GitHub contribution data for the activity chart. If absent or unavailable, the chart is omitted. The contact page submits to Netlify Forms. Submissions appear under **Forms** in the Netlify dashboard; add an email notification under **Forms → Submission notifications** to receive each message by email. Direct email, LinkedIn, GitHub and résumé links work independently.
+`GITHUB_TOKEN` is optional at build time. If present, `scripts/fetch-activity.mjs` fetches real GitHub contribution data for the activity chart. If absent or unavailable, the chart is omitted. The contact page is prepared for Netlify Forms. In the Netlify dashboard, enable form detection under **Forms**, redeploy, then add an email notification under **Forms → Submission notifications**. Until form detection is enabled, the form preserves drafts and offers a prefilled email link when submission fails. Direct email, LinkedIn, GitHub and résumé links work independently.
 
 ## Poster assets
 

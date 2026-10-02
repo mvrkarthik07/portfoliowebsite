@@ -59,7 +59,7 @@ html{scroll-behavior:smooth}body{margin:0;background:var(--ink);min-width:320px;
 .contact-card>p{font-family:Geist,sans-serif;color:var(--muted);font-size:16px;margin:0 0 24px}
 .contact-card .contact-form{max-width:680px}.contact-card .form-field input,.contact-card .form-field textarea{padding:12px 14px}
 .contact-card .form-field textarea{resize:vertical}.contact-card .form-status{margin:2px 0;color:var(--up)}
-.contact-card .form-status:empty{display:none}.contact-card .field-error{color:var(--down)}
+.contact-card .form-status:empty{display:none}.contact-card .form-status.is-error,.contact-card .field-error{color:var(--down)}
 .contact-card .primary-action{margin-top:8px}.contact-fallback{color:var(--accent);text-decoration:underline;text-underline-offset:3px;font-size:13px}
 .contact-direct>a{display:flex;justify-content:space-between;gap:12px;align-items:center;min-height:56px;border-bottom:1px solid var(--rule);font-size:13px}
 .contact-direct>a span{color:var(--accent);text-align:right}.contact-direct>a:hover span{color:var(--white)}
