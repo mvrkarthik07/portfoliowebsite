@@ -6,8 +6,8 @@ import AxeBuilder from '@axe-core/playwright'
 const url = 'http://127.0.0.1:4173'
 const executablePath = '/Applications/Brave Browser.app/Contents/MacOS/Brave Browser'
 const browser = await chromium.launch({ headless: true, executablePath, args: ['--no-sandbox'] })
-const builtHome = await readFile('dist/index.html', 'utf8')
-assert.match(builtHome, /<form name="portfolio-contact"[^>]*data-netlify="true"/)
+const formBlueprint = await readFile('dist/form-blueprint.html', 'utf8')
+assert.match(formBlueprint, /<form name="portfolio-contact"[^>]*data-netlify="true"/)
 const errors = []
 const widths = [320, 375, 768, 1024, 1280, 1520, 1920]
 for (const width of widths) {
@@ -68,7 +68,7 @@ await send.click()
 assert(await page.getByText('Name is required.').isVisible())
 let submitted = null
 let sendStatus = 200
-await page.route(`${url}/`, async (route) => {
+await page.route(`${url}/form-blueprint.html`, async (route) => {
   if (route.request().method() !== 'POST') return route.continue()
   submitted = new URLSearchParams(route.request().postData())
   await route.fulfill({ status: sendStatus, body: sendStatus === 200 ? 'ok' : 'error' })

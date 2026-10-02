@@ -29,7 +29,7 @@ export default function ContactForm() {
     setFailed(false)
     setStatus('')
     try {
-      const response = await fetch('/', {
+      const response = await fetch('/form-blueprint.html', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: new URLSearchParams({ 'form-name': FORM_NAME, name: values.name.trim(), email: values.email.trim(), subject: values.subject.trim() || `Portfolio message from ${values.name.trim()}`, message: values.message.trim(), 'bot-field': '' }).toString(),
