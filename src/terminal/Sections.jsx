@@ -11,7 +11,7 @@ export function WorkPage() {
   const visible = projects.filter((project) => filter === 'all' || project.domain === filter)
   const chooseFilter = (value) => setParams(value === 'all' ? {} : { f: value }, { replace: true })
   return <div className="inner-page directory-page">
-    <header className="directory-intro"><p className="prompt">~ $ ls work/</p><h1>Work</h1><p>Systems, AI tools and quant research. Open a project for its context, decisions and results.</p></header>
+    <header className="directory-intro"><p className="prompt">~ $ ls work/</p><h1>Work</h1><p>Systems, AI, quant research and web products. Browse the case studies and source code.</p></header>
     <div className="directory-toolbar"><span>{visible.length} PROJECTS</span><div className="directory-filters" aria-label="Project filters">{filters.map((value) => <button key={value} type="button" aria-pressed={filter === value} onClick={() => chooseFilter(value)}>{value.toUpperCase()}</button>)}</div></div>
     <div className="directory-list">{visible.map((project) => <article className="directory-item" key={project.slug}>
       <div className="directory-item-top"><span className="directory-code">{project.code}</span><span className="directory-domain">{project.domain.toUpperCase()}</span><span className={project.result === 'LIVE' || project.result === 'PUBLISHED ON PYPI' ? 'directory-status positive' : 'directory-status'}>{project.result}</span></div>

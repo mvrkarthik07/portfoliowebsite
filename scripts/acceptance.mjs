@@ -24,7 +24,7 @@ console.log('Layout: seven widths pass')
 const context = await browser.newContext({ viewport: { width: 1280, height: 800 }, permissions: ['clipboard-read', 'clipboard-write'] })
 const page = await context.newPage()
 page.on('pageerror', (error) => errors.push(error.message))
-for (const route of ['/', '/work', '/experience', '/experience/qfa-development', '/experience/nbs-banking-finance-club', '/contact', '/about', '/archive', '/work/coderecon', '/missing']) {
+for (const route of ['/', '/work', '/experience', '/experience/qfa-development', '/experience/nbs-banking-finance-club', '/contact', '/about', '/archive', '/work/coderecon', '/work/deadbolt', '/work/c22-venture', '/work/tracly', '/work/conspiracyweb', '/work/brainx', '/work/heliodesk', '/work/parklah', '/missing']) {
   await page.goto(`${url}${route}`, { waitUntil: 'networkidle' })
   const axe = await new AxeBuilder({ page }).analyze()
   assert.equal(axe.violations.length, 0, `axe ${route}: ${axe.violations.map((x) => x.id).join(', ')}`)
@@ -32,7 +32,7 @@ for (const route of ['/', '/work', '/experience', '/experience/qfa-development',
   assert.equal(meta.canonical.length, 1); assert.equal(meta.og.length, 1)
   assert(meta.canonical[0].startsWith('https://mvrkarthik.netlify.app/')); assert(meta.og[0].startsWith('https://mvrkarthik.netlify.app/')); assert(meta.image.startsWith('https://mvrkarthik.netlify.app/'))
 }
-console.log('Accessibility and meta: ten routes pass')
+console.log('Accessibility and meta: seventeen routes pass')
 for (const route of ['/work/', '/experience/', '/experience/qfa-development/', '/contact/', '/archive/']) {
   await page.goto(`${url}${route}`, { waitUntil: 'networkidle' })
   assert(!((await page.title()).startsWith('Route not found')), `trailing-slash title: ${route}`)
@@ -52,8 +52,8 @@ await command.fill('MSG'); await command.press('Enter'); await page.waitForURL(`
 await page.goto(url, { waitUntil: 'networkidle' }); await page.keyboard.press('3'); await page.waitForTimeout(120); assert.equal(new URL(page.url()).hash, '#work')
 await page.keyboard.press('6'); await page.waitForURL(`${url}/contact`)
 await page.goto(`${url}/work`, { waitUntil: 'networkidle' })
-await page.getByRole('button', { name: 'QUANT', exact: true }).click(); assert.equal(new URL(page.url()).search, '?f=quant'); assert.equal(await page.locator('.directory-item').count(), 1)
-await page.reload({ waitUntil: 'networkidle' }); assert.equal(await page.locator('.directory-item').count(), 1)
+await page.getByRole('button', { name: 'QUANT', exact: true }).click(); assert.equal(new URL(page.url()).search, '?f=quant'); assert.equal(await page.locator('.directory-item').count(), 2)
+await page.reload({ waitUntil: 'networkidle' }); assert.equal(await page.locator('.directory-item').count(), 2)
 await page.goto(`${url}/experience`, { waitUntil: 'networkidle' })
 await page.getByRole('link', { name: /Read about Head of Development Arm/ }).click(); await page.waitForURL(`${url}/experience/qfa-development`)
 await page.getByText(/Wednesday, 7–9 pm/).waitFor()
