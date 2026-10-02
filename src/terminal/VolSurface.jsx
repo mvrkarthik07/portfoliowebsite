@@ -19,13 +19,13 @@ export default function VolSurface() {
       if (disposed || idle) return
       idle = window.requestIdleCallback ? window.requestIdleCallback(start, { timeout: 1500 }) : setTimeout(start, 1500)
     }
-    const afterLcp = () => { clearTimeout(delay); delay = setTimeout(scheduleIdle, 3500) }
+    const afterLcp = () => { clearTimeout(delay); delay = setTimeout(scheduleIdle, 1800) }
     try {
       observer = new PerformanceObserver((list) => { if (list.getEntries().length) afterLcp() })
       observer.observe({ type: 'largest-contentful-paint', buffered: true })
       if (performance.getEntriesByType('largest-contentful-paint').length) afterLcp()
     } catch { delay = setTimeout(scheduleIdle, 1500) }
-    const fallback = setTimeout(scheduleIdle, 6500)
+    const fallback = setTimeout(scheduleIdle, 5000)
     return () => { disposed = true; clearTimeout(delay); clearTimeout(fallback); observer?.disconnect(); if (window.cancelIdleCallback) window.cancelIdleCallback(idle); else clearTimeout(idle); cleanup?.() }
   }, [])
   return <div className="surface-layer" aria-hidden="true"><img className={`surface-static ${active ? 'hidden' : ''}`} src="/surface.svg" width="1200" height="700" alt="" /><div className="surface-canvas" ref={host} /></div>

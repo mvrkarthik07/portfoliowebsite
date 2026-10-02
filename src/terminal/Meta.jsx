@@ -15,8 +15,8 @@ export default function Meta() {
   useEffect(() => {
     const project = projects.find(({ slug }) => pathname === `/work/${slug}`)
     const role = experience.find(({ slug }) => pathname === `/experience/${slug}`)
-    const page = pathname === '/' ? 'Home' : pathname === '/work' ? 'Work' : pathname === '/experience' ? 'Experience' : pathname === '/about' ? 'About' : pathname === '/archive' ? 'Visual archive' : project?.name || role?.role || 'Route not found'
-    const description = project?.summary || role?.summary || (pathname === '/work' ? 'Systems, AI tools and quant research by Karthik Manda.' : pathname === '/experience' ? 'Professional and campus experience of Karthik Manda.' : pathname === '/about' ? profile.bio[0] : pathname === '/archive' ? 'Poster and visual design studies by Karthik Manda.' : profile.thesis)
+    const page = pathname === '/' ? 'Home' : pathname === '/work' ? 'Work' : pathname === '/experience' ? 'Experience' : pathname === '/contact' ? 'Contact' : pathname === '/about' ? 'About' : pathname === '/archive' ? 'Visual archive' : project?.name || role?.role || 'Route not found'
+    const description = project?.summary || role?.summary || (pathname === '/work' ? 'Systems, AI tools and quant research by Karthik Manda.' : pathname === '/experience' ? 'Professional and campus experience of Karthik Manda.' : pathname === '/contact' ? 'Contact Karthik Manda about 2028 full-time roles, collaborations and projects.' : pathname === '/about' ? profile.bio[0] : pathname === '/archive' ? 'Poster and visual design studies by Karthik Manda.' : profile.thesis)
     const title = `${page} — ${profile.name}`
     const url = new URL(pathname, SITE_URL).href
     const image = `${SITE_URL}/og/${project?.slug || (role ? `experience-${role.slug}` : 'home')}.png`

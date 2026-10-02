@@ -1,10 +1,13 @@
 import assert from 'node:assert/strict'
+import { readFile } from 'node:fs/promises'
 import sharp from 'sharp'
 import { chromium } from 'playwright'
 import AxeBuilder from '@axe-core/playwright'
 const url = 'http://127.0.0.1:4173'
 const executablePath = '/Applications/Brave Browser.app/Contents/MacOS/Brave Browser'
 const browser = await chromium.launch({ headless: true, executablePath, args: ['--no-sandbox'] })
+const builtHome = await readFile('dist/index.html', 'utf8')
+assert.match(builtHome, /<form name="portfolio-contact"[^>]*data-netlify="true"/)
 const errors = []
 const widths = [320, 375, 768, 1024, 1280, 1520, 1920]
 for (const width of widths) {
@@ -21,7 +24,7 @@ console.log('Layout: seven widths pass')
 const context = await browser.newContext({ viewport: { width: 1280, height: 800 }, permissions: ['clipboard-read', 'clipboard-write'] })
 const page = await context.newPage()
 page.on('pageerror', (error) => errors.push(error.message))
-for (const route of ['/', '/work', '/experience', '/experience/qfa-development', '/experience/nbs-banking-finance-club', '/about', '/archive', '/work/coderecon', '/missing']) {
+for (const route of ['/', '/work', '/experience', '/experience/qfa-development', '/experience/nbs-banking-finance-club', '/contact', '/about', '/archive', '/work/coderecon', '/missing']) {
   await page.goto(`${url}${route}`, { waitUntil: 'networkidle' })
   const axe = await new AxeBuilder({ page }).analyze()
   assert.equal(axe.violations.length, 0, `axe ${route}: ${axe.violations.map((x) => x.id).join(', ')}`)
@@ -29,8 +32,8 @@ for (const route of ['/', '/work', '/experience', '/experience/qfa-development',
   assert.equal(meta.canonical.length, 1); assert.equal(meta.og.length, 1)
   assert(meta.canonical[0].startsWith('https://mvrkarthik.netlify.app/')); assert(meta.og[0].startsWith('https://mvrkarthik.netlify.app/')); assert(meta.image.startsWith('https://mvrkarthik.netlify.app/'))
 }
-console.log('Accessibility and meta: nine routes pass')
-for (const route of ['/work/', '/experience/', '/experience/qfa-development/', '/archive/']) {
+console.log('Accessibility and meta: ten routes pass')
+for (const route of ['/work/', '/experience/', '/experience/qfa-development/', '/contact/', '/archive/']) {
   await page.goto(`${url}${route}`, { waitUntil: 'networkidle' })
   assert(!((await page.title()).startsWith('Route not found')), `trailing-slash title: ${route}`)
   assert.equal(await page.locator('.command-error').count(), 0, `trailing-slash command error: ${route}`)
@@ -45,9 +48,9 @@ await command.fill('WORK'); await command.press('Enter'); await page.waitForURL(
 await page.getByRole('heading', { name: 'Work', exact: true }).waitFor()
 await command.fill('UNKN'); await command.press('Enter'); assert(await page.getByText('Unknown command "UNKN". Try HELP.').isVisible())
 await command.fill('CV'); const popupPromise = page.waitForEvent('popup'); await command.press('Enter'); const popup = await popupPromise; assert(new URL(popup.url()).pathname === '/resume.pdf'); await popup.close()
-await command.fill('MSG'); await command.press('Enter'); await page.waitForTimeout(120); assert.equal(new URL(page.url()).hash, '#msg'); assert.equal(await page.evaluate(() => document.activeElement?.id), 'msg-title')
-await command.fill('3'); await command.press('3'); assert.equal(new URL(page.url()).hash, '#msg')
-await command.press('Escape'); await command.press('Escape'); await page.keyboard.press('3'); await page.waitForTimeout(120); assert.equal(new URL(page.url()).hash, '#work')
+await command.fill('MSG'); await command.press('Enter'); await page.waitForURL(`${url}/contact`); await page.getByRole('heading', { name: 'Contact', exact: true }).waitFor()
+await page.goto(url, { waitUntil: 'networkidle' }); await page.keyboard.press('3'); await page.waitForTimeout(120); assert.equal(new URL(page.url()).hash, '#work')
+await page.keyboard.press('6'); await page.waitForURL(`${url}/contact`)
 await page.goto(`${url}/work`, { waitUntil: 'networkidle' })
 await page.getByRole('button', { name: 'QUANT', exact: true }).click(); assert.equal(new URL(page.url()).search, '?f=quant'); assert.equal(await page.locator('.directory-item').count(), 1)
 await page.reload({ waitUntil: 'networkidle' }); assert.equal(await page.locator('.directory-item').count(), 1)
@@ -55,6 +58,37 @@ await page.goto(`${url}/experience`, { waitUntil: 'networkidle' })
 await page.getByRole('link', { name: /Read about Head of Development Arm/ }).click(); await page.waitForURL(`${url}/experience/qfa-development`)
 await page.getByText(/Wednesday, 7–9 pm/).waitFor()
 console.log('Commands, shortcuts and filter persistence: pass')
+await page.goto(`${url}/#msg`, { waitUntil: 'networkidle' })
+await page.locator('.desktop-keys a[href="/contact"]').click()
+await page.waitForURL(`${url}/contact`)
+await page.getByRole('heading', { name: 'Send a message' }).waitFor()
+assert((await page.evaluate(() => window.scrollY)) < 50, 'F5 contact page did not start at top')
+const send = page.getByRole('button', { name: 'SEND MESSAGE' })
+await send.click()
+assert(await page.getByText('Name is required.').isVisible())
+let submitted = null
+let sendStatus = 200
+await page.route(`${url}/`, async (route) => {
+  if (route.request().method() !== 'POST') return route.continue()
+  submitted = new URLSearchParams(route.request().postData())
+  await route.fulfill({ status: sendStatus, body: sendStatus === 200 ? 'ok' : 'error' })
+})
+await page.getByRole('textbox', { name: 'Name *' }).fill('Test Visitor')
+await page.getByRole('textbox', { name: 'Email *' }).fill('visitor@example.com')
+await page.getByRole('textbox', { name: 'Message *' }).fill('This is a test message for the contact form.')
+await send.click()
+await page.getByText('Message received. I’ll reply by email.').waitFor()
+assert.equal(submitted.get('form-name'), 'portfolio-contact')
+assert.equal(submitted.get('email'), 'visitor@example.com')
+sendStatus = 503
+await page.getByRole('textbox', { name: 'Name *' }).fill('Test Visitor')
+await page.getByRole('textbox', { name: 'Email *' }).fill('visitor@example.com')
+await page.getByRole('textbox', { name: 'Message *' }).fill('Draft must survive a failed submission.')
+await send.click()
+await page.getByText('Message could not be sent. Your draft is still here.').waitFor()
+assert.equal(await page.getByRole('textbox', { name: 'Message *' }).inputValue(), 'Draft must survive a failed submission.')
+assert(await page.getByRole('link', { name: /Open your email app with this draft/ }).isVisible())
+console.log('F5 contact route and message delivery states: pass')
 await page.goto(`${url}/archive`, { waitUntil: 'networkidle' })
 const transferred = await page.evaluate(() => performance.getEntriesByType('resource').filter((entry) => entry.name.includes('/posters/')).reduce((sum, entry) => sum + (entry.transferSize || entry.encodedBodySize), 0))
 assert(transferred <= 2_000_000, `archive pre-scroll ${transferred} bytes`)
@@ -86,6 +120,16 @@ const fallback = await noGl.newPage(); fallback.on('pageerror', (error) => error
 assert(await fallback.locator('.surface-static').isVisible()); assert.equal(await fallback.locator('.surface-canvas canvas').count(), 0)
 await noGl.close()
 console.log('WebGL fallback: pass')
+const motionPage = await browser.newPage({ viewport: { width: 1280, height: 800 } })
+await motionPage.goto(url, { waitUntil: 'networkidle' })
+const canvas = motionPage.locator('.surface-canvas canvas')
+await canvas.waitFor({ timeout: 9000 })
+const frame1 = await sharp(await canvas.screenshot()).raw().toBuffer()
+await motionPage.waitForTimeout(1200)
+const frame2 = await sharp(await canvas.screenshot()).raw().toBuffer()
+assert.notEqual(Buffer.compare(frame1, frame2), 0, 'Three.js surface did not animate')
+await motionPage.close()
+console.log('Three.js animation: pass')
 assert.equal(errors.length, 0, `Browser errors: ${errors.join('; ')}`)
 await browser.close()
 console.log('All acceptance checks passed')

@@ -7,7 +7,7 @@ import { profile } from '../content/profile'
 
 const keys = [
   ['F1', 'HOME', '/'], ['F2', 'WORK', '/work'], ['F3', 'EXP', '/experience'],
-  ['F4', 'ABOUT', '/about'], ['F5', 'MSG', '/#msg'], ['F6', 'CV', '/resume.pdf'],
+  ['F4', 'ABOUT', '/about'], ['F5', 'CONTACT', '/contact'], ['F6', 'CV', '/resume.pdf'],
 ]
 const commands = [...mnemonics, ...projects.map((project) => ({ command: project.code, aliases: [project.name.toUpperCase()], description: `Open ${project.name}`, shortcut: '' }))]
 const isTyping = (target) => target instanceof HTMLElement && (['INPUT', 'TEXTAREA', 'SELECT'].includes(target.tagName) || target.isContentEditable)
@@ -22,7 +22,7 @@ const focusPanel = (id, smooth = true) => {
   panel.classList.add('panel-flash')
 }
 
-export default function Chrome({ menuOpen, setMenuOpen, onMessage }) {
+export default function Chrome({ menuOpen, setMenuOpen }) {
   const navigate = useNavigate()
   const location = useLocation()
   const pathname = location.pathname.replace(/\/+$/, '') || '/'
@@ -31,8 +31,6 @@ export default function Chrome({ menuOpen, setMenuOpen, onMessage }) {
   const [selected, setSelected] = useState(0)
   const [error, setError] = useState('')
   const [paused, setPaused] = useState(false)
-  const [tickerSeconds, setTickerSeconds] = useState(40)
-  const tickerRef = useRef(null)
   const [visible, setVisible] = useState(true)
   const [shortcuts, setShortcuts] = useState(() => typeof window === 'undefined' || localStorage.getItem('shortcuts') !== 'off')
   const inputRef = useRef(null)
@@ -41,14 +39,6 @@ export default function Chrome({ menuOpen, setMenuOpen, onMessage }) {
   const menuButtonRef = useRef(null)
   const filtered = query.trim() && query.trim() !== '?' ? commands.filter(({ command, aliases, description }) => [command, ...aliases, description].some((x) => x.toLowerCase().includes(query.trim().toLowerCase()))).slice(0, 8) : commands.slice(0, 8)
 
-  useEffect(() => {
-    if (!tickerRef.current) return
-    const measure = () => setTickerSeconds(Math.max(1, tickerRef.current.scrollWidth / 2 / 40))
-    measure()
-    const observer = new ResizeObserver(measure)
-    observer.observe(tickerRef.current)
-    return () => observer.disconnect()
-  }, [])
   useEffect(() => {
     const handler = () => setVisible(!document.hidden)
     document.addEventListener('visibilitychange', handler)
@@ -63,7 +53,7 @@ export default function Chrome({ menuOpen, setMenuOpen, onMessage }) {
     document.addEventListener('keydown', escape)
     return () => { document.removeEventListener('pointerdown', dismiss, true); document.removeEventListener('keydown', escape) }
   }, [open])
-  useEffect(() => { setOpen(false); inputRef.current?.blur() }, [pathname])
+  useEffect(() => { setOpen(false); inputRef.current?.blur(); window.scrollTo({ top: 0, behavior: 'instant' }) }, [pathname])
   useEffect(() => {
     if (!menuOpen) return
     const first = menuRef.current?.querySelector('a')
@@ -82,7 +72,7 @@ export default function Chrome({ menuOpen, setMenuOpen, onMessage }) {
     return () => document.removeEventListener('keydown', keyHandler)
   }, [menuOpen, setMenuOpen])
   useEffect(() => {
-    const found = ['/', '/about', '/archive', '/work', '/experience'].includes(pathname) || projects.some((project) => project.caseStudy && pathname === `/work/${project.slug}`) || /^\/experience\/[^/]+$/.test(pathname)
+    const found = ['/', '/about', '/archive', '/work', '/experience', '/contact'].includes(pathname) || projects.some((project) => project.caseStudy && pathname === `/work/${project.slug}`) || /^\/experience\/[^/]+$/.test(pathname)
     if (!found) { setQuery(pathname); setError(`Route "${pathname}" not found. Try WORK, EXP, MSG, or HELP.`) }
   }, [pathname])
   useEffect(() => {
@@ -97,11 +87,7 @@ export default function Chrome({ menuOpen, setMenuOpen, onMessage }) {
     if (pathname !== '/') navigate(`/#${id}`)
     else { navigate(`/#${id}`); setTimeout(() => focusPanel(id), 0) }
   }, [pathname, navigate, setMenuOpen])
-  const copyEmail = async () => {
-    try { await navigator.clipboard.writeText(profile.email); onMessage('Email copied') }
-    catch { window.location.href = `mailto:${profile.email}` }
-  }
-  const execute = async (raw) => {
+  const execute = (raw) => {
     const value = raw.trim().toUpperCase()
     if (!value) return
     setError(''); setOpen(false); setQuery('')
@@ -110,7 +96,7 @@ export default function Chrome({ menuOpen, setMenuOpen, onMessage }) {
     const cmd = item.command
     if (cmd === 'WORK') navigate('/work')
     else if (cmd === 'EXP') navigate('/experience')
-    else if (cmd === 'MSG') { goPanel('msg'); await copyEmail() }
+    else if (cmd === 'MSG') navigate('/contact')
     else if (cmd === 'CV') window.open(profile.resume, '_blank', 'noopener,noreferrer')
     else if (cmd === 'ABOUT') navigate('/about')
     else if (cmd === 'ARCH') navigate('/archive')
@@ -128,8 +114,9 @@ export default function Chrome({ menuOpen, setMenuOpen, onMessage }) {
       if (event.key === '/') { event.preventDefault(); setOpen(true); inputRef.current?.focus() }
       if (/^[1-6]$/.test(event.key)) {
         event.preventDefault()
-        if (pathname !== '/') { if (event.key === '1') navigate('/') }
-        else goPanel(['des', 'positions', 'work', 'signals', 'exp', 'msg'][Number(event.key) - 1])
+        if (event.key === '6') navigate('/contact')
+        else if (pathname !== '/') { if (event.key === '1') navigate('/') }
+        else goPanel(['des', 'positions', 'work', 'signals', 'exp'][Number(event.key) - 1])
       }
     }
     document.addEventListener('keydown', handler)
@@ -163,7 +150,7 @@ export default function Chrome({ menuOpen, setMenuOpen, onMessage }) {
       <span className="availability"><i />{profile.availability}</span>
     </nav>
     <div className="ticker" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)} onFocus={() => setPaused(true)} onBlur={() => setPaused(false)}>
-      <div className={`ticker-track ${paused || !visible ? 'paused' : ''}`} ref={tickerRef} style={{ animationDuration: `${tickerSeconds}s` }} aria-hidden="true">{[0, 1].map((copy) => <div className="ticker-set" key={copy}>{ticker.map((item) => <span key={item}><b>{item.split(' ')[0]}</b> {item.slice(item.indexOf(' ') + 1)}</span>)}</div>)}</div>
+      <div className={`ticker-track ${paused || !visible ? 'paused' : ''}`} aria-hidden="true">{[0, 1].map((copy) => <div className="ticker-set" key={copy}>{ticker.map((item) => <span key={item}><b>{item.split(' ')[0]}</b> {item.slice(item.indexOf(' ') + 1)}</span>)}</div>)}</div>
       <button type="button" className="ticker-toggle" aria-label={paused ? 'Play ticker' : 'Pause ticker'} onClick={() => setPaused((x) => !x)}>{paused ? '▶' : '‖'}</button>
     </div>
     {menuOpen && <div id="mobile-navigation" className="mobile-navigation" ref={menuRef} role="dialog" aria-modal="true" aria-label="Navigation"><nav aria-label="Mobile navigation">{keys.map(navLink)}</nav><p><i />{profile.availability}</p></div>}

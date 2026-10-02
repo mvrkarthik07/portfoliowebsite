@@ -11,10 +11,6 @@
   to = "/archive"
   status = 301
 [[redirects]]
-  from = "/contact"
-  to = "/#msg"
-  status = 301
-[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200

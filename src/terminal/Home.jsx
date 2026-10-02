@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import { m, AnimatePresence } from 'framer-motion'
 import Panel from './Panel'
 import VolSurface from './VolSurface'
-import ContactForm from '../components/ContactForm'
 import { profile } from '../content/profile'
 import { positions } from '../content/positions'
 import { projects } from '../content/projects'
@@ -16,7 +15,7 @@ const reduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matc
 const copy = async (value, setCopied) => { try { await navigator.clipboard.writeText(value); setCopied(true); setTimeout(() => setCopied(false), 1500) } catch { window.location.href = `mailto:${value}` } }
 
 function DesPanel() {
-  return <Panel number="1" id="des" mnemonic="DES" title="Profile" className="profile-panel"><VolSurface /><div className="hero-copy"><p className="prompt">~ $ whoami</p><h1>Karthik<br />Manda</h1><p className="thesis">{profile.thesis}</p><p className="current">{profile.status}</p><div className="hero-actions"><Link className="primary-action" to="/work">[F2] EXPLORE WORK</Link><Link className="secondary-action" to="/experience">[F3] EXPERIENCE</Link></div><Link className="home-archive-link" to="/archive">VISUAL ARCHIVE <span>Posters and design studies ↗</span></Link></div><div className="axis-label strike" aria-hidden="true">STRIKE</div><div className="axis-label maturity" aria-hidden="true">MATURITY</div><div className="axis-label implied" aria-hidden="true">IMPLIED VOL</div></Panel>
+  return <Panel number="1" id="des" mnemonic="DES" title="Profile" className="profile-panel"><VolSurface /><div className="hero-copy"><p className="prompt">~ $ whoami</p><h1>Karthik<br />Manda</h1><p className="thesis">{profile.thesis}</p><p className="current">{profile.status}</p><div className="hero-actions"><Link className="primary-action" to="/work">[F2] EXPLORE WORK</Link><Link className="secondary-action" to="/experience">[F3] EXPERIENCE</Link></div><Link className="home-archive-link" to="/archive">VISUAL ARCHIVE <span>Posters and design studies ↗</span></Link></div></Panel>
 }
 function PositionsPanel() {
   const [open, setOpen] = useState(-1)
@@ -37,7 +36,6 @@ function ExperiencePanel() {
 }
 function MessagePanel() {
   const [copied, setCopied] = useState(false)
-  const [formOpen, setFormOpen] = useState(false)
-  return <Panel number="6" id="msg" mnemonic="MSG" title="Contact"><p className="contact-lead">Hiring for quant research, wealth-tech or applied AI in 2027? Email is fastest.</p><div className="channels"><button type="button" onClick={() => copy(profile.email, setCopied)}><span>{profile.email}</span><small>{copied ? 'COPIED' : 'COPY'}</small></button><a href={profile.linkedin} target="_blank" rel="noopener noreferrer" aria-label="Karthik Manda on LinkedIn, opens in new tab"><span>LinkedIn</span><small>OPEN ↗</small></a><a href={profile.github} target="_blank" rel="noopener noreferrer" aria-label="Karthik Manda on GitHub, opens in new tab"><span>GitHub</span><small>OPEN ↗</small></a><a href={profile.resume} target="_blank" rel="noopener noreferrer" aria-label="Karthik Manda résumé PDF, opens in new tab"><span>Résumé</span><small>PDF ↗</small></a></div><p className="copy-status" aria-live="polite">{copied ? 'Copied' : ''}</p><button className="form-toggle" type="button" aria-expanded={formOpen} onClick={() => setFormOpen((x) => !x)}>{formOpen ? 'Close message form' : 'Send a message'}</button>{formOpen && <div className="inline-form"><ContactForm /></div>}</Panel>
+  return <Panel number="6" id="msg" mnemonic="MSG" title="Contact" meta={<Link className="panel-header-link" to="/contact">OPEN CONTACT ↗</Link>}><p className="contact-lead">Open to 2028 full-time roles in quant research, wealth technology and applied AI.</p><div className="channels"><button type="button" onClick={() => copy(profile.email, setCopied)}><span>{profile.email}</span><small>{copied ? 'COPIED' : 'COPY'}</small></button><a href={profile.linkedin} target="_blank" rel="noopener noreferrer" aria-label="Karthik Manda on LinkedIn, opens in new tab"><span>LinkedIn</span><small>OPEN ↗</small></a><a href={profile.github} target="_blank" rel="noopener noreferrer" aria-label="Karthik Manda on GitHub, opens in new tab"><span>GitHub</span><small>OPEN ↗</small></a><a href={profile.resume} target="_blank" rel="noopener noreferrer" aria-label="Karthik Manda résumé PDF, opens in new tab"><span>Résumé</span><small>PDF ↗</small></a></div><p className="copy-status" aria-live="polite">{copied ? 'Copied' : ''}</p><Link className="panel-more" to="/contact">Send a message →</Link></Panel>
 }
 export default function Home() { return <div className="workspace"><DesPanel /><PositionsPanel /><WorkPanel /><SignalsPanel /><ExperiencePanel /><MessagePanel /></div> }

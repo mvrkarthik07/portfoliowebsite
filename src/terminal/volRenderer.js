@@ -1,9 +1,9 @@
 import { Scene, PerspectiveCamera, WebGLRenderer, BufferGeometry, Float32BufferAttribute, LineSegments, LineBasicMaterial, Color } from 'three'
 
 const smile = (x, z, t) => {
-  const skew = 1 + Math.sin(t / 40 * Math.PI * 2) * 0.15
+  const skew = 1 + Math.sin(t / 18 * Math.PI * 2) * 0.2
   const base = 0.12 + 0.20 * Math.exp(-z * 1.3) * (x < 0 ? x * x * 1.2 * skew : x * x * 0.55) + 0.05 * (1 - z)
-  return base + 0.012 * Math.sin(t / 14 * Math.PI * 2 + x * 2) + 0.009 * Math.sin(t / 23 * Math.PI * 2 + z * 4)
+  return base + 0.026 * Math.sin(t / 9 * Math.PI * 2 + x * 2) + 0.018 * Math.sin(t / 14 * Math.PI * 2 + z * 4)
 }
 export function mountSurface(host, onReady, onLost) {
   const canvas = document.createElement('canvas')
@@ -15,8 +15,8 @@ export function mountSurface(host, onReady, onLost) {
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5))
   const tokens = getComputedStyle(document.documentElement)
   const ink = tokens.getPropertyValue('--ink').trim()
-  const amber = new Color(tokens.getPropertyValue('--amber').trim())
-  const amberDim = new Color(tokens.getPropertyValue('--amber-dim').trim())
+  const accent = new Color(tokens.getPropertyValue('--accent').trim())
+  const accentDim = new Color(tokens.getPropertyValue('--accent-dim').trim())
   renderer.setClearColor(ink, 0)
   host.appendChild(canvas)
   const scene = new Scene()
@@ -26,14 +26,14 @@ export function mountSurface(host, onReady, onLost) {
   const addVertex = (x, z, color) => { coordinates.push(x, z); colors.push(color.r, color.g, color.b) }
   for (let i = 0; i < 56; i++) {
     const x = i / 55 * 4 - 2
-    const opacity = i === 28 ? 0.7 : i % 7 === 0 ? 0.34 : 0.19
-    const color = (i === 28 ? amber : amberDim).clone().multiplyScalar(opacity)
+    const opacity = i === 28 ? 1 : i % 7 === 0 ? 0.72 : 0.48
+    const color = (i === 28 ? accent : accentDim).clone().multiplyScalar(opacity)
     for (let j = 0; j < 35; j++) { addVertex(x, j / 35, color); addVertex(x, (j + 1) / 35, color) }
   }
   for (let j = 0; j < 36; j++) {
     const z = j / 35
-    const opacity = Math.min(0.7, 0.08 + (1 - z) * 0.47 + (j % 6 === 0 ? 0.15 : 0))
-    const color = amberDim.clone().multiplyScalar(opacity)
+    const opacity = Math.min(0.95, 0.24 + (1 - z) * 0.53 + (j % 6 === 0 ? 0.18 : 0))
+    const color = accentDim.clone().multiplyScalar(opacity)
     for (let i = 0; i < 55; i++) { addVertex(i / 55 * 4 - 2, z, color); addVertex((i + 1) / 55 * 4 - 2, z, color) }
   }
   const geometry = new BufferGeometry()
@@ -62,8 +62,8 @@ export function mountSurface(host, onReady, onLost) {
       attribute.setXYZ(i / 2, x, smile(x / 2, z, t) * 3, z * 3 - 1.5)
     }
     attribute.needsUpdate = true
-    angle += (pointer - angle) * 0.025
-    const azimuth = (-32 + Math.sin(t / 60 * Math.PI * 2) * 6 + angle) * Math.PI / 180
+    angle += (pointer - angle) * 0.05
+    const azimuth = (-32 + Math.sin(t / 22 * Math.PI * 2) * 9 + angle) * Math.PI / 180
     camera.position.set(Math.sin(azimuth) * 8, 4.4, Math.cos(azimuth) * 8)
     camera.lookAt(0, 0.35, 0)
     renderer.render(scene, camera)

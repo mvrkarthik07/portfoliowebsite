@@ -28,11 +28,11 @@ npm run preview
 - `src/content/projects.ts` holds project records, case studies and links.
 - `src/content/ticker.ts` holds the static credentials shown in the tape.
 - `src/content/archive.json` lists responsive poster derivatives.
-- `/`, `/work`, `/work/:slug`, `/experience`, `/experience/:slug`, `/about` and `/archive` are prerendered during the build. `/resume.pdf` is a static asset.
+- `/`, `/work`, `/work/:slug`, `/experience`, `/experience/:slug`, `/contact`, `/about` and `/archive` are prerendered during the build. `/resume.pdf` is a static asset.
 
 The work blotter presents MARL as research. Its reported metrics are user supplied and are described as unverified without a known out-of-sample split or trading-cost assumptions.
 
-`GITHUB_TOKEN` is optional at build time. If present, `scripts/fetch-activity.mjs` fetches real GitHub contribution data for the activity chart. If absent or unavailable, the chart is omitted. The contact form uses the optional `VITE_EMAILJS_SERVICE_ID`, `VITE_EMAILJS_TEMPLATE_ID` and `VITE_EMAILJS_PUBLIC_KEY` values in `.env.example`; direct email, LinkedIn, GitHub and résumé links work without them.
+`GITHUB_TOKEN` is optional at build time. If present, `scripts/fetch-activity.mjs` fetches real GitHub contribution data for the activity chart. If absent or unavailable, the chart is omitted. The contact page submits to Netlify Forms. Submissions appear under **Forms** in the Netlify dashboard; add an email notification under **Forms → Submission notifications** to receive each message by email. Direct email, LinkedIn, GitHub and résumé links work independently.
 
 ## Poster assets
 

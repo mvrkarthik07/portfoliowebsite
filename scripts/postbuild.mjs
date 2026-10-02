@@ -28,9 +28,10 @@ const escape = (value) => String(value).replace(/[&<>"']/g, (char) => ({ '&':'&a
 const projectRoutes = projects.filter(({ caseStudy }) => caseStudy).map((project) => ({ path: `/work/${project.slug}`, title: project.name, description: project.summary, text: `<article><h1>${escape(project.name)}</h1><p>${escape(project.summary)}</p><h2>Problem</h2><p>${escape(project.problem)}</p><h2>Approach</h2><p>${escape(project.approach)}</p><h2>Results</h2><p>${escape(project.outcome)}</p><h2>Trade-offs</h2><ul>${project.limitations.map((value) => `<li>${escape(value)}</li>`).join('')}</ul></article>` }))
 const experienceRoutes = experience.map((item) => ({ path: `/experience/${item.slug}`, title: item.role, description: item.summary, text: `<article><h1>${escape(item.role)}</h1><p>${escape(item.org)}</p><p>${escape(item.summary)}</p><h2>What I do</h2><ul>${item.bullets.map((value) => `<li>${escape(value)}</li>`).join('')}</ul></article>` }))
 const routes = [
-  { path: '/', title: 'Home', description: profile.thesis, text: `<h1>${escape(profile.name)}</h1><p>${escape(profile.thesis)}</p><p>${escape(profile.status)}</p><a href="/work">Work</a><a href="/archive">Visual archive</a><a href="mailto:${escape(profile.email)}">Email</a>` },
+  { path: '/', title: 'Home', description: profile.thesis, text: `<h1>${escape(profile.name)}</h1><p>${escape(profile.thesis)}</p><p>${escape(profile.status)}</p><a href="/work">Work</a><a href="/archive">Visual archive</a><a href="/contact">Contact</a>` },
   { path: '/work', title: 'Work', description: 'Systems, AI tools and quant research by Karthik Manda.', text: `<h1>Work</h1>${projects.map((project) => `<article><h2>${escape(project.name)}</h2><p>${escape(project.summary)}</p></article>`).join('')}` },
   { path: '/experience', title: 'Experience', description: 'Professional and campus experience of Karthik Manda.', text: `<h1>Experience</h1>${experience.map((item) => `<article><h2>${escape(item.role)}</h2><p>${escape(item.org)}</p><p>${escape(item.summary)}</p></article>`).join('')}` },
+  { path: '/contact', title: 'Contact', description: 'Contact Karthik Manda about 2028 full-time roles, collaborations and projects.', text: `<h1>Contact</h1><p>Open to 2028 full-time roles.</p><a href="mailto:${escape(profile.email)}">Email Karthik Manda</a>` },
   { path: '/about', title: 'About', description: profile.bio[0], text: `<h1>${escape(profile.name)}</h1>${profile.bio.map((p) => `<p>${escape(p)}</p>`).join('')}` },
   { path: '/archive', title: 'Visual archive', description: 'Poster and visual design studies by Karthik Manda.', text: `<h1>Visual archive</h1><p>Poster and visual design studies.</p>` },
   ...projectRoutes,
@@ -44,9 +45,9 @@ function ogSvg(title, result) {
       const y = 370 - j * 14 - Math.sin(i / 2.8) * (18 + j * 1.5)
       return `${x},${Math.round(y)}`
     }).join(' ')
-    return `<polyline points="${points}" fill="none" stroke="#B8730F" stroke-opacity="${(0.12 + j * 0.03).toFixed(2)}"/>`
+    return `<polyline points="${points}" fill="none" stroke="#A45560" stroke-opacity="${(0.12 + j * 0.03).toFixed(2)}"/>`
   }).join('')
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630"><rect width="1200" height="630" fill="#000000"/><rect x="28" y="28" width="1144" height="574" fill="none" stroke="#53605A"/><rect x="28" y="28" width="1144" height="44" fill="#171B1A"/><text x="52" y="57" fill="#FFA31A" font-family="monospace" font-size="20">KM ▸ ${escape(title.toUpperCase())}</text>${lines}<text x="54" y="290" fill="#F2F2F2" font-family="monospace" font-size="56" font-weight="600">${escape(title)}</text><text x="54" y="352" fill="#FFA31A" font-family="monospace" font-size="22">${escape(result)}</text><text x="54" y="555" fill="#A8B2AE" font-family="monospace" font-size="18">mvrkarthik.netlify.app</text></svg>`
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630"><rect width="1200" height="630" fill="#050707"/><rect x="28" y="28" width="1144" height="574" fill="none" stroke="#4B5750"/><rect x="28" y="28" width="1144" height="44" fill="#181C1A"/><text x="52" y="57" fill="#D7878D" font-family="monospace" font-size="20">KM ▸ ${escape(title.toUpperCase())}</text>${lines}<text x="54" y="290" fill="#F3F5F3" font-family="monospace" font-size="56" font-weight="600">${escape(title)}</text><text x="54" y="352" fill="#D7878D" font-family="monospace" font-size="22">${escape(result)}</text><text x="54" y="555" fill="#B0BAB4" font-family="monospace" font-size="18">mvrkarthik.netlify.app</text></svg>`
 }
 for (const route of routes) {
   const project = projects.find(({ slug }) => route.path === `/work/${slug}`)
