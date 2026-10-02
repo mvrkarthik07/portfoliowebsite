@@ -31,10 +31,4 @@ export const experience = [
     summary: 'Built a React research datasite and worked on data visualisation and content workflows.',
     bullets: ['Built and deployed a React research datasite with four production pages.', 'Worked on data visualisation and CMS workflows.'],
   },
-  {
-    slug: 'singapore-armed-forces', category: 'Professional', period: 'Jan 2023–Aug 2024',
-    role: 'Automotive technician', org: 'Singapore Armed Forces', live: false, featured: false,
-    summary: 'Diagnosed and maintained electrical and digital vehicle systems.',
-    bullets: ['Diagnosed and maintained electrical and digital vehicle systems.', 'Used CAN bus and ECU diagnostic procedures.'],
-  },
 ] as const

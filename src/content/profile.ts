@@ -11,7 +11,7 @@ export const profile = {
   bio: [
     'I study Computer Engineering at Nanyang Technological University in Singapore, with a focus on quantitative research, software systems and applied AI.',
     'My work ranges from alpha-factor research and local code analysis to full-stack writing tools. I care about explicit assumptions, inspectable results and systems that work outside a demo.',
-    'Before these projects, I worked on web systems at NTU and served as an automotive technician in the Singapore Armed Forces.'
+    'I also built web systems at NTU, including a research datasite and data visualisation workflows.'
   ],
   education: 'B.Eng. Computer Engineering, Nanyang Technological University · expected 2028',
 } as const
