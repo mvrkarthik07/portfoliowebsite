@@ -25,6 +25,7 @@ const focusPanel = (id, smooth = true) => {
 export default function Chrome({ menuOpen, setMenuOpen, onMessage }) {
   const navigate = useNavigate()
   const location = useLocation()
+  const pathname = location.pathname.replace(/\/+$/, '') || '/'
   const [query, setQuery] = useState('')
   const [open, setOpen] = useState(false)
   const [selected, setSelected] = useState(0)
@@ -62,7 +63,7 @@ export default function Chrome({ menuOpen, setMenuOpen, onMessage }) {
     document.addEventListener('keydown', escape)
     return () => { document.removeEventListener('pointerdown', dismiss, true); document.removeEventListener('keydown', escape) }
   }, [open])
-  useEffect(() => { setOpen(false); inputRef.current?.blur() }, [location.pathname])
+  useEffect(() => { setOpen(false); inputRef.current?.blur() }, [pathname])
   useEffect(() => {
     if (!menuOpen) return
     const first = menuRef.current?.querySelector('a')
@@ -81,21 +82,21 @@ export default function Chrome({ menuOpen, setMenuOpen, onMessage }) {
     return () => document.removeEventListener('keydown', keyHandler)
   }, [menuOpen, setMenuOpen])
   useEffect(() => {
-    const found = ['/', '/about', '/archive', '/work', '/experience'].includes(location.pathname) || projects.some((project) => project.caseStudy && location.pathname === `/work/${project.slug}`) || /^\/experience\/[^/]+$/.test(location.pathname)
-    if (!found) { setQuery(location.pathname); setError(`Route "${location.pathname}" not found. Try WORK, EXP, MSG, or HELP.`) }
-  }, [location.pathname])
+    const found = ['/', '/about', '/archive', '/work', '/experience'].includes(pathname) || projects.some((project) => project.caseStudy && pathname === `/work/${project.slug}`) || /^\/experience\/[^/]+$/.test(pathname)
+    if (!found) { setQuery(pathname); setError(`Route "${pathname}" not found. Try WORK, EXP, MSG, or HELP.`) }
+  }, [pathname])
   useEffect(() => {
-    if (!location.hash || location.pathname !== '/') return
+    if (!location.hash || pathname !== '/') return
     const id = location.hash.slice(1)
     const timer = setTimeout(() => focusPanel(id, false), 50)
     return () => clearTimeout(timer)
-  }, [location.pathname, location.hash])
+  }, [pathname, location.hash])
 
   const goPanel = useCallback((id) => {
     setOpen(false); setMenuOpen(false)
-    if (location.pathname !== '/') navigate(`/#${id}`)
+    if (pathname !== '/') navigate(`/#${id}`)
     else { navigate(`/#${id}`); setTimeout(() => focusPanel(id), 0) }
-  }, [location.pathname, navigate, setMenuOpen])
+  }, [pathname, navigate, setMenuOpen])
   const copyEmail = async () => {
     try { await navigator.clipboard.writeText(profile.email); onMessage('Email copied') }
     catch { window.location.href = `mailto:${profile.email}` }
@@ -127,20 +128,20 @@ export default function Chrome({ menuOpen, setMenuOpen, onMessage }) {
       if (event.key === '/') { event.preventDefault(); setOpen(true); inputRef.current?.focus() }
       if (/^[1-6]$/.test(event.key)) {
         event.preventDefault()
-        if (location.pathname !== '/') { if (event.key === '1') navigate('/') }
+        if (pathname !== '/') { if (event.key === '1') navigate('/') }
         else goPanel(['des', 'positions', 'work', 'signals', 'exp', 'msg'][Number(event.key) - 1])
       }
     }
     document.addEventListener('keydown', handler)
     return () => document.removeEventListener('keydown', handler)
-  }, [location.pathname, menuOpen, shortcuts, navigate, goPanel])
+  }, [pathname, menuOpen, shortcuts, navigate, goPanel])
   const onInputKey = (event) => {
     if (event.key === 'ArrowDown') { event.preventDefault(); setSelected((n) => Math.min(n + 1, filtered.length - 1)) }
     if (event.key === 'ArrowUp') { event.preventDefault(); setSelected((n) => Math.max(n - 1, 0)) }
     if (event.key === 'Enter') { event.preventDefault(); execute(filtered[selected]?.command && open && query !== 'HELP' ? filtered[selected].command : query) }
     if (event.key === 'Escape') { if (query || open) { setQuery(''); setOpen(false); setError('') } else inputRef.current?.blur() }
   }
-  const navLink = ([fkey, label, href]) => href.endsWith('.pdf') ? <a key={fkey} href={href} target="_blank" rel="noopener noreferrer" aria-label={`${label} PDF, opens in new tab`}><span className="keycap">{fkey}</span><span>{label}</span></a> : <Link key={fkey} to={href} onClick={() => { setMenuOpen(false); setOpen(false) }} className={location.pathname === href || (href !== '/' && !href.includes('#') && location.pathname.startsWith(`${href}/`)) ? 'active' : ''}><span className="keycap">{fkey}</span><span>{label}</span></Link>
+  const navLink = ([fkey, label, href]) => href.endsWith('.pdf') ? <a key={fkey} href={href} target="_blank" rel="noopener noreferrer" aria-label={`${label} PDF, opens in new tab`}><span className="keycap">{fkey}</span><span>{label}</span></a> : <Link key={fkey} to={href} onClick={() => { setMenuOpen(false); setOpen(false) }} className={pathname === href || (href !== '/' && !href.includes('#') && pathname.startsWith(`${href}/`)) ? 'active' : ''}><span className="keycap">{fkey}</span><span>{label}</span></Link>
   return <header className="chrome">
     <div className="commandbar" ref={commandBarRef}>
       <Link className="brand" to="/" aria-label="Karthik Manda home">KM ▸</Link>

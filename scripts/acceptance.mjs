@@ -30,6 +30,12 @@ for (const route of ['/', '/work', '/experience', '/experience/qfa-development',
   assert(meta.canonical[0].startsWith('https://mvrkarthik.netlify.app/')); assert(meta.og[0].startsWith('https://mvrkarthik.netlify.app/')); assert(meta.image.startsWith('https://mvrkarthik.netlify.app/'))
 }
 console.log('Accessibility and meta: nine routes pass')
+for (const route of ['/work/', '/experience/', '/experience/qfa-development/', '/archive/']) {
+  await page.goto(`${url}${route}`, { waitUntil: 'networkidle' })
+  assert(!((await page.title()).startsWith('Route not found')), `trailing-slash title: ${route}`)
+  assert.equal(await page.locator('.command-error').count(), 0, `trailing-slash command error: ${route}`)
+}
+console.log('Direct trailing-slash routes: pass')
 await page.goto(url, { waitUntil: 'networkidle' })
 assert(await page.getByRole('link', { name: /VISUAL ARCHIVE/ }).isVisible())
 const command = page.getByRole('combobox', { name: 'Command' })

@@ -10,7 +10,8 @@ function setMeta(selector, attrs, value) {
   element.setAttribute(attrs.href ? 'href' : 'content', value)
 }
 export default function Meta() {
-  const { pathname } = useLocation()
+  const { pathname: rawPathname } = useLocation()
+  const pathname = rawPathname.replace(/\/+$/, '') || '/'
   useEffect(() => {
     const project = projects.find(({ slug }) => pathname === `/work/${slug}`)
     const role = experience.find(({ slug }) => pathname === `/experience/${slug}`)
