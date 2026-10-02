@@ -9,6 +9,9 @@ import { MotionConfig, LazyMotion, domAnimation } from 'framer-motion'
 import { createServer } from 'vite'
 const root = path.resolve('dist')
 const template = await readFile(path.join(root, 'index.html'), 'utf8')
+const stylesheet = template.match(/<link rel="stylesheet" crossorigin href="(\/assets\/[^\"]+\.css)">/)
+if (!stylesheet) throw new Error('Vite stylesheet link missing from HTML template')
+const homeCss = await readFile(path.join(root, stylesheet[1].slice(1)), 'utf8')
 async function fromTS(file) {
   const result = await build({ entryPoints: [file], bundle: true, platform: 'node', format: 'esm', write: false })
   return import(`data:text/javascript,${encodeURIComponent(result.outputFiles[0].text)}`)
@@ -50,7 +53,8 @@ for (const route of routes) {
   const jsonLd = route.path === '/' ? `<script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@type': 'Person', name: profile.name, alumniOf: 'Nanyang Technological University', sameAs: [profile.github, profile.linkedin] })}</script>` : ''
   const meta = `<meta name="description" content="${escape(route.description)}"/><link rel="canonical" href="${url}"/><meta property="og:type" content="${project ? 'article' : 'website'}"/><meta property="og:title" content="${escape(fullTitle)}"/><meta property="og:description" content="${escape(route.description)}"/><meta property="og:url" content="${url}"/><meta property="og:image" content="${image}"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="${escape(fullTitle)}"/><meta name="twitter:description" content="${escape(route.description)}"/><meta name="twitter:image" content="${image}"/>${jsonLd}`
   const rootMarkup = route.path === '/' ? `<div id="root" data-ssr="true">${homeMarkup}</div>` : `<div id="root">${route.text}</div>`
-  const html = template.replace(/<title>.*?<\/title>/, `<title>${escape(fullTitle)}</title>${meta}`).replace('<div id="root"></div>', rootMarkup)
+  let html = template.replace(/<title>.*?<\/title>/, `<title>${escape(fullTitle)}</title>${meta}`).replace('<div id="root"></div>', rootMarkup)
+  if (route.path === '/') html = html.replace(stylesheet[0], `<style>${homeCss}</style>`)
   const destination = route.path === '/' ? path.join(root, 'index.html') : path.join(root, route.path, 'index.html')
   await mkdir(path.dirname(destination), { recursive: true })
   await writeFile(destination, html)
